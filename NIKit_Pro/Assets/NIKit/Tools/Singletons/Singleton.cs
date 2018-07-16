@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace NIKit.Tools
 {
@@ -10,7 +7,7 @@ namespace NIKit.Tools
     public abstract class Singleton<T> where T : class, new()
     {
         protected static T mInstance;
-        private static readonly object padlock = new object();
+        private static readonly object mPadlock = new object();
 
         public static T Instance
         {
@@ -18,7 +15,7 @@ namespace NIKit.Tools
             {
                 if (mInstance == null)
                 {
-                    lock (padlock)
+                    lock (mPadlock)
                     {
                         if (mInstance == null)
                         {
