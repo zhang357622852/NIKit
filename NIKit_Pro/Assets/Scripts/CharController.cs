@@ -5,19 +5,29 @@ using UnityEngine;
 public class CharController : MonoBehaviour
 {
     public float mGravity = -10;
-    protected Vector2 mSpeed;
+    public Vector2 mSpeed;
+    public BoxCollider2D mBoxCol;
+    public Rect mBoxColRect;
 
     // Use this for initialization
     void Start ()
     {
+        mBoxCol = GetComponent<BoxCollider2D>();
 
-	}
+        mBoxColRect = new Rect(mBoxCol.bounds.min.x, mBoxCol.bounds.min.y, mBoxCol.size.x, mBoxCol.size.y);
+
+        Debug.DrawLine(new Vector2(mBoxColRect.xMin, mBoxColRect.center.y), new Vector2(mBoxColRect.xMax, mBoxColRect.center.y), Color.yellow);
+
+
+        //Debug.Log("===x=====" + mBoxCol.bounds.min.x);
+        //Debug.Log("==y======" + mBoxCol.bounds.min.y);
+    }
 
 	// Update is called once per frame
 	void Update ()
     {
-        mSpeed.y += mGravity * Time.deltaTime;
-        Vector2 newPos = mSpeed * Time.deltaTime;
-        transform.Translate(newPos, Space.World);
+        //mSpeed.y += mGravity * Time.deltaTime;
+        //Vector2 newPos = mSpeed * Time.deltaTime;
+        //transform.Translate(newPos, Space.World);
 	}
 }
