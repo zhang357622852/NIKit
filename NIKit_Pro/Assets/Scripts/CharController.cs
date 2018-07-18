@@ -14,9 +14,6 @@ public class CharController : MonoBehaviour
     {
         mBoxCol = GetComponent<BoxCollider2D>();
 
-        mBoxColRect = new Rect(mBoxCol.bounds.min.x, mBoxCol.bounds.min.y, mBoxCol.size.x, mBoxCol.size.y);
-
-        Debug.DrawLine(new Vector2(mBoxColRect.xMin, mBoxColRect.center.y), new Vector2(mBoxColRect.xMax, mBoxColRect.center.y), Color.yellow);
 
 
         //Debug.Log("===x=====" + mBoxCol.bounds.min.x);
@@ -26,8 +23,16 @@ public class CharController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        DrawBoxCol();
         //mSpeed.y += mGravity * Time.deltaTime;
         //Vector2 newPos = mSpeed * Time.deltaTime;
         //transform.Translate(newPos, Space.World);
-	}
+    }
+
+    private void DrawBoxCol()
+    {
+        mBoxColRect = new Rect(mBoxCol.bounds.min.x, mBoxCol.bounds.min.y, mBoxCol.size.x, mBoxCol.size.y);
+        Debug.DrawLine(new Vector2(mBoxColRect.xMin, mBoxColRect.center.y), new Vector2(mBoxColRect.xMax, mBoxColRect.center.y), Color.yellow);
+        Debug.DrawLine(new Vector2(mBoxColRect.center.x, mBoxColRect.yMin), new Vector2(mBoxColRect.center.x, mBoxColRect.yMax), Color.yellow);
+    }
 }
