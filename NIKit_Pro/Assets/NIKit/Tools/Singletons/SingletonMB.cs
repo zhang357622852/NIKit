@@ -5,7 +5,7 @@ namespace NIKit.Tools
     /// <summary>
     /// Singleton pattern By MonoBrhaviour
     /// </summary>
-    public class SingletonMB<T> : MonoBehaviour where T : Component
+    public abstract class SingletonMB<T> : MonoBehaviour where T : Component
     {
         protected static T mInstance;
 
@@ -16,6 +16,7 @@ namespace NIKit.Tools
                 if (mInstance == null)
                 {
                     mInstance = FindObjectOfType<T>();
+
                     if (mInstance == null)
                     {
                         GameObject obj = new GameObject();
@@ -23,6 +24,7 @@ namespace NIKit.Tools
                         mInstance = obj.AddComponent<T>();
                     }
                 }
+
                 return mInstance;
             }
         }
