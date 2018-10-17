@@ -1,0 +1,12 @@
+Library/
+ProjectSettings/
+Temp/
+UnityPackageManager/
+*.meta
+NIKit_Pro/NIKit_Pro.sln
+NIKit_Pro/.vs/NIKit_Pro/v15/Server/sqlite3/storage.ide-wal
+NIKit_Pro/.vs/NIKit_Pro/v15/Server/sqlite3/db.lock
+NIKit_Pro/NIKit_Pro.csproj
+NIKit_Pro/.vs/NIKit_Pro/v15/Server/sqlite3/storage.ide-shm
+NIKit_Pro/.vs/NIKit_Pro/v15/.suo
+NIKit_Pro/.vs/NIKit_Pro/v15/Server/sqlite3/storage.ide

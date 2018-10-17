@@ -1,39 +1,31 @@
+
 /// <summary>
-/// Singleton.cs
-/// Created by wangxw 2014-10-22
-/// 单件模板
+/// Singleton pattern
 /// </summary>
-
-using System;
-using System.Collections.Generic;
-
-public class Singleton<T> where T : new()
+public abstract class Singleton<T> where T : class, new()
 {
-    // 单件实例对象
-    protected static T mInstance = default(T);
+    protected static T mInstance;
 
-    /// <summary>
-    /// 获取单件对象
-    /// </summary>
-    /// <value>单件实例</value>
+    private static readonly object mPadlock = new object();
+
     public static T Instance
     {
         get
         {
-            // 没有单件，则立即创建一个
-            // Thread Unsafe
-            if (Singleton<T>.mInstance == null)
-                Singleton<T>.mInstance = ((default(T) == null) ? Activator.CreateInstance<T>() : default(T));
+            if (mInstance == null)
+            {
+                lock (mPadlock)
+                {
+                    if (mInstance == null)
+                    {
+                        mInstance = new T();
+                    }
+                }
+            }
 
-            return Singleton<T>.mInstance;
+            return mInstance;
         }
     }
-
-    /// <summary>
-    /// 清理单件对象
-    /// </summary>
-    public void CleanInstance()
-    {
-        Singleton<T>.mInstance = default(T);
-    }
 }
+
+
