@@ -1,0 +1,104 @@
+﻿<skill_action version="P97v1">
+
+    <!-- 小眼球 破防凝视 5103 攻击技能 -->
+    <action_set name="5103_cast" type="AST_ACT" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 技能动作 -->
+        <action type="ActionAnimation" start_time="0.0" stop_when_cancel="true">
+            <property name="name" value="attack01" ctype="string" />
+        </action>
+
+        <!-- 光效节点起手-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="Prefabs/Effect/E9052f1a" ctype="string" />
+            <property name="offset" value="0.0 0.8 -0.1" ctype="vector3"/>
+            <property name="scale" value="0.6 0.6 1" ctype="vector3"/>
+        </action>
+
+        <!-- 伤害命中 -->
+        <action type="ActionHit" start_time="Hit" stop_when_cancel="true">
+            <property name="hit_index" value="0" ctype="int" />
+        </action>
+
+        <!-- 音效 -->
+        <action type="ActionSound" start_time="0.0" stop_when_cancel="true">
+            <property name="sound" value="s_magic_ready" ctype="string" />
+            <property name="adjust_speed" value="false" ctype="bool" />
+        </action>
+
+    </action_set>
+
+    <!-- 小眼球 破防凝视(二段) 5108 攻击技能 -->
+    <action_set name="5108_cast" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 效果命中 -->
+        <action type="ActionHit" start_time="0" stop_when_cancel="true">
+            <property name="hit_index" value="0" ctype="int" />
+        </action>
+
+        <!-- 效果命中 -->
+        <action type="ActionHit" start_time="0" stop_when_cancel="true">
+            <property name="hit_index" value="1" ctype="int" />
+            <property name="depend_hit" value="0" ctype="lpc" />
+        </action>
+
+        <!-- 音效 -->
+    </action_set>
+
+    <!-- 小眼球 破防凝视(二段) 5108 受创动作1 -->
+    <action_set name="5108_damage_act" type="AST_ACT" speed_factor="SCT_ATTACK_SPEED">
+        <!-- 受创动作 -->
+        <action type="ActionAnimation" start_time="0.0" stop_when_cancel="true">
+            <property name="name" value="damage" ctype="string" />
+        </action>
+    </action_set>
+
+    <!-- 小眼球 破防凝视 5108 受创光效1 -->
+    <action_set name="5108_damage_status" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 光效节点命中-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="Prefabs/Effect/E9050f1c" ctype="string" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+            <property name="offset" value="0.0 0.7 -0.1" ctype="vector3"/>
+            <property name="scale" value="1.0 0.8 1" ctype="vector3"/>
+        </action>
+
+        <!-- 通用护盾光效节点受创-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="@10009#&quot;Prefabs/Effect/E0112&quot;" ctype="@" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+            <property name="scale" value="@10010" ctype="@" />
+        </action>
+
+        <!-- 光效节点受创-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="@10005#({ &quot;Prefabs/Effect/E0102l&quot; , &quot;Prefabs/Effect/E0102d&quot; , &quot;Prefabs/Effect/E0102f&quot;, &quot;Prefabs/Effect/E0102s&quot;, &quot;Prefabs/Effect/E0102w&quot;})" ctype="@" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+        </action>
+
+        <!-- Event DAMAGE  延迟命中 -->
+        <action type="ActionEvent" start_time="0.0" stop_when_cancel="true">
+            <property name="event_type" value="EVENT_DAMAGE" ctype="emet" />
+            <property name="added_args" value="([])" ctype="lpc"/>
+        </action>
+
+        <!-- 音效 -->
+        <action type="ActionSound" start_time="0.0" stop_when_cancel="true">
+            <property name="sound" value="@11000#({ &quot;s_crt_dmg&quot; , &quot;s_light_dmg&quot; , &quot;s_shield_dmg&quot;, &quot;s_magic_dmg&quot;, &quot;s_normal_dmg&quot;})" ctype="@" />
+            <property name="adjust_speed" value="false" ctype="bool" />
+        </action>
+
+        <!-- 模型变色 -->
+        <action type="ActionActorColor" start_time="0.0" stop_when_cancel="true">
+            <property name="color" value="0 0 0 1" ctype="color_rgba" />
+            <property name="type" value="CCT_BASE" ctype="cct" />
+            <property name="time" value="0.05" ctype="float" />
+        </action>
+
+    </action_set>
+
+</skill_action>

@@ -10,3 +10,6 @@ NIKit_Pro/NIKit_Pro.csproj
 NIKit_Pro/.vs/NIKit_Pro/v15/Server/sqlite3/storage.ide-shm
 NIKit_Pro/.vs/NIKit_Pro/v15/.suo
 NIKit_Pro/.vs/NIKit_Pro/v15/Server/sqlite3/storage.ide
+NIKit_Pro/.vs/NIKit_Pro/DesignTimeBuild/.dtbcache
+NIKit_Pro/NIKit_Pro.Editor.csproj
+NIKit_Pro/NIKit_Pro.userprefs

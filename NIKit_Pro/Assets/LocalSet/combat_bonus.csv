@@ -1,0 +1,22 @@
+﻿"# combat_bonus.csv",,,,
+"# 战斗奖励配置表",,,,
+"# rule：奖励规则名",,,,
+"# bonus_type：奖励方式(indirect:间接奖励方式，该方式需要将物品扔到房间中，direct:直接奖励方式，直接作用到角色身上（如属性，任务道具等奖励）)",,,,
+"# type：奖励类型，用于区分是属性奖励（attrib），道具奖励（property），任务道具（task_item）",,,,
+"# calc_script：计算脚本",,,,
+"# calc_arg：计算参数",,,,
+"# memo：备注信息",,,,
+,,,,
+"# 奖励规则","计算脚本","计算参数","第一次副本特殊掉落","备注"
+"auto","auto","auto","auto","auto"
+"rule","calc_script","calc_arg","first_instance_bonus","memo"
+"normal_money_bonus",7000,500,"@TRUE","通用金钱掉落奖励"
+"easy_life_bonus",7002,48,"@TRUE","简单难度体力掉落奖励"
+"normal_life_bonus",7002,58,"@TRUE","困难难度体力掉落奖励"
+"hard_life_bonus",7002,70,"@TRUE","地狱难度体力掉落奖励"
+"easy_diamond_bonus",7001,4,"@TRUE","简单难度钻石掉落奖励"
+"normal_diamond_bonus",7001,5,"@TRUE","困难难度钻石掉落奖励"
+"hard_diamond_bonus",7001,6,"@TRUE","地狱难度钻石掉落奖励"
+"normal_arena_bonus",7003,,"@TRUE","通用竞技场劵奖励"
+"arena_user_money_bonus",7009,200,"@TRUE","竞技场排位战金钱掉落奖励"
+"arena_npc_money_bonus",7010,,"@TRUE","竞技场NPC战金钱掉落奖励"

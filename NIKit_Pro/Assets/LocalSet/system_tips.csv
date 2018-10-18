@@ -1,0 +1,7 @@
+﻿"# system_tips.csv",,,,,
+"# start场景提示信息配置表",,,,,
+"# 此表内的中文资源抽取在start.txt",,,,,
+"# 提示信息id","提示类型","分组","选择权重","选择权重","提示信息"
+"auto","string","auto","auto","auto","auto"
+"tip_id","tip_type","group","weight_script","weight_args","tip_doc"
+1,"resource_update",0,30009,"50","tip_doc_200"

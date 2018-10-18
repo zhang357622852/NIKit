@@ -1,0 +1,1501 @@
+encap:array         REQ_ATTR = string attrib, uint8 operator, int32 expect
+encap:none          REQUIREMENT = REQ_ATTR requirement[]
+encap:none          PROP_ATTR = mixed attrib[]
+encap:none          PROP = PROP_ATTR prop[]
+encap:none          STATUS = uint16 status[]
+encap:array         EXIT = string src_pos, uint8 src_dir, string dst_room, string dst_pos, uint8 dst_dir, mixed data
+encap:none          EQUIPMENT_LIST = map equipment_list[]
+encap:none          EQUIP_INFO = uint32 object_template[]
+encap:none          SKILLS_INFO = map skill_info[]
+encap:array         MESSAGE=int16 msg_no, buffer4 buf
+encap:none          PROPERTIES = map properties[]
+encap:none          TAKE_OVER_ACCOUNTS = string account[]
+encap:none          RULES = string rules[]
+encap:none          MEMBERS = string members[]
+encap:none          MEMBERS_INFO = map members_info[]
+string              rid(77);                          // RID
+uint8               gender(79);                       // 性别
+uint32              level(80);                        // 等级
+string              name(81);                         // 名字
+uint16              class_id(82);                     // 物件类别ID
+mixed               icon(83);                         // 图片编号
+mixed               type(84);                         // 类别
+string              unit(85);                         // 单位
+uint16              action(86);                       // 可操作动作
+uint16              target(87);                       // 可操作目标
+string2             desc(88);                         // 描述信息
+string              pos(89);                          // 坐标
+int32               hp(90);                           // 兵力
+int32               max_hp(91);                       // 最大兵力
+int32               mp(92);                           // 策略
+int32               max_mp(93);                       // 最大策略
+int32               exp(94);                          // 当前经验
+int32               terrain_id(95);                   // 地形ID
+int32               width(96);                        // 宽
+int32               height(97);                       // 高
+int32               depth(98);                        // 深
+int32               brief_map(99);                    // 小地图
+uint16              amount(100);                      // 数量
+string              domain_address(101);              // 域地址信息
+int16               str(102);                         // 力量
+uint16              dex(103);                         // 敏捷
+uint16              con(104);                         // 体质
+uint16              wiz(105);                         // 灵力
+REQUIREMENT         requirement(106);                 // 需求
+mixed               prop(107);                        // 提升属性
+mixed               improvement(108);                 // 最终提升值
+mixed               container_size(109);              // 包裹容量
+uint8               equip_type(110);                  // 道具的装备类别（非装备该值未定义）
+int32               damage(111);                      // 伤害
+map                 data(112);                        // 综合信息
+STATUS              status(113);                      // 状态信息
+int32               money(114);                       // 金钱
+int32               startup_time(115);                // 游戏世界创建时间
+int32               server_sync_time(116);            // 服务器当前时间
+SKILLS_INFO         skills_info(117);                 // 一组技能信息
+uint16              skill_id(118);                    // 技能编号
+string              next_desc(119);                   // 下一级技能效果描述信息
+uint16              radius(120);                      // 作用半径
+mixed               attrib(121);                      // 技能属性
+uint16              apply(122);                       // 作用目标
+mixed               attrib_desc(123);                 // 属性描述信息
+int32               up_pot(124);                      // 技能升级所需要的潜能
+map                 option(127);                      // 设置选项
+int16               int(128);                         // 智力
+int16               tac(129);                         // 战法
+int16               pol(130);                         // 政治
+int32               speed(131);                       // 速度
+int32               attack(132);                      // 攻击
+uint16              life(133);                        // 体力
+uint16              max_life(134);                    // 最大体力
+int32               logistics(138);                   // 行动力
+int32               defense(140);                     // 防御
+mixed               page_name(141);                   // 仓库页面名称
+uint8               have_password(142);               // 仓库是否有密码
+uint8               locked(143);                      // 仓库是否锁定
+mixed               balance(144);                     // 角色存款字段
+mixed               prop_ex(145);                     // (扩展) 提升属性
+map                 sell_price(147);                  // 出售价格
+map                 buy_price(148);                   // 购买价格
+string              skill_type(149);                  // 技能四围分类
+uint32              rno(150);                         // 场景编号
+uint8               allow_pk(151);                    // 场景是否允许玩家PK
+uint8               activate(152);                    // 宠物是否出战
+string              owner(153);                       // 道具宿主RID
+EQUIPMENT_LIST      equipment_list(154);              // 角色的装备信息
+mixed               suit(155);                        // 装备的套装信息
+mixed               suit_props(156);                  // 装备的套装属性（指附加属性）
+map                 cost(157);                        // 技能消耗信息
+uint8               pos_index(159);                   // 角色装备位置索引
+mixed               assigned_props(161);              // 临时赋予的附加属性
+string              dist(162);                        // 玩家所在区组名
+mixed               followers(164);                   // 跟随者名单
+PROPERTIES          properties(165);                  // 随身物件信息
+map                 coins(166);                       // 元宝信息
+string              account(167);                     // 帐号信息
+mixed               friend(168);                      // 好友相关信息
+int16               deadly_attack(169);               // 暴击
+int16               dodge(170);                       // 闪避
+TAKE_OVER_ACCOUNTS  take_over_accounts(172);          // GM当前接管帐号列表
+uint16              status_id(173);                   // 状态编号
+RULES               property_pattern(174);            // 下发物件规则
+mixed               skills(175);                      // 技能列表
+mixed               union_relations(176);             // UNION关系数据
+mixed               gang_relations(177);              // GANG关系数据
+uint32              create_time(178);                 // 创建时间
+uint8               relation(179);                    // 关系名
+string              station(180);                     // 身份
+string              relation_tag(181);                // 关系标签
+uint32              max_count(182);                   // 最大数量
+uint32              last_logout_time(183);            // 上次离线时间
+uint16              count(184);                       // 数量
+uint32              last_login_time(185);             // 上次登录时间
+uint8               thread(186);                      // 所在分线
+map                 current_room(187);                // 当前房间
+MEMBERS             members(188);                     // 队员地址列表
+MEMBERS_INFO        members_info(189);                // 队员信息列表
+mixed               stall_price(191);                 // 摊位物品出售价格
+mixed               dynamic_exits(192);               // 动态过图点列表
+uint16              room_rno(193);                    // 当前房间编号
+string              room(194);                        // 房间地址
+uint8               current_equip_suit(195);          // 当前装备套系号
+uint8               equip_suit_count(196);            // 激活的备用装备数
+uint8               available(202);                   // 角色状态
+mixed               property_security(203);           // 物品安全(玩家)
+mixed               security(204);                    // 物品安全(物品)
+uint8               active(205);                      // 角色是否激活的
+uint8               ps_password_auth(206);            // 物品安全码已经验证
+string              goods_rid(207);                   // 商品RID
+string              goods_type(208);                  // 商品类型
+string              seller_rid(209);                  // 出售者RID
+string              seller_name(210);                 // 出售者姓名
+uint32              start_time(211);                  // 开始时间
+uint32              end_time(212);                    // 结束时间
+uint32              start_price(213);                 // 起始价格
+uint32              current_price(214);               // 当前价格
+uint32              buy_it_now(215);                  // 一口价
+uint32              bid_times(216);                   // 竞价次数
+string              bidder_rid(217);                  // 竞价者RID
+string              bidder_name(218);                 // 竞价者姓名
+string              pay_attrib(219);                  // 支付属性
+EQUIP_INFO          equip_object_templates(220);      // 玩家现有装备的OT信息
+uint16              item_amount(221);                 // 摊位物品总数
+uint16              pet_amount(222);                  // 摊位宠物总数
+uint32              prop_template_id(223);            // 属性模板编号
+string              sender_rid(224)                   // 送花者rid
+string              from_rid(225)                     // 邮件发送者 RID
+string              from_name(226)                    // 邮件发送者名字
+string              to_rid(227)                       // 邮件接收者 RID
+string              to_name(228)                      // 邮件接受者名字
+string              title(229)                        // 邮件标题
+mixed               message(230)                      // 邮件正文
+uint32              state(231)                        // 邮件状态
+uint32              expire(232)                       // 邮件有效期
+uint32              send_time(233)                    // 邮件发送时间
+mixed               property_descs(234)               // 邮件携带物品描述
+uint16              default_cast_skill_id(235)        // 默认施展技能
+buffer4             client_os(236);                   // 客户端操作系统类型
+mixed               move_speed(237);                  // 角色移动速度
+map                 follow(238);                      // 跟随者的头领信息
+string              header(239);                      // 跟随者的队长域地址
+int32               tp(240);                          // 当前技力
+int32               max_tp(241);                      // 最大技力
+int32               magic_damage(243);                // 魔法伤害
+int32               fire_damage(244);                 // 炎伤害
+int32               ice_damage(245);                  // 冰伤害
+int32               light_damage(246);            // 雷伤害
+int32               dark_damage(247);                 // 冥伤害
+int32               extra_damage(248);                // 无属性伤害
+int32               magic_defense(249);               // 魔法防御
+int32               fire_defense(250);                // 炎防御
+int32               ice_defense(251);                 // 冰防御
+int32               light_defense(252);           // 雷防御
+int32               dark_defense(253);                // 冥防御
+int32               extra_defense(254);               // 额外伤害减少
+int32               resist(255);                // 物理抗性
+int32               magic_resist(256);           // 魔法抗性
+int32               fire_resist(257);            // 炎抗性
+int32               ice_resist(258);             // 冰抗性
+int32               light_resist(259);       // 雷抗性
+int32               dark_resist(260);            // 冥抗性
+int32               iore(261);                        // 乡野传奇
+int32               class(262);                       // 职阶
+int16               vit(263);                         // 体质
+int16               max_ep(267)                     // 最大能量
+int32               hp_recovery(268)                // 生命恢复
+int16               ep_recovery(269)                // 能量恢复
+int32               deadly_magic(270)               // 技能暴击
+int32               penetrate_defense(271)          // 穿透护甲
+int32               penetrate_magic_defense(272)    // 技能穿透
+int32               cure_add(273)                   // 增加治疗效果
+int32               blood_suck(274)                 // 吸血
+int16               init_ep(276)                    // 初始能量
+int8                is_equipment(277)               // 是否是装备
+uint8               is_social_on(278)               // 社交功能开启标识
+uint8               is_mine_on(279)                 // 挖矿系统开启标识
+mixed               belonging_list(280)             // 邮件附件列表
+uint8               is_rewarded(281)                // 领取标识
+uint8               is_redeem_key_on(282)           // 兑换码功能开启标识
+int32               app_evaluate_state(283)         // 评价界面状态
+uint8               is_daliy_bonus_on(284)          // 签到功能开启标识
+mixed               shortcuts(285)                  // 快捷键信息
+uint8               gapp_world(286)                 // 版署世界开启标识
+mixed               specific_collect_attrib(288)    // 特殊收集参数列表
+mixed               upgrade_store(289)              // 仓库升级信息
+int32               receive_amount(290)             // 邮件附件物品可领取的数量
+mixed               baggage_pet_list(291)           // 玩家包裹宠物列表
+uint8               real_name(292)                  // 实名认证开启标识
+int32               real_name_time(293)             // 实名限制开始时间
+uint8               close_pay(294)                  // 关闭付费功能
+string              from_icon(295)                  // 邮件发送者icon
+void cmd_apply(mixed items, string target_rid);
+void cmd_connect_failed_to_chat_ser(string node_ip);
+void cmd_create_jabber_account();
+void cmd_create_new_char(string char_name, uint8 gender, mixed extra_info);
+void cmd_delete_existed_char(string char_rid, buffer4 password);
+void cmd_debug_execute_script(int32 cookie, string2 script);
+void cmd_drop(string rid, int32 amount);
+void cmd_enter_room(string exit_tag);
+void cmd_equip(string item_rid, string target_rid);
+void cmd_unequip(string item_rid, string target_rid);
+void cmd_express_get_list(string cookie, mixed order[]);
+void cmd_express_read(string express_rid);
+void cmd_express_remove(string express_rid);
+void cmd_express_take_property(string express_rid, mixed extra_para);
+void cmd_take_all_friend_point();
+void cmd_give_up_task(string rid);
+void cmd_load_existed_char(string char_rid, int32 auth_key, int32 seed, map extra_info);
+void cmd_login(string account, int32 auth_key, int32 seed);
+void cmd_logout();
+void cmd_move_to(string steps[], int16 direction, uint32 tick, map extra_data);
+void cmd_relay_to_server(string account, string domain, uint16 thread, int32 cookie, int32 auth_key, int32 seed, mixed extra_info);
+void cmd_say(int8 type, string2 message);
+void cmd_select_login_thread(uint8 thread);
+void cmd_select_menu_item(mixed para);
+void cmd_set_shortcuts(string rid, mixed shortcuts);
+void cmd_show_char_list();
+void cmd_start_talk(string target_address);
+void cmd_store(mixed property_list);
+void cmd_switch_property(string property_address, string to_pos);
+void cmd_take(mixed property_list);
+void cmd_set_option(string option_name, mixed value);
+void cmd_salvage_char(string char_rid);
+void cmd_upgrade_store(int32 pay_type);
+void cmd_recover_login(string rid, int32 auth_key, int32 seed);
+void msg_action(string source_address, mixed apply_addresses, uint16 action, uint16 effect_id, mixed effect_arg, string cookie);
+void msg_appear(string rid, uint8 type, string room, string pos, int16 direction, map appearance, map extra_data, uint8 move_type)::sync/atb_combat
+void msg_apply_busy(string state, int16 timeout);
+void msg_auction_info(string cookie, map info, map goods_dbase);
+void msg_auction_operate_done();
+void msg_auction_refresh_result(string cookie, uint16 start, uint16 total_count);
+void msg_bonus_type(int32 type, optional int32 icon, optional string player_say, optional string notify);
+void msg_change_team_leader(string leader_address);
+void msg_channel(string sender_name, string sender_rid, string sender_address, int8 type, string2 message);
+void msg_character_yaw(string rid, mixed yaw_info, mixed delta);
+void msg_chatroom_address(uint8 type, string service_address, string room_name);
+void msg_chat_server_node(string node_ip);
+void msg_clean_submit(string pos);
+void msg_clear_busy(string state, string result);
+void msg_command_drop(string cmd);
+void msg_container_closed(string rid);
+void msg_container_loaded(uint8 type, uint8 lazy_load, map dbase);
+void msg_container_opened(uint8 type);
+void msg_create_new_char_result(uint8 result);
+void msg_debug_clear_command(int32 cookie, int8 succ);
+void msg_debug_execute_script(int32 cookie, int8 succ);
+void msg_delete_skill(string rid, uint16 skill_id);
+void msg_disappear(string rid, uint32 rno)::sync/atb_combat
+void msg_dodge(string source_rid, string target_rid, int32 cookie);
+void msg_enter_room(string pos, int16 direction, map room)::sync/atb_combat
+void msg_execute_script(string script);
+void msg_existed_char_list(map user_info[], map delete_info[]);
+void msg_exit_list(EXIT exit_list[]);
+void msg_express_desc(string cookie, map desc);
+void msg_express_invalid(string experss_rid);
+void msg_express_operate_done(string oper, uint8 result);
+void msg_express_refresh_result(string cookie, uint32 start, uint32 total_count, uint32 recv, uint32 read, uint32 unread, uint32 unfetched);
+void msg_fix_position(string pos);
+void msg_grant_cmd_list(uint16 privilege, string operations[]);
+void msg_invalid_char();
+void msg_login(uint16 succ, string msg, uint32 start_time, string server_time);
+void msg_login_notify_ok();
+void msg_menu_closed()::sync/combat
+void msg_menu_opened(string2 content, mixed data)::sync
+void msg_menu_list(mixed menus[])::sync
+void msg_me_updated(string rid, string domain_address, map dbase, map extra_data);
+void msg_moved(string rid, int16 direction, string dst, string src, uint8 do_check, map extra_data);
+void msg_moved_ex(string rid, int16 direction, mixed steps[], mixed speed, uint8 do_check, map extra_data);
+void msg_msgtag_entity(string type, string msgtag, map data);
+void msg_notify(string msg);
+void msg_notify_apex_data(buffer4 data);
+void msg_notify_detail_appearance(map data);
+void msg_notify_friend_info(map friend_info, mixed cookie);
+void msg_notify_gang_relation_data(mixed relation_data);
+void msg_notify_item_stat(uint16 class_id, uint16 obtain, uint16 expend);
+void msg_notify_market_status(uint8 can_buy);
+void msg_notify_monitor_result(string target_address, uint8 monitor, uint8 result);
+void msg_notify_pos_updated(string rid, string pos);
+void msg_notify_server_info(string path, mixed data);
+void msg_notify_stall_properties(string target_address, map properties[]);
+void msg_notify_status_updated(string rid, uint16 status, int32 dimension, STATUS new_status, uint8 status_oper);
+void msg_object_appearance_updated(string rid, map appearance, map extra_data);
+void msg_object_updated(string rid, map dbase, uint8 dimension);
+void msg_object_deleted(string rid, string fields[]);
+void msg_options_updated(mixed args);
+void msg_property_vanished(string rid);
+void msg_property_loaded(string container, map property_info[]);
+void msg_receive_cure(string target_rid, string source_rid, int8 cure_type, map points, map new_value, string cookie);
+void msg_receive_damage(string target_rid, string source_rid, int8 damage_type, map points, map new_value, string cookie);
+void msg_refresh_affect(string rid, mixed improvement);
+void msg_refresh_friend_data(map data);
+void msg_relay_to_server(uint16 succ, string msg);
+void msg_request_updated(uint16 request_id, string from_to, string address, uint8 existed, map data, uint32 request_time);
+void msg_search_road(mixed para);
+void msg_slot_unactivated(string container_rid, string begin, uint8 count);
+void msg_start_game();
+void msg_system_notify(mixed msg)::sync/combat
+void msg_switch_server(string ip, uint16 port, string domain, uint16 thread, int32 cookie, mixed extra_info);
+void msg_switch_thread(uint8 succ);
+void msg_task_log_update(string task_full_name, string owner, mixed data)::sync
+void msg_team_info(map team_info);
+void msg_team_member_left(string address);
+void msg_trade_add_property(map appearance);
+void msg_trade_open(string peer_rid, string peer_name, string peer_address);
+void msg_universe_updated(map dbase);
+void msg_update_all_skills(string rid, SKILLS_INFO skills_info);
+void msg_update_skill(string rid, SKILLS_INFO skills_info);
+void msg_valid_char();
+void msg_wait_next(int32 cookie);
+void msg_team_field_updated(string field, mixed value);
+void msg_total_threads(uint8 total_threads);
+void msg_zlib_msg(buffer2 buf);
+void msg_express_details(string express_rid, map desc);
+void msg_recover_login_failed();
+encap:none          CAMPS_INFO = map camp_info[]
+int8     at(301);                // 战斗位置
+int8     actor_type(302);        // 战斗从属方(攻击、防御)
+string   morale_status(303);     // 战斗中士气状态
+int16    morale(304);            // 战场的士气值
+int8     select_skill_fighter(305); // 判断演员是否是使用助战技能
+int8     enter_fight(306);       // 判断是否是战场上的演员字段
+string   fighter_type(307)       // 战场演员的类型
+int16    skill_energy(308);      // 战斗对象的技能能量
+mixed    skill_item(309);        // 物品技能
+int8     fight_cd(310)           // 出手cd
+void cmd_animate_end(int32 cookie, int32 checksum, uint8 exception);
+void cmd_input_command(string camp_rid, mixed arg, mixed member_at);
+void msg_command_inputed(string rid);
+void msg_combat_stage(string stage, string combat_mode);
+void msg_end_combat()::sync/combat
+void msg_end_current_round()::sync/combat
+void msg_enter_battlefield(map fighters_info[], map extra_data);
+void msg_fadeout_combat();
+void msg_finish_input();
+void msg_leave_battlefield(string rids[]);
+void msg_notify_camp_info(CAMPS_INFO camps_info);
+void msg_notify_combat_result(int8 result);
+void msg_property_validate(string container, map property_info[]);
+void msg_rc_action(string source_rid, string target_rids[], int16 action, int16 effect_id, mixed effect_arg);
+void msg_rc_dodge(string target_rid, string source_rid);
+void msg_rc_next_scene();
+void msg_rc_receive_cure(string target_rid, string source_rid, int8 cure_type, map points, map new_value);
+void msg_rc_receive_damage(string target_rid, string source_rid, int8 damage_type, map points, map new_value, int16 combo);
+void msg_start_combat(int16 type, string rid, map extra_data);
+void msg_start_new_round()::sync/combat
+void msg_wait_input(int16 wait_time, string rids[]);
+void msg_wait_animate_end(int32 cookie);
+void msg_rc_double_hit(uint8 count, uint32 point, int8 is_end);
+void msg_combat_round(uint16 round);
+void msg_request_end_response()::sync/combat
+void msg_request_start_response()::sync/combat
+void msg_combat_to_be_end();
+void msg_rc_drop(string source_rid, string target_rid, string drop_type, int16 class_id, int8 pos);
+void msg_rc_receive_skill_energy(string target_rid, int16 point, int16 all_point);
+void msg_rc_receive_dragon_energy(string target_rid, string source_rid, int8 damage_type, int16 point, int16 all_point, string cookie);
+void msg_rc_receive_accomplice_energy(string target_rid, string source_rid, int8 damage_type, int16 point, int16 all_point, string cookie);
+void msg_rc_update_combat_at(int8 actor_type, mixed member_at);
+void cmd_add_coin(int32 cookie, string account, string char, string payment_type, uint32 amount, string desc);
+void cmd_auth_account(string account, string password, string mac_addr, string client_data, string version, mixed extra_para);
+void cmd_block_account(int32 cookie, string account, uint8 block, string reason, int32 last_time);
+void cmd_cost_coin(int32 cookie, string account, string char, string payment_type, uint32 amount, mixed extra_data);
+void cmd_flash_status(string name, uint16 status);
+void cmd_get_account_fields(int32 cookie, string account, string path);
+void cmd_get_coin(int32 cookie, string account);
+void cmd_get_config_from_aaa(string name);
+void cmd_internal_auth(uint16 server_type, string server_name, string request_service, int32 cookie);
+void cmd_l_get_server_list();
+void cmd_make_server_ticket(string account, int32 auth_key, int16 privilege, int32 service, mixed extra_info);
+void cmd_ping_aaa(int32 cookie, string path);
+void cmd_precost_coin(int32 cookie, string account, string payment_type, uint32 amount);
+void cmd_relogin();
+void cmd_report_server_info(int32 cookie, string server_name, mixed server_status_info);
+void cmd_set_account_fields(int32 cookie, string account, string path, mixed value);
+void cmd_take_over_account(int32 cookie, string account, uint8 take_over, string ip, string password);
+void cmd_lock_account(int32 cookie, string account);
+void cmd_unlock_account(int32 cookie, string account);
+void cmd_request_close_auth_client(int32 pid, string cookie);
+void cmd_request_boot_auth_client(string owner, mixed cookies, string ip, int32 port);
+void cmd_get_auth_client_pids(string cookie);
+void cmd_update_version(string version);
+void msg_aaa_operate_done(int32 cookie, buffer4 result);
+void msg_auth_account_result(int16 result, int32 auth_key, string msg);
+void msg_dialog_ok(mixed msg);
+void msg_dialog_ok_ex(mixed msg, uint8 time);
+void msg_disconnect();
+void msg_l_dist_list(mixed dist_info);
+void msg_l_server_list(mixed server_list);
+void msg_make_server_ticket_result(string server_name, int16 result, int32 auth_key, int32 seed, string msg);
+void msg_notify_queue_position(uint16 position);
+void msg_operate_account_result(int32 cookie, int16 result, string msg);
+void msg_quiting(uint32 type);
+void msg_refresh_login_token(string server_name, uint16 login_token);
+void msg_server_config(mixed m);
+void msg_take_server_ticket_result(string server_name, int16 result, int16 privilege, int32 seed, string msg);
+void msg_web_operate_done(int32 cookie, uint32 msg_no, buffer4 result);
+void msg_server_dist_id(uint32 dist_id);
+void msg_notify_account_info(string notify_account);
+void msg_kick_out_user(mixed kick_out_info);
+void msg_system_tip_dialog(mixed title, mixed content, mixed ok_text);
+void cmd_admin_begin_global_multi_bonus(mixed begin_time, mixed end_time, uint16 rate, string reason, string type);
+void cmd_admin_clone(string class_id_name, int32 amount, mixed init_args, string pos);
+void cmd_admin_end_global_multi_bonus(string type);
+void cmd_admin_fly_to(mixed target, string pos, int16 direction);
+void cmd_admin_kickout(string target_address);
+void cmd_admin_modify_attrib(string rid, string field, mixed value);
+void cmd_admin_transfer(string source, mixed target, string pos, int16 direction);
+void cmd_admin_modify_env(string env_var, mixed env_value);
+void cmd_admin_express_send(string addressee, int32 expire, mixed express_items, string title, mixed body);
+void cmd_admin_set_social_function(uint8 is_social_on);
+void cmd_admin_block_account(string account, uint8 block, string reason, int16 last_time);
+void cmd_admin_block_top(string user_rid, uint8 block, string reason);
+void cmd_admin_set_redeem_key_function(uint8 is_redeem_key_on);
+void cmd_admin_set_daliy_bonus(uint8 is_daliy_bonus_on);
+void cmd_admin_set_chasm_layer(int32 chasm_layer, int32 clearance_tick_length);
+void cmd_admin_set_gapp_world(uint8 gapp_world);
+void cmd_admin_set_forbid_chat(string user_rid, int32 forbid_time);
+void cmd_admin_clear_baggage(int32 page);
+void cmd_admin_add_activity(mixed activity_data);
+void cmd_admin_remove_activity(string activity_cookie);
+void cmd_admin_open_new_function(string new_func_name);
+void cmd_admin_add_attrib(mixed attrib);
+void cmd_admin_upgrade(int32 cost_exp);
+void cmd_admin_clone_equip(int32 amount, mixed para);
+void cmd_admin_open_all_instance(int32 is_open);
+void cmd_admin_finish_guide();
+void cmd_admin_close_pay(uint8 close_pay);
+void msg_admin_get_detail_data(string target_address, string field, map dbase, map property_info[]);
+void msg_admin_notify_all_affiches(mixed affiches);
+void msg_admin_notify_chatroom_name(string chatroom_name);
+void msg_admin_operate_result(mixed result);
+void msg_admin_query_list(uint16 total, uint16 cookie, uint32 type, map ret[]);
+void cmd_admin_forbid_say(string name, int32 duration);
+void msg_notify_fuzzy_query_result(mixed data);
+void msg_notify_item_detail_info(mixed data);
+void msg_notify_precise_query_result(mixed data);
+void msg_notify_user_container_info(mixed result);
+void msg_notify_user_detail_info(mixed info);
+void msg_notify_user_storage_info(string rid, uint8 page, uint8 page_total, mixed items);
+encap:none     ENEMIES_INFO                 = map enemy_info[]
+encap:none     TRADE_ITEMS                  = string item_rid[]
+encap:none     ZHUAN_INFO                   = int16 append_skills[]
+encap:none     ARENA_CAMP_INFO              = map arena_camp_info[]
+encap:none     ARENA_INFO                   = ARENA_CAMP_INFO arena_info[]
+encap:array    CHARGE_LIST_INFO             = uint32 charge_list_info[]
+encap:none     CHARGE_LIST                  = CHARGE_LIST_INFO charge_list[]
+encap:none     CITY_LIST                    = uint16 city_list[]
+encap:none     QUESTION                     = map question_data[]
+encap:none     OWNER_INFO_LIST              = map info[]
+encap:array    EQUIP_SUMMARY                = string type, uint16 submit_count, uint16 total_count
+encap:none     CONSTRUCTIONS_INFO           = map constructions[]
+encap:none     DIPLOMATIC                   = string diplomatic_info[]
+encap:none     BELONGS_INFO                 = int32 belongings[]
+encap:none     SUBMITTER                    = string submitter[]
+encap:array    ARRANGE_BAGGAGE_OPER         = string type, string rid, string rid_or_pos
+encap:array    INSTANCE_CHECKPOINT_INFO     = string name, int16 status
+encap:none     LOOP_TASK_DETAIL             = map loop_task_detail[]
+encap:none     FORMATION                    = string rid[]
+encap:none     PET_INFO_LIST                = map pet_info[]
+encap:none     RECEIVES                     = uint32 receives[]
+encap:none     BONUS                        = uint32 bonus[]
+encap:none     REQUEST_LIST                 = string id[]
+uint32                wp(406);                                           // 角色当前的修为点
+uint32                pot(407);                                          // 角色当前的潜能值
+int16                 item_type(408);                                    // 道具类型
+uint32                effect_id(409);                                    // 效果编号
+uint32                level_request(410);                                // 等级需求
+map                   wisdom_subclas(413);                               // 修为项组
+map                   wisdom_group(414);                                 // 修为组
+map                   wisdom_item(415);                                  // 修为项
+string                use_desc(416);                                     // 使用描述
+SKILLS_INFO           str_skills(417);                                   // 豪杰技
+SKILLS_INFO           tac_skills(418);                                   // 名将技
+SKILLS_INFO           pol_skills(419);                                   // 国士技
+SKILLS_INFO           int_skills(420);                                   // 谋臣技
+uint32                cost_pot(421);                                     // 潜能消耗
+map                   need_attrib(422);                                  // 所需要的属性消耗
+uint8                 combined(423);                                     // 道具是否可以合并
+uint8                 unidentified(424);                                 // 道具未鉴定
+uint8                 is_map(425);                                       // 房间是否大地图
+int32                 max_durability(426);                               // 最大耐久度
+uint8                 max_hole(427);                                     // 最大凹槽数
+mixed                 socket_icon(428);                                  // 镶嵌物品
+uint16                area_id(429);                                      // 所属地区编号
+string                region_name(430);                                  // 所属场景名称
+uint32                reset_time(431);                                   // 重置时间
+uint32                reputation(432);                                   // 角色当前声望值
+uint8                 matchless_point(434);                              // 角色无双点数
+string                scene(435);                                        // 房间的背景图拼接信息
+mixed                 condition(436);                                    // 记录角色特殊状态生效的条件
+mixed                 model(437);                                        // 角色模型编号
+mixed                 special(438);                                      // 武将特技
+uint8                 color(439);                                        // 装备的属性类型
+uint16                wisdom_item_id(440);                               // 修为项编号
+uint16                landform(441);                                     // 场景地势编号
+uint16                max_str(442);                                      // 武力上限
+uint16                max_int(443);                                      // 谋略上限
+uint16                max_tac(444);                                      // 兵法上限
+uint16                max_pol(445);                                      // 政治上限
+uint16                recognize_amount(446);                             // 已锻炼修为总数
+map                   growth(447);                                       // 武将资质
+uint32                str_cost(448);                                     // 学习武力所需金钱消耗
+uint32                str_exp(449);                                      // 学习武力所需经验消耗
+uint32                tac_cost(450);                                     // 学习兵法所需金钱消耗
+uint32                tac_exp(451);                                      // 学习兵法所需经验消耗
+uint32                int_cost(452);                                     // 学习谋略所需金钱消耗
+uint32                int_exp(453);                                      // 学习谋略所需经验消耗
+uint32                pol_cost(454);                                     // 学习政治所需金钱消耗
+uint32                pol_exp(455);                                      // 学习政治所需经验消耗
+mixed                 items(457);                                        // 所有修为项信息&邮件内容物描述信息
+uint16                pot_id(458);                                       // 潜能点编号
+uint32                pot_cost(459);                                     // 潜能点消耗
+PROP                  pots(460);                                         // 提升属性
+uint32                lp(461);                                           // 战斗成员行动力
+mixed                 avatar(462);                                       // 玩家头像
+uint32                rare_template_id(463);                             // 装备的稀有属性编号
+uint16                matchless(464);                                    // 玩家无双类型
+mixed                 matchlesses(465);                                  // 玩家所有无双类型
+string                corp(466);                                         // 任务阵营
+uint16                round(467);                                        // 任务轮次
+string                difficulty(468);                                   // 任务难度
+string2               log(470);                                          // 任务提示
+uint8                 extra(471);                                        // 任务加值
+uint8                 team_leader_task(472);                             // 是否队长任务
+string                npc_talk(473);                                     // 武将发言
+string                user_talk(474);                                    // 玩家发言
+uint16                friendly(475);                                     // 玩家与武将的亲密度
+uint8                 multi_bonus_times(476);                            // 玩家双倍经验所剩的战斗次数
+map                   learning_cost(477);                                // 玩家玩家技能所需消耗
+mixed                 store_size(478);                                   // 玩家仓库大小
+mixed                 search(479);                                       // 探索成功次数
+uint8                 member_count(480);                                 // 队伍成员人数
+uint16                hole(481);                                         // 已使用凹槽数
+uint16                phy_fix(482);                                      // 物理攻击修正值
+uint16                skill_fix(483);                                    // 物理攻击修正值
+uint16                equip_exp(484);                                    // 灵物当前成长值
+int16                 equip_level_request(485);                          // 临时提升属性等级需求
+int16                 equip_socket(486);                                 // 临时提升属性凹槽
+int16                 equip_power(487);                                  // 临时提升属性基本属性
+uint16                rate_accuracy(489);                                // 角色的命中几率
+uint16                deadly_attack_add(490);                            // 角色的暴击值
+int16                 damage_hp(492);                                    // 角色的额外伤害
+uint16                dodge_rate(493);                                   // 角色的回避
+uint16                reduce_damage(494);                                // 角色的伤害减少
+uint16                reflect_damage(495);                               // 角色的伤害反射
+uint8                 base_type(497);                                    // 装备的基本类型
+string                monster_type(498);                                 // 怪物类型
+string                area_name(499);                                    // NPC所在的区域名称
+int16                 level_needed(500);                                 // 学习技能的等级需求
+uint8                 style(501);                                        // 玩家四围偏向
+uint32                str_skill_resist(504);                             // 豪杰技抗性
+uint32                int_skill_resist(505);                             // 谋臣技抗性
+uint32                tac_skill_resist(506);                             // 名将技抗性
+uint32                pol_skill_resist(507);                             // 国士技抗性
+uint16                monster_id(508);                                   // 讨伐令武将编号
+uint16                beachhead(509);                                    // 据点
+uint32                beachhead_time(510);                               // 使用罗盘的时间
+uint8                 avoid_die_times(511);                              // 免死次数
+uint16                full_monster_times(512);                           // 满怪场次
+uint32                store_mp(513);                                     // 预存技力
+uint32                store_hp(514);                                     // 预存生命
+uint32                durability(515);                                   // 装备当前耐久度
+STATUS                skill_immunity(516);                               // 技能抗性
+mixed                 growth_point(517);                                 // 每级加点数
+map                   bind(519);                                         // 装备或物品绑定信息
+int16                 rate_max_durability(520);                          // 最大耐久度提升比值
+uint8                 infinity_durability(521);                          // 是否永不磨损
+map                   mark_forever(522);                                 // 一次性标记
+int16                 huizi(523);                                        // 会子标记
+uint8                 identified(526);                                   // 道具已鉴定
+uint8                 can_buy(527);                                      // 标记商城可否购买
+int32                 gem(528);                                          // 宝石数量
+int32                 silver_coin(529);                                  // 银元宝数量
+uint16                give_rank(530);                                    // 称号物品记录的称号信息
+uint16                npc(531);                                          // 武将传对应class_id
+string                special_type(532);                                 // 武将到特技类型
+mixed                 flight_point(533);                                 // 飞行点
+int8                  flight_times(534);                                 // 飞行次数
+ENEMIES_INFO          enemy_info(535);                                   // 武将讨伐令记录的讨伐对象信息
+uint16                loyalty(536);                                      // 武将忠诚度
+uint8                 attack_range(537);                                 // 技能攻击范围
+uint8                 attack_range_add(538);                             // 技能攻击范围加值
+uint8                 unmendable(539);                                   // 装备不可修复
+map                   defense_rate_combat_fix(540);                      // 战斗中防御改变
+map                   speed_rate_combat_fix(541);                        // 战斗中速度改变
+map                   attack_rate_combat_fix(542);                       // 战斗中攻击改变
+map                   logistics_rate_combat_fix(543);                    // 战斗中行动改变
+map                   speed_combat_fix(544);                             // 战斗中速度改变
+map                   deadly_attack_rate_combat_fix(545);                // 战斗中暴击改变
+map                   dodge_rate_combat_fix(546);                        // 战斗中闪避改变
+map                   reflect_damage_combat_fix(547);                    // 战斗中反伤改变
+map                   skill_damage_combat_fix(548);                      // 战斗中技能效果\抗性变化
+uint8                 career_gave_property(549);                         // 是否完成职业任务中任务物品提交步骤
+map                   combat_attrib_changed(550);                        // 战斗属性改变
+int16                 qiangbing_attack_rate_up(551);                     // 强兵效果
+int16                 pobing_attack_rate_down(552);                      // 破兵效果
+int16                 qiangjia_defense_rate_up(553);                     // 强甲效果
+int16                 pojia_defense_rate_down(554);                      // 破甲效果
+int16                 jiasu_speed_rate_up(555);                          // 加速效果
+int16                 jiansu_speed_rate_down(556);                       // 减速效果
+int16                 jixing_logistics_rate_up(557);                     // 疾行效果
+int16                 huanxing_logistics_rate_down(558);                 // 缓行效果
+int16                 nizhao_speed_down(559);                            // 泥沼减速
+int16                 str_skill_effect_rate(560);                        // 豪杰技效果变化
+int16                 tac_fangyuan_defense_rate_up(561);                 // 方圆阵
+int16                 tac_yuli_deadly_attack_rate_up(562);               // 鱼丽阵
+int16                 tac_xuanxiang_dodge_rate_up(563);                  // 玄襄阵
+int16                 tac_reflect_damage_up(564);                        // 握奇阵
+int16                 str_skill_resist_rate(565);                        // 豪杰技抗性变化
+int16                 int_skill_effect_rate(566);                        // 谋臣技效果变化
+int16                 int_skill_resist_rate(567);                        // 谋臣技抗性变化
+int16                 tac_skill_effect_rate(568);                        // 名将技效果变化
+int16                 tac_skill_resist_rate(569);                        // 名将技抗性变化
+int16                 pol_skill_effect_rate(570);                        // 国士技效果变化
+int16                 pol_skill_resist_rate(571);                        // 国士技抗性变化
+uint8                 strengthened(572);                                 // 装备是否已被强化过
+mixed                 object_template(573);                              // 装备模型
+string                music(574);                                        // 背景音乐
+mixed                 rank_id(577);                                      // 称号ID
+uint32                leaguer_time_limit(578);                           // 月卡作用时间
+uint8                 have_refined(582);                                 // 装备是否百炼
+int16                 song_rate_str(583);                                // 战歌武力提升百分比
+int16                 song_rate_int(584);                                // 战歌谋略提升百分比
+int16                 song_rate_tac(585);                                // 战歌兵法提升百分比
+int16                 song_rate_pol(586);                                // 战歌政治提升百分比
+uint16                disinter_time(587);                                // 锄头的挖掘次数
+uint8                 level_add(588);                                    // 技能附加等级增加
+uint8                 flower_max_present(589);                           // 花卉每日馈赠次数
+uint8                 flower_max_receive(590);                           // 花卉每日接受次数
+uint32                flower_present_time(591);                          // 花卉馈赠时间
+uint32                flower_receive_time(592);                          // 花卉接受时间
+ZHUAN_INFO            append_skills(598);                                // 武将传增加技能
+mixed                 my_gang_info(599);                                 // 个人帮派信息
+mixed                 growth_addon(600);                                 // 武将资质加值
+uint8                 grades(602);                                       // 指南段位
+mixed                 grants(603);                                       // 权限信息
+string2               affiche(604);                                      // 公告信息
+int16                 pol_level(605);                                    // 玩家战歌类阵法战场使用等级
+int16                 tac_level(606);                                    // 玩家战歌类阵法战场使用等级
+int16                 int_level(607);                                    // 玩家战歌类阵法战场使用等级
+int16                 str_level(608);                                    // 玩家战歌类阵法战场使用等级
+uint8                 equip_vibes_rank(609);                             // 装备共鸣等级
+uint32                special_level(610);                                // 武将特技等级
+uint32                instead_money(614);                                // 玩家抵用金数量
+mixed                 equip_list(616);                                   // 装备信息列表
+uint8                 special_monster_times(617);                        // 特殊怪场次
+uint32                iron(618);                                         // 军团物资--铁
+uint32                silk(619);                                         // 军团物资--绢
+uint32                wood(620);                                         // 军团物资--木
+uint32                rock(621);                                         // 军团物资--石
+uint8                 weak_monsters_times(622);                          // 遇敌变弱的场次
+uint16                vigour_today_times(623);                           // 元灵当日使用次数
+uint32                vigour_present_time(624);                          // 元灵使用时间
+string                receiver(625);                                     // 礼品接受者
+string                giver(626);                                        // 礼品赠送者
+mixed                 team(627);                                         // 队伍信息
+string                spouse_name(628);                                  // 配偶名称
+uint8                 append_skill_level(629);                           // 真义技能等级
+string                fix_skills(630);                                   // 附加属性带来技能等级提升
+uint32                write_experience(632);                             // 撰写心得状态已经写入的经验
+uint8                 experience_book_used_counts(633);                  // 心得书当天已经使用的次数
+uint32                experience_book_use_time(634);                     // 心得书的每天第一次使用的时间
+uint32                book_experience(635);                              // 心得书中的经验
+string2               more_log(637);                                     // 任务日志--任务描述
+string                task_name(638);                                    // 任务日志--任务名称
+uint8                 assigned(639);                                     // 任务日志--是否领取
+uint8                 can_be_give_up(640);                               // 任务日志--能否放弃
+uint16                week_round(642);                                   // 任务日志--本周轮次
+uint16                today_round(643);                                  // 任务日志--当日轮次
+mixed                 counsellor_attrib(644);                            // 军师技加成效果
+uint8                 special_drug_zhuji_used_counts(645);               // 「龙穴石髓·甲」已使用次数
+uint8                 special_drug_guyuan_used_counts(646);              // 「龙穴石髓·乙」已使用次数
+uint8                 special_drug_jindan_used_counts(647);              // 「龙穴石髓·丙」已使用次数
+map                   corps_info(648);                                   // 军团信息
+mixed                 search_issues(649);                                // 探索触发事件表
+uint16                search_next_at(650);                               // 目标探索格
+uint16                matchless_id(651);                                 // 无双物品ID
+uint8                 skills_limit(652);                                 // 武将传附加技能上限
+mixed                 skills_init(653);                                  // 武将技能标记
+mixed                 corps_construction(654);                           // 军团设施信息
+uint32                multi_bonus_clock_time(655);                       // 上一次使用五石散的时间
+uint8                 online(656);                                       // 是否在线
+uint16                qiuchuji_gave_imp_4d(657);                         // 拜见丘处机中下发属性点
+uint16                qiuchuji_gave_property(658);                       // 拜见丘处机中下发技能点
+uint32                prestige(659);                                     // 玩家的威望
+int16                 liusha_speed_down(660);                            // 流沙减速
+map                   baodian(661);                                      // 记录在玩家身上的遁甲天书数据
+uint16                question_level(662);                               // 当前问题等级
+uint16                current_index(663);                                // 现在的问题轮次
+uint16                last_question(664);                                // 达到系统最后一个问题
+uint16                total_index(665);                                  // 本级的总题数
+mixed                 award(666);                                        // 已领取的等级奖励
+uint8                 enable_flee(667);                                  // 是否允许逃跑的标识
+int16                 career_gave_imp_4d(668);                           // 黄石公任务奖励属性点
+uint16                zhaojun_gave_skill_point(669);                     // 王昭君的嘱托中下发的技能点
+mixed                 location(670);                                     // 玩家位置信息
+uint8                 change_pet(671);                                   // 是否允许更换武将的标识
+mixed                 cost_item(673);                                    // 消耗物品
+uint32                npc_pk_time(674);                                  // 每周武斗赛完成时间
+uint8                 hide_model(675);                                   // 战斗中死亡模型是否隐藏
+uint32                timestamp(676);                                    // 当前服务器时间戳
+uint16                mr_di_gave_imp_4d(677);                            // 襄助狄仁杰中下发的属性点
+uint16                subclass_id(678);                                  // 修为系编号
+uint32                contribution(679);                                 // 军团贡献度
+uint8                 enable_auto_combat(680);                           // 是否允许自动战斗的标识
+string                rule(681);                                         // 兑换规则
+uint8                 treble_bonus_times(682);                           // 玩家三倍经验所剩的战斗次数
+string                challenge_type(683);                               // 挑战状的类型
+uint32                max_equip_exp(684);                                // 灵物总成长度
+map                   monster_info(685);                                 // 挑战状的怪物
+uint16                today_limit_round(687);                            // 任务日志--当日最多轮次
+uint16                week_limit_round(688);                             // 任务日志--当周最多轮次
+map                   price(689);                                        // 物品的价格
+uint8                 npc_pk_times_this_week(690);                       // 一周参加武斗赛次数
+map                   income(691);                                       // 收益时间信息
+uint32                today_income_time(692);                            // 今日剩余收益时间
+uint32                flexible_income_time(693);                         // 剩余灵活时间
+uint32                close_income_times(694);                           // 今日关闭收益时间次数
+uint32                today_total_income_time(695);                      // 今日总的收益时间
+uint32                open_income_time(696);                             // 开启收益状态的时间
+buffer                newbie_task(697);                                  // 新手任务完成的永久标记
+string                copy_pos(698);                                     // 副本道具映射位置
+uint8                 supply_degree(699);                                // 军团供给度
+mixed                 skill_locked(700);                                 // 锁定技能编号
+uint8                 bonus_skill_points(701);                           // 玩家奖励技能点数
+uint32                master_exp(702);                                   // 徒弟升级累积的师父的经验奖励
+uint32                disciple_exp(703);                                 // 徒弟升级累积的徒弟的经验奖励
+string                master_name(704);                                  // 物品束脩中记录的师父的名字
+string                disciple_name(705);                                // 物品束脩中记录的徒弟的名字
+map                   master(706);                                       // 师徒关系相关信息
+uint32                xinlingjun_gave_skill_point(707);                  // 信陵君救赵中下发的技能点
+uint8                 bonus_id(708);                                     // 奖励编号
+uint32                bonus_time(709);                                   // 奖励剩余时间
+uint16                graduate_disciple_count(710);                      // 初始徒弟数量
+map                   instance(711);                                     // 玩家当前副本
+uint8                 need_special_treat(712);                           // 兑换模块中客户端是否需要对物品显示特殊处理
+mixed                 extra_require(713);                                // 兑换模块中用于交换的物品的额外判断
+uint16                account_level(715);                                // 帐号下角色最高等级
+string                origin(716);                                       // 出身
+uint32                madai_gave_skill_point(717);                       // 马岱的计谋中下发的技能点
+uint32                tavern_treble_bonus_clock_time(718);               // 漆画钟使用时间
+uint16                tavern_treble_bonus_times(719);                    // 漆画钟剩余次数
+uint8                 multi_pets(720);                                   // 是否显示所有宠物的战斗信息
+uint16                farewell_gave_skill_point(722);                    // 再会唐玄宗任务中下发技能点
+uint16                landform_id(744);                                  // 战斗中的背景地势编号
+uint16                custom_icon(745);                                  // 好友自定义头像
+uint32                newbie_bonus_start_time(746);                      // 新手奖励开始时间
+uint32                money_capacity(747);                               // 金钱容量上限
+mixed                 newbie_bonus_notify(748);                          // 新手奖励，事件提示框的提示信息
+map                   challenge_god(750);                                // 试练仙道
+uint8                 is_instance_bonus(755);                            // 是否为奖励副本的宝箱
+uint8                 open_box(756);                                     // 玩家是否已经打开过宝箱
+buffer                search_special_issue(757);                         // 探索特殊事件触发标识
+CHARGE_LIST           charge_list(758);                                  // 玩家的消费记录
+uint8                 insurgence_gave_attrib_point(759);                 // 陈胜吴广起义的属性点奖励
+uint8                 insurgence_gave_skill_point(760);                  // 陈胜吴广起义的技能点奖励
+mixed                 casket(761);                                       // 鲁班匣耐久度
+string                amount_limit_pos(762);                             // 商城中的限量物品
+string                hot_sailed_pos(763);                               // 商城中的热销物品
+string                new_property_pos(764);                             // 商城中的新品物品
+string                special_price_pos(765);                            // 商城中的特价物品
+uint16                limit_num(766);                                    // 商城中物品的数量限制
+mixed                 original_price(767);                               // 商城中特价物品的原始价格
+uint8                 rank(768);                                         // 物品、技能的阶位/排名
+mixed                 request_items(769);                                // 图谱原料需求
+mixed                 special_request(770);                              // 图谱的制造特技需求
+uint32                equip_class_id(771);                               // 图谱生成装备的class_id
+uint16                equip_rare_id(772);                                // 图谱生成紫装的id
+uint16                today_manufactor_time(773);                        // 制造类武将当日制造次数
+uint32                last_manufactor_time(774);                         // 制造类武将上次制造的时间
+uint32                delete_char_time(776);                             // 删除角色的时间
+mixed                 maker(777);                                        // 制造的装备记录的打造者信息
+map                   pk_with_npc(778);                                  // 武斗赛相关数据
+uint8                 times_with_status(779);                            // 使用状态参加武斗赛的次数
+uint8                 times_with_item(780);                              // 使用武斗券参加武斗赛的次数
+mixed                 visibility(781);                                   // 装备的可见性（显示用）
+uint8                 recruit_type(782);                                 // 招募宠物的方式
+uint8                 explore_at_server(783);                            // 角色所在的服务器
+uint8                 append_skill_learned(784);                         // 某个技能的真义技基础等级（发布技能用）
+string                corps_name(785);                                   // 玩家所在军团名称
+uint8                 rarity(786);                                       // 装备稀有度
+uint32                deny_inspect_start_time(787);                      // 禁止查岗状态开始时间
+uint32                book_exp(788);                                     // 撰写心得状态总的经验
+int32                 stop_selling_time(789);                            // 商城中限时物品的终止销售时间
+map                   four_attrib(790);                                  // 需要提升的四围属性
+map                   item_info(791);                                    // 打开乾坤囊获得的物品信息
+uint32                remain_time(792);                                  // 禁止查岗状态持续时间
+uint8                 bag_type(793);                                     // 乾坤囊类型
+uint32                time_in_single_mode(798);                          // 记录单人模式下进入史实副本的时间
+uint32                time_in_normal_mode(799);                          // 记录普通模式下进入史实副本的时间
+uint32                icon_buy_time(800);                                // 购买头像的时间
+uint32                corps_exploit(801);                                // 角色的军团功勋值
+string                visible_monster(804);                              // 明怪的标识
+string                activity_name(805);                                // 怪物所属活动名称
+mixed                 kitbag_info(806);                                  // 行囊的激活信息
+uint32                is_frozen(808);                                    // 状态冻结标志
+map                   extra_growth(809);                                 // 武将使用的玉屑（四系玉屑）数
+uint16                extra_growth_point(810);                           // 武将使用的玉屑（星辰玉）所获得的额外成长值
+uint16                max_pick_up_level(811);                            // 包裹可拾取最高等级
+uint16                min_pick_up_level(812);                            // 包裹可拾取最低等级
+int8                  wit_point(814);                                    // 武将的慧根点数
+mixed                 lock_info(815);                                    // 锁定信息
+uint8                 check_lock_pwd(816);                               // 是否已经校验过锁定密码
+uint16                mix_skills(817);                                   // 国士选择的技能系别
+uint8                 trump_id(818);                                     // 法宝的属性编号
+mixed                 enchase(819);                                      // 装备镶嵌信息
+mixed                 trump_info(820);                                   // 法宝信息
+mixed                 team_search_require(821);                          // 玩家的寻队需求
+uint8                 is_leaguer(822);                                   // 是否会员标记
+mixed                 team_join_require(823);                            // 玩家的自动组队需求
+uint8                 empire_changan_skill_point(824);                   // 长安霸业奖励技能点
+uint8                 empire_luoyang_skill_point(825);                   // 洛阳霸业奖励技能点
+uint8                 empire_xiangyang_skill_point(826);                 // 襄阳霸业奖励技能点
+uint8                 empire_kaifeng_skill_point(827);                   // 开封霸业奖励技能点
+uint8                 city_id(828);                                      // 攻城战城池id
+string                gate_type(829);                                    // 城门的类型
+uint32                fashion_due_time(830);                             // 时装失效时间
+uint16                game_id(831);                                      // 登录类型
+string                mac_addr(832);                                     // mac地址
+mixed                 question_type(833);                                // 在线GM问题类型
+mixed                 type_option(834);                                  // 在线GM二级问题分类
+string                game_server_name(835);                             // 在线GM中提问时的区组名称
+string                question_text(836);                                // 在线GM提问中的问题内容
+string                answer_text(837);                                  // 在线GM提问中的GM回复内容
+string                ask_time(838);                                     // 提问时间
+string                answer_time(839);                                  // GM回复时间
+mixed                 submiter_id(840);                                  // 在线GM问题提交者的role_id
+string                submiter_account(841);                             // 在线GM问题提交者的帐号
+map                   question_data(842);                                // 在线GM中的问题信息
+uint32                cancel_store_password(843);                        // 申请强制解除仓库密码的时间
+uint8                 paper_cut_rank(844);                               // 剪纸的阶位
+uint32                vigour(845);                                       // 护卫活力
+uint32                max_vigour(846);                                   // 护卫最大活力
+mixed                 guard_skills(847);                                 // 护卫技能
+uint8                 skill_style(848);                                  // 技能类别
+uint8                 is_guardian(849);                                  // 是否为护卫
+uint16                store_durability(850);                             // 龙纹锉预置耐久点数
+uint32                revive_time(851);                                  // 记录玩家城战中可自行选择复活的时间
+uint16                total_count(852);                                  // 装备数量
+SUBMITTER             submitter(853);                                    // 装备提交者
+mixed                 manuals_info(854);                                 // 指南总录属性信息
+uint16                item_id(855);                                      // 战利品编号
+map                   arena_info(856);                                   // 竞技场信息
+int32                 arena_level(857);                                  // 竞技场等级
+int16                 week_combat_times(859);                            // 本周战斗场次
+uint32                prev_combat_time(860);                             // 上场竞技场战斗的时间
+uint8                 arena_mode(862);                                   // 竞技场模式(4表示2v2，6表示3v3)
+mixed                 enter_time_in_single_mode(864);                    // 单人史诗模式下进入某副本的时间
+mixed                 enter_time_in_single_novel_mode(865);              // 单人演义模式下进入某副本的时间
+uint8                 second_style(866);                                 // 觉醒武将的第二系系别
+uint32                food(868);                                         // 军团物资--粮草
+uint32                total_troop_count(869);                            // 军团士兵总量
+uint32                food_cost_per_day(870);                            // 军团每日耗粮
+mixed                 troops(871);                                       // 兵力配置
+int8                  repaire_round(872);                                // 城门修复次数
+int8                  destroy_round(873);                                // 城门修复次数
+uint8                 governor_style(874);                               // 太守系别
+string                governor_name(875);                                // 太守名字
+string                governor_rid(876);                                 // 太守rid
+uint32                time(877);                                         // 时间
+int32                 outside_gate_durability(878);                      // 外城门耐久
+int32                 inside_gate_durability(879);                       // 内城门耐久
+uint8                 capital(880);                                      // 首都id
+uint16                rune_id(881);                                      // 装备符文的 ID 信息
+string                rune_word_id(882);                                 // 装备符文之语的 ID 信息
+mixed                 rune_prop(883);                                    // 装备符文属性
+string                box_type(884);                                     // 箱子类型
+mixed                 open_records(885);                                 // 打开箱子的玩家记录
+uint32                pos_no(886);                                       // 城战设施模型编号
+int32                 magic_attack(887);                                 // 法术攻击
+mixed                 ambush_troops(888);                                // 城战伏兵配置
+int32                 troop_id(889);                                     // 兵种类别
+int32                 troop_num(890);                                    // 带兵的数量
+uint8                 ambush_status(891);                                // 城战伏兵的状态
+uint8                 city_task_id(892);                                 // 城战战场任务的 ID 编号
+uint8                 skill_container_size(893);                         // 武将技能格数量
+uint8                 gate_situation(894);                               // 城门状态
+uint16                hero_num(895);                                     // 武将数量
+uint32                defenser_num(896);                                 // 防守人数
+CONSTRUCTIONS_INFO    constructions(897);                                // 可攻打设施信息
+uint8                 city_number(898);                                  // 军团城市数目
+uint8                 average_level(899);                                // 军团平均等级
+map                   diplomatic(900);                                   // 军团外交数据
+DIPLOMATIC            declare_send(901);                                 // 军团宣战军团列表
+DIPLOMATIC            declare_rec(902);                                  // 军团接受宣战军团列表
+DIPLOMATIC            armistice_send(903);                               // 军团请求休战列表
+DIPLOMATIC            armistice_rec(904);                                // 军团接受的请求休战列表
+uint16                log_id(905);                                       // 军团日志ID
+string                p1(906);                                           // 军团日志参数1
+string                p2(907);                                           // 军团日志参数2
+string                p3(908);                                           // 军团日志参数3
+string                p4(909);                                           // 军团日志参数4
+mixed                 misc(910);                                         // 军团日志额外信息
+mixed                 source_args(911);                                  // 技能发布者的额外信息
+uint8                 enable_surrender(912);                             // 是否允许投降的标识
+string                guard_skill_style(913);                            // 护卫技能类别
+uint32                pet_class_id(914);                                 // 游仙枕记录的武将class_id
+uint16                pk_status_rate_max_hp(915);                        // 玩家PK附加血量上限百分比
+int32                 skill_level(916);                                  // 技能等级（奇门遁甲等级可能会超int16上限）
+uint16                world_contribution(917);                           // 世界贡献度
+int16                 wakan(918);                                        // 灵气
+int32                 wakan_point(919);                                  // 灵气值
+int32                 max_wakan_point(920);                              // 最大灵气值
+uint8                 reject_flag(921);                                  // 邮件退件标记
+int16                 wakan_point_cost(922);                             // 图谱制造时的灵气值消耗
+uint8                 construction_index(923);                           // 设施序号
+uint8                 wisdom_class_sum(924);                             // 玩家打通修为类别总数
+string                auction_desc(925);                                 // 拍卖广告语
+BELONGS_INFO          belongings(926);                                   // 邮件下属物件
+uint16                rule_id(927);                                      // 使命任务宝箱的rule_id
+int32                 absorb_damage(928);                                // 可吸收伤害值
+uint8                 is_protected(929);                                 // 是否为受保护城池
+map                   absorb_damage_combat_fix(930);                     // 伤害吸收相关数值
+mixed                 enter_time_in_normal_mode(931);                    // 普通史诗模式下进入某副本的时间
+mixed                 enter_time_in_normal_novel_mode(932);              // 普通演义模式下进入某副本的时间
+int16                 score(934);                                        // 积分
+uint8                 special_drug_ding_used_counts(935);                // 「龙穴石髓·丁」已使用次数
+uint8                 special_drug_wu_used_counts(936);                  // 「龙穴石髓·戊」已使用次数
+int16                 liusha_speed_down_value(937);                      // 流沙陷阱减速
+map                   absorb_magic_damage_combat_fix(938);               // 凝魂伤害吸收相关数值
+int8                  patrol_round(939);                                 // 巡察次数
+int8                  disturb_round(940);                                // 流言次数
+uint16                jiaozi2010_used_counts(941);                       // 玩家使用饺子的次数
+uint32                jiaozi2010_last_used_time(942);                    // 上一次使用饺子
+int8                  qinjian_used_counts(943);                          // 玩家使用秦简的次数
+uint32                qinjian_last_used_time(944);                       // 上一次使用秦简
+int8                  hance_used_counts(945);                            // 玩家使用汉册的次数
+uint32                hance_last_used_time(946);                         // 上一次使用汉册
+int8                  can_modify_char_name(947);                         // 能否改名
+int8                  vibes_effect(948);                                 // 是否有共鸣光效
+uint32                next_bonus_time(949);                              // 下次奖励时间
+int8                  shefu_times_for_today(951);                        // 当日使用射覆令次数
+uint32                last_wudou_time(952);                              // 最后使用武斗券的时间
+int8                  wudou_times_for_week(953);                         // 当周使用武斗券次数
+map                   shefu(954);                                        // 射覆令使用信息
+int16                 all_skill_resist(955);                             // 所有抗性增加值
+int16                 progress(956);                                     // 霸业完成进度
+map                   wudou(957);                                        // 武斗券使用情况
+int16                 max_progress(958);                                 // 霸业完成进度需求值
+uint8                 can_recruit_pet(959);                              // 能否捕捉武将
+uint32                append_skill_point(960);                           // 角色当前的真义点
+int8                  auto_combat_first_round_sleep(961);                // 第一回合睡眠事件
+string                pixel(962);                                        // 宝箱刷新的精确像素信息
+uint8                 forbid_recover_attrib(963);                        // 是否不允许进行战斗恢复性操作
+int8                  only_for_pet(964);                                 // 是否武将专属的武器
+uint8                 ancient_coin_id(966);                              // 古钱子类ID
+uint32                cy_coin(967);                                      // 畅游币
+uint32                transfigure_id(970);                               // 变身状态对应的monster_class_id
+string                gem_type(971);                                     // 探索BOSS刷出的宝箱类型
+int8                  default_hidden(974);                               // NPC 默认隐藏标识
+uint8                 enchase_type(975);                                 // 琉光舍利镶嵌类型
+int8                  scale(976);                                        // 指定模型大小
+string                monster_owner_name(977);                           // 五胡乱华boss owner名字
+mixed                 team/members(978);                                 // 队伍成员信息
+int8                  extend_page(979);                                  // 容器扩展页面
+int8                  combat_times(980);                                 // 讨逆旗剩余战斗次数
+int8                  step_request(981);                                 // 玉石、灵石、灵火的使用阶位
+int8                  sub_type(982);                                     // BUG提交子类型
+string                content(983);                                      // BUG提交内容
+string                tel(984);                                          // BUG提交者电话
+string                email(985);                                        // BUG提交者EMAIL
+string                value_submit(986);                                 // BUG提交物品来源名称
+string                name_submit(987);                                  // BUG提交名称
+mixed                 baodian_list(988);                                 // 遁甲天书已经打过章节的记录信息
+int8                  always_show(989);                                  // 是否一直显示模型
+uint8                 wp_book_used_counts(990);                          // 心得书当天已经使用的次数
+uint32                wp_book_use_time(991);                             // 心得书的每天第一次使用的时间
+uint8                 rotate_para(992);                                  // 怪物NPC等进入房间时的朝向
+uint8                 enable_apply_military_order(993);                  // 能否使用军令状
+uint32                escort_start_time(994);                            // 镖行天下领取时间
+uint32                mount_pet(995);                                    // 骑宠的class_id
+uint16                weak_point(996);                                   // 虚弱值
+mixed                 occupy_city_activity_info(997);                    // 城战时玩家的位置信息
+mixed                 open_cell_box(998);                                // 密室中已打开宝箱标记
+map                   inspector(1000);                                   // 查岗信息
+int8                  is_answered(1001);                                 // 是否已答题
+int8                  bayinhe_used_counts(1002);                         // 玩家使用八音盒的次数
+uint32                bayinhe_last_used_time(1003);                      // 上一次使用八音盒
+uint16                huapu(1004);                                       // 画谱鉴赏数量
+uint16                zitie(1005);                                       // 字帖鉴赏数量
+uint16                tongqi(1006);                                      // 铜器鉴赏数量
+map                   src_position(1007);                                // 进入密室前的位置信息
+int8                  picture_used_counts(1008);                         // 玩家使用画谱鉴赏心得的次数
+uint32                picture_last_used_time(1009);                      // 上一次使用画谱鉴赏心得时间
+int8                  bronzes_used_counts(1010);                         // 玩家使用铜器鉴赏心得的次数
+uint32                bronzes_last_used_time(1011);                      // 上一次使用铜器鉴赏心得时间
+int8                  copybook_used_counts(1012);                        // 玩家使用字帖鉴赏心得的次数
+uint32                copybook_last_used_time(1013);                     // 上一次使用字帖鉴赏心得时间
+string                walk_animation(1014);                              // 行走动作
+string                reset_animation(1015);                             // 重置动作
+string                idle_animation(1016);                              // idle动作
+uint8                 not_be_clicked(1017);                              // 不允许被点击
+string                rank_name(1018);                                   // NPC 称号名
+mixed                 show_npc(1019);                                    // 需要显示的隐藏 NPC
+uint16                investigate_no(1020);                              // 问卷调查编号
+uint16                server_id(1021);                                   // 服务器ID
+int8                  combat_recom(1022);                                // 战斗推荐人数
+int8                  deny_inspect_skill_used(1023);                     // 已使用的日月并行之光次数（今日）
+uint32                deny_inspect_skill_time(1024);                     // 最近一次使用日月并行之光时间
+uint32                dig_skill_time(1025);                              // 最近一次使用斗母观灵法时间
+uint16                antique_id(1026);                                  // 古董ID
+int8                  enable_auto_team(1027);                            // option:自动组队是否开启
+uint32                visit_npc_rno(1028);                               // 拜帖记录的npc的rno
+mixed                 run_outof_battlefield(1029);                       // 跑动离场（30-20-0具体位置或1默认）
+mixed                 run_into_battlefield(1030);                        // 跑动进场（30-20-0具体位置或1默认）
+uint32                city_prestige(1031);                               // 城市威望值
+mixed                 city_achv(1032);                                   // 所有城市声望任务信息
+mixed                 corps_bonus(1033);                                 // 军团奖励
+mixed                 resume(1034);                                      // 玩家的履历--杂项数据集
+uint8                 is_leader(1035);                                   // 是敌方主怪
+uint8                 pet_type(1036);                                    // 宠物装备类型
+uint8                 beast_atk_ob(1037);                                // 被点击时不进行转向的标记
+string                face_to_pos(1038);                                 // 朝向
+uint8                 reached(1039);                                     // 是否已到达目标位置
+int8                  only_for_guard(1042);                              // 是否护卫专属的武器
+uint32                equip_due_time(1043);                              // 装备失效时间
+mixed                 show_box(1044);                                    // 需要显示的任务箱子
+uint16                stall_id(1045);                                    // 摆摊区域
+uint8                 user_count(1046);                                  // 摆摊区域人数
+string                stall_model(1047);                                 // 摆摊模型贴图
+uint8                 stall_order(1048);                                 // 摆摊区域中的玩家顺序
+mixed                 show_city_achv_box(1049);                          // 需要显示的城市支线宝箱
+uint8                 enable_search_guide_prop(1051);                    // 战斗中旅游指南是否生效
+uint8                 is_binded(1052);                                   // 兑换产物是否是绑定的
+uint8                 beast_type(1053);                                  // 野兽的类型
+uint8                 ginseng_used_counts(1054);                         // 人参当天已经使用的次数
+uint32                ginseng_use_time(1055);                            // 人参的每天第一次使用的时间
+uint8                 tuckahoe_used_counts(1056);                        // 茯苓当天已经使用的次数
+uint32                tuckahoe_use_time(1057);                           // 茯苓的每天第一次使用的时间
+uint8                 gyrophora_used_counts(1058);                       // 灵芝当天已经使用的次数
+uint32                gyrophora_use_time(1059);                          // 灵芝的每天第一次使用的时间
+uint32                offline_bonus(1060);                               // 离线奖励数值
+string                offline_bonus_type(1061);                          // 离线奖励类型
+uint32                snack_last_use_time(1062);                         // 城市小吃上次使用时间
+uint32                today_lecture_time(1064);                          // 今日讲学听取时间
+uint32                last_lecture(1065);                                // 上次讲学时间
+uint8                 mount_pet_color(1066);                             // 骑宠的颜色
+uint32                stunt(1068);                                       // 武将专属特技
+uint32                safe_time(1069);                                   // 玩家的安全时间
+uint32                silver_coin_bonus(1071);                           // 银券的银元宝价值
+uint8                 disable_qingxiaolu(1075);                          // 战斗中青霄露是否被禁用
+string                mainline_cp(1076);                                 // 主线副本通关记录
+uint32                game_mode(1080);                                   // 游戏模式
+int32                 skill_point(1081);                                 // 技能点
+int32                 vigor(1082);                                       // 活力值
+int32                 max_vigor(1083);                                   // 最大活力值
+int32                 max_imp_4d(1084);                                  // 4D
+mixed                 arena(1085);                                       // 玩家的竞技场相关数据
+mixed                 stac(1086);                                        // 技能策略配置
+mixed                 cooldown(1087);                                    // 技能的冷却时间信息
+string                signature(1089);                                   // 玩家的个性签名
+int32                 grading(1090);                                     // 总评分
+string                owner_name(1092);                                  // 属主名字
+mixed                 task_detail(1094);                                 // 日常任务的详细
+uint32                next_time(1095);                                   // 刷新时间
+string                enter_effect(1096);                                // 特效的名字
+string                enter_effect_animation(1097);                      // 特效对应的动作
+uint8                 flee_enable(1098);                                 // 是否允许逃跑
+uint32                store_tp(1099);                                    // 预存技力
+mixed                 miracle(1101);                                     // 神迹信息
+uint32                lineage_id(1106);                                  // 血珠上的ID
+FORMATION             formation(1109);                                   // 阵型
+int32                 bind_gem(1110);                                    // 绑定宝石数量
+mixed                 charge_vip(1111);                                  // 充值vip信息
+uint8                 new_char_bonus(1113);                              // 新服一次性活动奖励
+int32                 rep(1120);                                         // 声望值
+uint16                rep_level(1121);                                   // 声望等级
+uint8                 embattle_num(1123);                                // 出战人数
+mixed                 sign_in(1124);                                     // 签到次数
+PROP                  base_equip_prop(1128);                             // 装备基础属性
+uint8                 boss(1129);                                        // 是不是BOSS战斗
+uint8                 is_arena(1130);                                    // 是不是竞技场战斗
+uint8                 need_totem_rank(1131);                             // 共鸣宝石需要的图腾等级
+uint8                 need_totem_num(1132);                              // 共鸣宝石需要的图腾数量
+uint8                 book_level(1134);                                  // 使魔契约书等级
+map                   book_cost(1135);                                   // 在这本使魔契约书上花费的总额
+uint8                 is_new(1136);                                      // 道具是不是刚载入的
+mixed                 coin(1137);                                        // 人民币
+int32                 ladder_rank(1138);                                 // 天梯排名
+int32                 last_ladder_rank(1146);                            // 昨日天梯排名
+uint16                last_rep_level(1147);                              // 凌晨5点结算的时候的声望等级
+int32                 sell_time(1156);                                   // 物品售卖时间
+mixed                 jigsaw_chip(1157);                                 // 拼图碎片
+mixed                 ex_skills(1164);                                   // 宠物扩展技能
+mixed                 talent_farm(1165);                                 // 天赋农场
+uint32                sign_in_time(1171);                                // 签到次数
+uint16                sign_in_bonus(1172);                               // 签到奖励已领取阶段
+uint8                 mobile_auth(1173);                                 // 手机绑定的状态
+string                chapter_cp(1174);                                  // 章节进度
+mixed                 learn_skill_book(1176);                            // 宠物从技能书学习的技能信息
+uint32                gang_money(1183);                                  // 玩家拥有的联盟货币
+mixed                 gift_info(1188);                                   // 玩家馈赠信息
+mixed                 gift_list(1189);                                   // 玩家收到的馈赠信息列表
+mixed                 receive_gift_info(1190);                           // 玩家领取馈赠的信息
+string                tournament_attacker(1205);                         // 暗黑武斗进攻方名
+int32                 evaluate_level(1211);                              // 使魔评价等级
+uint32                blacksmith_gem_cost(1229);                         // 装备的工坊钻石消耗
+mixed                 enchant_cost(1230);                                // 装备附魔消耗的材料
+uint32                refine_level(1231);                                // 装备精锻的等级
+uint32                blacksmith_degree(1232);                           // 装备改造度
+uint8                 cross_combat(1233);                                // 是否是跨服战战斗模板
+mixed                 blacksmith_enchant(1238);                          // 玩家的附魔材料属性
+mixed                 blacksmith_enchase(1239);                          // 玩家的神符材料属性
+mixed                 user_portrait_info(1240);                          // 玩家的肖像属性
+uint32                portrait_id(1241);                                 // 玩家的肖像id
+mixed                 enchase_cost(1242);                                // 装备镶嵌的神符
+mixed                 devil_sub(1247);                                   // 魔装各个部件等级
+uint32                metal_cost(1248);                                  // 魔装的升级累计消耗
+uint32                ex_skill_id(1249);                                 // 秘传附带的扩展技能id
+uint32                daily_activity(1258);                              // 玩家日常任务产生的活跃值
+uint8                 new_evocation(1262);                               // 新版聚魂
+mixed                 equip_identify_times(1265);                        // 装备鉴定次数属性
+int32                 privilege(1271);                                   // 玩家的权限
+uint32                m_sign_in(1275);                                   // 每月签到次数
+uint8                 can_sign_in(1276);                                 // 能否签到
+int32                 buy_vigor_times(1277);                             // 玩家购买活力的次数
+int32                 hearten_stop_times(1284);                          // 玩家世界BOSS活动的鼓舞截止时间
+mixed                 activity(1285);                                    // 玩家活动信息
+uint32                duel_fight_time(1286);                             // 决斗之塔进行战斗的发起时间
+int8                  is_dragon(1287);                                   // 是否是龙
+int8                  star(1288)                                         // 星级
+string                id(1289)                                           // 副本id
+int32                 combat_power(1290)                                 // 宠物的战斗力
+mixed                 task_bonuse(1291)                                  // 任务的信息
+mixed                 user_item_info(1292)                               // 玩家身上物品状态
+mixed                 task_progress(1293)                                // 任务进度
+mixed                 task_grade_info(1294)                              // 任务的完成评价
+mixed                 accomplices(1295)                                  // 玩家助战信息
+mixed                 embattle(1297)                                     // 宠物出战阵营
+mixed                 accomplice_embattle(1298)                          // 玩家助战者战阵信息
+int32                 dragon_coin(1300);                                 // 龙战士硬币数量
+int32                 gladiator_coin(1301);                              // 角斗士硬币数量
+int32                 alien_coin(1302);                                  // 异界硬币数量
+int32                 max_vigor_buy(1303)                                // 每天购买上线
+int32                 last_ol_vigor(1304)                                // 上次领取的时间点
+int32                 month_card_surplus_fetch_amount(1305);             // 月卡的剩余领取次数
+mixed                 mission(1306);                                     // 常规任务
+mixed                 destiny(1307);                                     // 宠物命运
+mixed                 sender(1308)                                       // 发信人
+mixed                 equip_buf(1309)                                    // 宠物装备信息
+mixed                 skill_buf(1310)                                    // 宠物技能信息
+mixed                 sub_title(1312)                                    // 邮件子标题
+mixed                 bbs_client(1313)                                   // bbs
+mixed                 achievement(1314)                                  // 成就
+int32                 gold_coin(1316)                                    // 金元宝
+mixed                 clearance(1319)                                    // 副本通关数据
+mixed                 bonus_info(1345)                                   // 礼包信息
+mixed                 express_items(1349)                                // 邮件奖励项
+uint8                 permit_top(1395);                                  // 是否允许排行榜
+mixed                 sign_bonus(1396)                                   // 签到奖励数据
+mixed                 purchase_result(1397)                              // 购买结果数据
+string                equip_rid(1400)                                    // 装备rid
+mixed                 talk_time(1401)                                    // 聊天cd信息
+uint8                 close_world_chat(1402);                            // 是否关闭世界聊天
+uint32                forbid_chat_time(1403);                            // 禁言结束时间
+mixed                 limit_buy_data(1404);                              // 功勋商店商品限购数据
+int32                 exploit(1405);                                     // 玩家功勋值
+mixed                 arena_opponent(1406);                              // 竞技场匹配信息
+mixed                 arena_top(1407);                                   // 竞技场竞技场排行榜数据
+mixed                 defense_troop(1408);                               // 竞技场防守阵型
+uint8                 ap(1409);                                          // 竞技场点券
+mixed                 instance_cooldown(1410);                           // 副本cd时间
+mixed                 special_summon(1411);                              // 特殊召唤信息
+mixed                 daily_task(1412);                                  // 日常任务
+mixed                 task(1413);                                        // 任务
+uint32                pet_id(1414);                                      // 宠物class_id
+uint16                chatroom(1415);                                    // 聊天室id
+mixed                 share_pet(1416);                                   // 共享宠物
+uint32                is_lock(1417);                                     // 宠物是否锁定
+mixed                 revenge_data(1418);                                // 竞技场反击信息
+int32                 last_recover_time(1419);                           // 体力恢复的时间点
+mixed                 lottery_bonus(1420);                               // 抽奖信息
+uint16                shop_size(1421);                                   // 商店格子数量
+mixed                 shop_goods(1422);                                  // 商店商品信息
+map                   refresh_shop(1423);                                // 商店刷新信息
+uint8                 refresh_flag(1424);                                // 商店刷新标识
+uint32                refresh_time(1425);                                // 商店刷新时间
+mixed                 upgrade_baggage(1426);                             // 包裹升级信息
+uint32                stone_unknown(1427);                               // 未知召唤石
+uint32                stone_mystery(1428);                               // 神秘召唤石
+uint32                stone_fire(1429);                                  // 火之召唤石
+uint32                stone_wind(1430);                                  // 风之召唤石
+uint32                stone_water(1431);                                 // 水之召唤石
+uint32                stone_ld(1432);                                    // 光暗召唤石
+uint32                stone_legend(1433);                                // 传说召唤石
+uint32                stone_ep(1434);                                    // 历练召唤石
+uint32                stone_mark(1435);                                  // 刻印召唤石
+uint32                chip_ld(1436);                                     // 光暗召唤石碎片
+uint32                chip_legend(1437);                                 // 传说召唤石碎片
+uint32                chip_all(1438);                                    // 万能召唤石碎片
+mixed                 chip_pet(1439);                                    // 宠物召唤碎片
+uint32                soul_m1(1440);                                     // 初级魔力魂石
+uint32                soul_m2(1441);                                     // 中级魔力魂石
+uint32                soul_m3(1442);                                     // 高级魔力魂石
+uint32                soul_f1(1443);                                     // 初级火之魂石
+uint32                soul_f2(1444);                                     // 中级火之魂石
+uint32                soul_f3(1445);                                     // 高级火之魂石
+uint32                soul_s1(1446);                                     // 初级风之魂石
+uint32                soul_s2(1447);                                     // 中级风之魂石
+uint32                soul_s3(1448);                                     // 高级风之魂石
+uint32                soul_w1(1449);                                     // 初级水之魂石
+uint32                soul_w2(1450);                                     // 中级水之魂石
+uint32                soul_w3(1451);                                     // 高级水之魂石
+uint32                soul_l1(1452);                                     // 初级光明魂石
+uint32                soul_l2(1453);                                     // 中级光明魂石
+uint32                soul_l3(1454);                                     // 高级光明魂石
+uint32                soul_d1(1455);                                     // 初级黑暗魂石
+uint32                soul_d2(1456);                                     // 中级黑暗魂石
+uint32                soul_d3(1457);                                     // 高级黑暗魂石
+mixed                 dynamic_map(1458);                                 // 动态地图
+string                opponent_id(1459);                                 // 竞技场对手id
+string                dynamic_id(1460);                                  // 动态地图id
+uint32                max_ap(1461);                                      // 竞技场入场券上限
+map                   arena_record(1462);                                // 竞技场入连胜记录
+uint16                win_times(1463);                                   // 竞技场入连胜记录次数
+int32                 last_recover_ap_time(1464);                        // 竞技场卷上次恢复的时间
+int32                 fp(1465);                                          // 友情点数
+mixed                 giving_time(1466);                                 // 友情点数赠送时间
+PET_INFO_LIST         raw_none(1467);                                    // 出战宠物没有前后排关系的宠物列表
+PET_INFO_LIST         raw_front(1468);                                   // 出战宠物前排的宠物列表
+PET_INFO_LIST         raw_back(1469);                                    // 出战宠物后排的宠物列表
+mixed                 share_pet_use_time(1470)                           // 好友宠物使用时间
+mixed                 share_pet_use_list(1471)                           // 好友共享宠物使用列表
+mixed                 giving_list(1472)                                  // 赠送列表
+mixed                 research_task(1473)                                // 探索任务
+mixed                 double_bonus_data(1474)                            // 双倍奖励数据
+mixed                 new_function(1475)                                 // 新功能开启列表
+int32                 offline_time_buy(1476)                             // 离线挂机时间
+mixed                 activity_data(1477)                                // 玩家活动数据
+mixed                 tower(1478)                                        // 玩家通天塔数据
+mixed                 resource_map(1479)                                 // 副本资源信息
+int32                 kill_amount(1480)                                  // 副本杀怪信息
+mixed                 guide(1481)                                        // 指引相关信息
+int8                  confirmed_login(1482)                              // 确认登陆标识
+mixed                 assign_task(1483)                                  // 分配任务列表
+int32                 sum_times(1484)                                    // 使魔召唤次数
+map                   level_bonus(1485)                                  // 等级奖励
+RECEIVES              received(1486)                                     // 已经领取列表
+BONUS                 bonus(1487)                                        // 可领取奖励列表
+int8                  open_arena(1488)                                   // 竞技场开启标识
+mixed                 first_buy_data(1489)                               // 首次购买数据
+mixed                 gift_bag_data(1490)                                // 礼包数据
+mixed                 dynamic_gift(1491)                                 // 动态礼包数据
+mixed                 manual_data(1492)                                  // 图鉴数据
+mixed                 arena_settlement_tips(1493)                        // 竞技场结算是否提示标识
+uint32                awaken_card(1494)                                  // 使魔觉醒卷
+uint32                shop_refresh_card(1496)                            // 市集刷新卷
+uint32                lottery_card(1497)                                 // 许愿卷
+REQUEST_LIST          user_requests(1500)                                // 玩家请求简要信息
+uint32                gh(1501)                                           // 公会喇叭
+uint32                history_max_level(1502)                            // 玩家包裹使魔历史最高等级
+mixed                 guide_pet(1503)                                    // 指引宠物列表
+mixed                 intensify_gift(1504)                               // 强化礼包列表
+mixed                 dynamic_clearance(1505)                            // 动态地图副本通关信息
+uint32                stone_guide(1506);                                 // 成长召唤卷
+string                invite_id(1507);                                   // 邀请人id
+int32                 auto_dungeons(1508);                               // 圣域自动战斗
+int32                 auto_tower(1509);                                  // 通天塔自动战斗
+int32                 increase_time(1510);                               // 月卡增幅到期时间
+map                   level_gift(1511);                                  // 等级礼包相关信息
+uint32                overdue_time(1512);                                // 当前等级礼包失效时间
+uint16                buy_month_card(1513);                              // 是否购买过月卡
+mixed                 game_course(1514);                                 // 游戏历程数据
+uint16                refresh_game_course(1515);                         // 刷新游戏历程数据
+uint32                stone_epic(1516);                                	 // 史诗召唤石
+string                evaluate_id(1517);                                 // 评价标识ID
+int8                  active_evaluate(1518);                             // 评价激活状态
+int8                  unlock_evaluate(1519);                             // 解锁评价
+void cmd_debug_clear_baggage(int16 page);
+void cmd_debug_reset_server_time();
+void cmd_debug_set_server_time(string target_time);
+void cmd_error_log(mixed log);
+void cmd_friend_get_list();
+void cmd_friend_reject(string target);
+void cmd_reject_all_request();
+void cmd_friend_remove(string target);
+void cmd_friend_request_agree(string target);
+void cmd_friend_send_request(string target);
+void cmd_cancel_request(string target);
+void cmd_enter_instance(string instance_id, string leader_rid, mixed formation_map, map extra_para, string cookie);
+void cmd_do_one_guide(uint32 group, uint32 guide_id, string cookie);
+void cmd_blacksmith_action(string action, mixed extra_para, string cookie);
+void cmd_instance_clearance(string rid, int32 result, mixed drop_bonus, mixed level_actions, string cookie, int32 alive_amount, int32 kill_amount, uint32 cross_times, uint8 remain_amount, uint32 clearance_time, uint8 auto_combat, uint32 round_times);
+void cmd_shop_refresh(int32 is_force);
+void cmd_shop_buy_item(string rid, int32 shop_type);
+void cmd_sell_item(mixed extra_para);
+void cmd_use_item(mixed item_rids);
+void cmd_buy_market_item(int32 class_id, int32 amount);
+void cmd_buy_money(int32 buy_type);
+void cmd_eva_app(mixed para);
+void cmd_share_success();
+void cmd_get_arena_top_list(int32 start_index, int32 end_index);
+void cmd_get_arena_opponent_list(int32 type);
+void cmd_search_user_top(string user_name, int32 rank_type);
+void cmd_detail_appearance(string target_address, string target);
+void cmd_input_billing_card(string card_no);
+void cmd_sync_auto_combat_setting(mixed settings_map);
+void cmd_sign();
+void cmd_unlock_specify_map(int32 level, int32 cost);
+void cmd_do_check_purchase(string order_id);
+void cmd_reset_equip_apply(string equip_rid, int16 page);
+void cmd_reset_equip_revert(string equip_rid, int16 page);
+void cmd_chat_say(string type, string to_rid, mixed message);
+void cmd_switch_channel(int32 channel);
+void cmd_fetch_publish_entity(string publish_id);
+void cmd_cc_add_chat_stop_words(string words[]);
+void cmd_cc_delete_chat_stop_words(string word);
+void cmd_cc_get_chat_stop_words();
+void cmd_cc_get_user_all_info(string target, int32 type, int32 aaa_id);
+void cmd_cc_get_user_attrib(string user_rid, string attrib_name);
+void cmd_cc_block_account(mixed targets, int32 block, string reason, int32 block_time);
+void cmd_cc_find_block_record(string target, int32 block, int32 block_type);
+void cmd_cc_kickout(string rid, string reason);
+void cmd_cc_all_user_compensate(mixed para);
+void cmd_cc_users_compensate(mixed users, map compensate_info);
+void cmd_cc_get_all_user_compensate(mixed para);
+void cmd_cc_search_log(string table_name, string condition);
+void cmd_cc_get_users_compensate();
+void cmd_cc_get_gem_statistics(string time_str);
+void cmd_cc_forbid_say(string name, int32 forbid_time, int32 type)
+void cmd_cc_send_mail(mixed para);
+void cmd_cc_set_review_state(int32 state);
+void cmd_cc_add_market_item(mixed items);
+void cmd_cc_get_market_items();
+void cmd_cc_remove_market_item(string item_id);
+void cmd_cc_get_char_list(string account);
+void cmd_cc_set_activity_time(mixed para);
+void cmd_cc_find_all_comment(string target, uint32 type);
+void cmd_cc_delete_comment(string target, uint32 type, uint32 delete_type, string comment_rid);
+void cmd_cc_find_comment_delete_record(string target, uint32 type);
+void cmd_cc_find_login_record(string target, uint32 type);
+void cmd_cc_find_soul_synthesis_record(string target, uint32 type);
+void cmd_cc_get_activity_list();
+void cmd_cc_close_activity(string cookie);
+void cmd_cc_get_full_service_express();
+void cmd_cc_delete_full_service_express(string mail_id);
+void cmd_cc_get_real_name();
+void cmd_cc_set_real_name(int32 real_name);
+void cmd_cc_deal_chat_report(string user_list[], int32 deal_type);
+void cmd_cc_get_chat_reports(int32 amount);
+void cmd_cc_update_evaluate(string operate);
+void cmd_cc_recycle_pet(string user_rid, string pet_rid);
+void cmd_cc_recycle_equip(string user_rid, string equip_rid);
+void cmd_cc_recycle_attrib(string user_rid, string attrib, int32 amount);
+void cmd_summon_pet(int32 type, int32 times, mixed args, string cookie);
+void cmd_revive_pet(string cookie);
+void cmd_set_arena_defense_troop(string troop_list[]);
+void cmd_get_arena_opponent_defense_data(string opponent_id, int16 is_revenge);
+void cmd_petsmith_action(string action, mixed extra_para, string cookie);
+void cmd_set_share_pet(string pet_rid);
+void cmd_lock_pet(string pet_rid, uint32 is_lock);
+void cmd_receive_bonus(int32 task_id);
+void cmd_lottery_bonus(string cookie);
+void cmd_buy_shop_goods(uint32 index);
+void cmd_upgrade_shop();
+void cmd_refresh_shop();
+void cmd_upgrade_baggage(int32 pay_type, int32 page);
+void cmd_open_store(mixed belong);
+void cmd_search_baggage_info(string target_address);
+void cmd_update_task_progress(mixed progress_map);
+void cmd_gift_giving(string target);
+void cmd_ac_auth_result(string combat_rid, uint8 result);
+void cmd_ac_login(int32 pid, string cookie, string owner);
+void cmd_ac_prepare_shutdown();
+void cmd_receive_score_bonus(string cookie, mixed para);
+void cmd_get_tower_top_list(int16 difficulty, int32 start_index, int32 end_index);
+void cmd_get_tower_pet_top_list(int16 difficulty, int32 start_index, int32 end_index);
+void cmd_reset(string cookie);
+void cmd_receive_level_bonus(uint32 level);
+void cmd_receive_manual_bonus(int32 class_id, int16 rank);
+void cmd_reset_arena_settlement_tips(int16 is_tips);
+void cmd_add_comment(uint32 class_id, string comment, uint8 share);
+void cmd_delete_comment(string rid);
+void cmd_add_praise(string rid);
+void cmd_query_comments(uint32 class_id, uint8 type, string cookie, uint32 start_pos);
+void cmd_query_comment_share_pet(string user_rid, uint32 class_id);
+void cmd_create_gang(string gang_name, mixed gang_flag, mixed introduce, mixed condition);
+void cmd_left_gang();
+void cmd_dismiss_gang();
+void cmd_abdicate_gang_leader(string target_rid);
+void cmd_appoint_deputy_leader(string target_rid, uint8 status);
+void cmd_get_gang_member_list(string relation_tag);
+void cmd_remove_gang_member(string target_rid);
+void cmd_set_gang_information(mixed gang_info);
+void cmd_set_gang_flag(mixed flag);
+void cmd_get_gang_info();
+void cmd_notify_gang_summary(int8 step, int8 check_flag, uint32 start_index);
+void cmd_request_join_gang(string relation_tag);
+void cmd_get_all_gang_request();
+void cmd_invite_join_gang(string user_name);
+void cmd_cancel_gang_request(string request_id);
+void cmd_accept_gang_request(string request_id);
+void cmd_get_gang_details(string gang_name);
+void cmd_get_recommend_user(int32 step);
+void cmd_send_gang_slogan(mixed message);
+void cmd_publish_video(string rid);
+void cmd_refresh_recommend_video(uint8 force);
+void cmd_query_publish_video(uint32 start_index);
+void cmd_get_video_details(string rid);
+void cmd_play_video(string rid);
+void cmd_share_video(string rid);
+void cmd_receive_activity_task_bonus(string cookie, int32 task_id);
+void cmd_add_invite(string rid);
+void cmd_report_user_chat(string user_name, string chat_id);
+void cmd_get_game_course();
+void msg_blacksmith_action(string action, mixed extra_para, string cookie);
+void msg_container_property_invalid(string rid, string pos);
+void msg_debug_get_server_time(uint32 timestamp);
+void msg_friend_notify_list(mixed friend_detail);
+void msg_friend_operate_done(string oper, int32 result, mixed extra_data);
+void msg_friend_request(mixed request_list);
+void msg_level_up(string rid, int32 level, int32 pre_level);
+void msg_notify_gapp(uint8 enable);
+void msg_notify_gang_info(mixed gang_info);
+void msg_notify_new_mail();
+void msg_notify_server_time(uint32 time);
+void msg_special_notify(string type, mixed id, string desc, map extra_data);
+void msg_system_notify_ex(string2 msg, int32 chat_room_type);
+void msg_cmd_verify(string cmd);
+void msg_instance_clearance(string instance_id, uint8 result, mixed clearance_time, mixed bonus_map);
+void msg_enter_instance(string instance_id, string rid, uint32 random_seed, map fighter_map, mixed defenders, mixed attrib_bonus, map extra_para);
+void msg_sell_item(mixed para);
+void msg_shop_buy_item(string rid, int32 shop_type, mixed cost_map);
+void msg_buy_money(mixed cost_map, mixed gain_map);
+void msg_market_buy_item_succ(mixed item_data, mixed cost_map);
+void msg_shop_refresh(mixed cost_map, mixed extra_para_map);
+void msg_exchange_charge(int32 gold_coin);
+void msg_use_item(mixed use_map);
+void msg_get_arena_top_list(mixed top_list);
+void msg_card_bonus_result(mixed card_info);
+void msg_check_account_purchase(mixed purchase_result);
+void msg_do_check_purchase(string order_id);
+void msg_version_tips(mixed tip_data);
+void msg_achievement_bonus(int32 achv_id, mixed attrib_bonus, mixed property_list);
+void msg_reset_equip_apply(string equip_rid, int16 page);
+void msg_reset_equip_revert(string equip_rid, int16 page);
+void msg_chat_message(string type, mixed message_list);
+void msg_publish_entity(mixed entity);
+void msg_time_limit_market_data(mixed item_list);
+void msg_market_buy_time_limit_item_succ(mixed item_list, mixed cost_map);
+void msg_all_property_load(string container, map property_info[]);
+void msg_summon_pet(mixed summon_map);
+void msg_revive_pet();
+void msg_arena_top_data(mixed top_data);
+void msg_arena_top_list_updated();
+void msg_get_arena_opponent_defense_data(mixed opponent_data);
+void msg_petsmith_action(string action, mixed extra_para);
+void msg_lock_pet();
+void msg_lottery_bonus(uint32 lottery_id, mixed lottery_bonus, mixed cost_map);
+void msg_search_baggage_info(map data);
+void msg_notify_new_research_bonus(mixed bonus_data);
+void msg_notify_activity_list(mixed activity_list);
+void msg_ac_start_combat(string combat_rid, string instance_id, uint32 random_seed, map fighter_map, mixed defenders, uint32 revive_times, mixed level_actions, map extra_para);
+void msg_ac_cancel_combat(string combat_rid);
+void msg_notify_packs_bonus(mixed bonus_data);
+void msg_receive_score_bonus(int32 class_id);
+void msg_arena_challenge_bonus(mixed bonus);
+void msg_open_debug(uint8 result);
+void msg_sys_affiche(mixed affiche_list);
+void msg_notify_settlement_finish(mixed bonus);
+void msg_notify_prepare_maintain(int32 left_time, mixed maintain_data);
+void msg_notify_maintain(int32 maintain_type);
+void msg_update_tower_data(mixed tower_data);
+void msg_get_tower_top_list(int16 difficulty, mixed top_list);
+void msg_tower_top_list_updated(int16 difficulty);
+void msg_get_tower_pet_top_list(int16 difficulty, mixed top_list);
+void msg_tower_pet_top_list_updated(int16 difficulty);
+void msg_reset(uint8 result);
+void msg_do_one_guide(uint32 group, uint32 guide_id);
+void msg_receive_level_bonus(uint32 level);
+void msg_receive_manual_bonus(int32 class_id, int16 rank);
+void msg_comment_operate_result(string oper, int32 result, mixed extra_data);
+void msg_receive_bonus(int32 task_id);
+void msg_gang_operate_done(string oper, int32 result, mixed extra_data);
+void msg_notify_gang_member_list(mixed member_info[]);
+void msg_notify_gang_summary(mixed gang_list[]);
+void msg_all_gang_request(mixed request_list[]);
+void msg_get_gang_details(mixed details);
+void msg_get_recommend_user(mixed user_list[]);
+void msg_refresh_express_list();
+void msg_video_operate_done(string oper, int32 result, mixed extra_data);
+void msg_complete_task(int32 task_id);
+void msg_unlock_course(int32 course_id);

@@ -1,0 +1,193 @@
+﻿<skill_action version="P97v1">
+    <!-- 技能相关action配置 -->
+
+    <!-- 远程实体攻击多个目标 10003 攻击技能 -->
+    <action_set name="10003_cast" type="AST_ACT" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 技能动作 -->
+        <action type="ActionAnimation" start_time="0.0" stop_when_cancel="true">
+            <property name="name" value="attack01" ctype="string" />
+        </action>
+
+        <!-- 二段技能释放点 -->
+        <!-- 释放技能接口CombatMgr.DoCastSkill -->
+        <action type="ActionHit" start_time="0.6" stop_when_cancel="true">
+            <property name="hit_index" value="0" ctype="int" />
+        </action>
+
+        <!-- 音效 -->
+        <action type="ActionSound" start_time="0.4" stop_when_cancel="true">
+            <property name="sound" value="s_bow_shoot" ctype="string" />
+            <property name="adjust_speed" value="false" ctype="bool" />
+        </action>
+
+    </action_set>
+
+    <!-- 二段技能 10004 攻击技能 -->
+    <action_set name="10004_cast" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+        <!-- 投射物1匀速移动 -->
+        <action type="ActionArrow" start_time="0" stop_when_cancel="true">
+            <property name="prefeb" value="Prefabs/Effect/E0106d" ctype="string" />
+            <property name="speed" value="10" ctype="float" />
+            <property name="start_pos" value="@10007" ctype="@" />
+            <property name="offset" value="0.0 -0.3 -0.1" ctype="vector3"/>
+            <property name="end_pos" value="@10008" ctype="@" />
+        </action>
+
+        <!-- 伤害命中-->
+        <action type="ActionHit" start_time="ARROW_HIT" stop_when_cancel="true">
+            <property name="hit_index" value="0" ctype="int" />
+        </action>
+
+        <!-- 状态命中-->
+        <action type="ActionHit" start_time="ARROW_HIT" stop_when_cancel="true">
+            <property name="hit_index" value="1" ctype="int" />
+        </action>
+
+    </action_set>
+
+    <!-- 二段技能 10004 受创动作1 -->
+    <action_set name="10004_damage_act" type="AST_ACT" speed_factor="SCT_ATTACK_SPEED">
+        <!-- 受创动作 -->
+        <action type="ActionAnimation" start_time="0.0" stop_when_cancel="true">
+            <property name="name" value="damage" ctype="string" />
+        </action>
+    </action_set>
+
+    <!-- 二段技能 10004 受创光效1 -->
+    <action_set name="10004_damage_status" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 通用护盾光效节点受创-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="@10009#&quot;Prefabs/Effect/E0112&quot;" ctype="@" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+            <property name="scale" value="@10010" ctype="@" />
+        </action>
+
+        <!-- 光效节点受创-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="@10005#({ &quot;Prefabs/Effect/E0102l&quot; , &quot;Prefabs/Effect/E0102d&quot; , &quot;Prefabs/Effect/E0102f&quot;, &quot;Prefabs/Effect/E0102s&quot;, &quot;Prefabs/Effect/E0102w&quot;})" ctype="@" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+        </action>
+
+        <!-- Event DAMAGE  延迟命中 -->
+        <action type="ActionEvent" start_time="0.0" stop_when_cancel="true">
+            <property name="event_type" value="EVENT_DAMAGE" ctype="emet" />
+            <property name="added_args" value="([])" ctype="lpc"/>
+        </action>
+
+        <!-- 音效 -->
+        <action type="ActionSound" start_time="0.0" stop_when_cancel="true">
+            <property name="sound" value="@11000#({ &quot;s_crt_dmg&quot; , &quot;s_light_dmg&quot; , &quot;s_shield_dmg&quot;, &quot;s_magic_dmg&quot;, &quot;s_normal_dmg&quot;})" ctype="@" />
+            <property name="adjust_speed" value="false" ctype="bool" />
+        </action>
+
+        <!-- 模型变色 -->
+        <action type="ActionActorColor" start_time="0.0" stop_when_cancel="true">
+            <property name="color" value="0 0 0 1" ctype="color_rgba" />
+            <property name="type" value="CCT_BASE" ctype="cct" />
+            <property name="time" value="0.05" ctype="float" />
+        </action>
+
+    </action_set>
+
+    <!-- 通用回血 11000 治愈光效 -->
+    <action_set name="11000_cast" type="AST_ACT" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 技能动作 -->
+        <action type="ActionAnimation" start_time="0.0" stop_when_cancel="true">
+            <property name="name" value="attack01" ctype="string" />
+        </action>
+
+        <!-- 状态命中-->
+        <action type="ActionHit" start_time="0.0" stop_when_cancel="true">
+            <property name="hit_index" value="0" ctype="int" />
+        </action>
+    </action_set>
+
+    <!-- 通用回血 11000 治愈光效 -->
+    <action_set name="11000_cure_status" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+        <!-- 音效-->
+        <action type="ActionSound" start_time="0.0" stop_when_cancel="true">
+            <property name="sound" value="s_cure" ctype="string" />
+            <property name="adjust_speed" value="false" ctype="bool" />
+        </action>
+        <!-- 通用加血光效-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="Prefabs/Effect/E0100" ctype="string" />
+            <property name="offset" value="0.0 0.7 -0.1" ctype="vector3"/>
+            <property name="scale" value="1.2 1.2 1" ctype="vector3"/>
+        </action>
+        <!-- Event CURE -->
+        <action type="ActionEvent" start_time="0.0" stop_when_cancel="true">
+            <property name="event_type" value="EVENT_CURE" ctype="emet" />
+            <property name="added_args" value="([])" ctype="lpc"/>
+        </action>
+    </action_set>
+
+    <!-- 回蓝 11001 治愈光效 -->
+    <action_set name="11001_cure_status" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+        <!-- 音效
+        <action type="ActionSound" start_time="0.0" stop_when_cancel="true">
+            <property name="sound" value="s_cure" ctype="string" />
+            <property name="adjust_speed" value="false" ctype="bool" />
+        </action>-->
+        <!-- 通用回蓝光效-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="Prefabs/Effect/E0119" ctype="string" />
+            <property name="offset" value="0.0 0.7 -0.1" ctype="vector3"/>
+            <property name="scale" value="2.4 1.4 1.4" ctype="vector3"/>
+        </action>
+        <!-- Event CURE -->
+        <action type="ActionEvent" start_time="0.0" stop_when_cancel="true">
+            <property name="event_type" value="EVENT_CURE" ctype="emet" />
+            <property name="added_args" value="([])" ctype="lpc"/>
+        </action>
+    </action_set>
+
+    <!-- 通用受创技能 12000 受创动作 -->
+    <action_set name="12000_damage_act" type="AST_ACT" speed_factor="SCT_ATTACK_SPEED">
+        <!-- 受创动作 -->
+        <action type="ActionAnimation" start_time="0.0" stop_when_cancel="true">
+            <property name="name" value="damage" ctype="string" />
+        </action>
+    </action_set>
+
+    <!-- 通用受创技能 12000 受创光效 -->
+    <action_set name="12000_damage_status" type="AST_STATUS" speed_factor="SCT_ATTACK_SPEED">
+
+        <!-- 护盾光效节点受创-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="@10009#&quot;Prefabs/Effect/E0112&quot;" ctype="@" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+            <property name="scale" value="@10010" ctype="@" />
+        </action>
+
+        <!-- 光效节点受创-->
+        <action type="ActionEffectSprite" start_time="0.0" stop_when_cancel="true">
+            <property name="prefeb" value="@10005#({ &quot;Prefabs/Effect/E0102l&quot; , &quot;Prefabs/Effect/E0102d&quot; , &quot;Prefabs/Effect/E0102f&quot;, &quot;Prefabs/Effect/E0102s&quot;, &quot;Prefabs/Effect/E0102w&quot;})" ctype="@" />
+            <property name="target_pos" value="@10015" ctype="@"/>
+            <property name="is_attach" value="false" ctype="bool"/>
+        </action>
+
+        <!-- Event DAMAGE -->
+        <action type="ActionEvent" start_time="0" stop_when_cancel="true">
+            <property name="event_type" value="EVENT_DAMAGE" ctype="emet" />
+            <property name="added_args" value="([])" ctype="lpc"/>
+        </action>
+
+        <!-- 模型变色 -->
+        <action type="ActionActorColor" start_time="0.0" stop_when_cancel="true">
+            <property name="color" value="0 0 0 1" ctype="color_rgba" />
+            <property name="type" value="CCT_BASE" ctype="cct" />
+            <property name="time" value="0.05" ctype="float" />
+        </action>
+
+        <!-- 音效 -->
+
+    </action_set>
+
+</skill_action>

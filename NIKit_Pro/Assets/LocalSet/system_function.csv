@@ -1,0 +1,23 @@
+﻿"# system_function.csv",,,,,,,,,,,,,,
+"# 新功能配置表",,,,,,,,,,,,,,
+"# 功能编号*","名称*","图标显示脚本*","图标*","显示位置*","是否显示红点提示脚本*","显示判断参数*","显示场景*","显示判断脚本*","显示判断参数*","数据获取脚本*","点击事件执行脚本*","附加参数*","描述信息*","备注*"
+"auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto"
+"id","name","show_icon_script","show_icon_args","show_pos","show_tips_script","show_tips_args","show_scene","show_script","show_args","get_data_script","execute_script","dbase","desc","memo"
+1,"system_function_name_1",28500,"mail_icon","@SCREEN_LEFT",25100,"([""type"":@RED_POINT])","({""MainCity"", ""WorldMap""})",25005,"([""group"":4])",,25150,"([])","system_function_desc_1","邮件"
+12,"system_function_name_12",28500,"GrowthManual","@SCREEN_LEFT",25104,"([""type"":@RED_POINT])","({""MainCity"", ""WorldMap""})",25009,"([""group"":4, ""level"":35, ""task_id"":87])",,25155,"([])","system_function_desc_12","成长手册"
+4,"system_function_name_4",28500,"activity_icon","@SCREEN_RIGHT",25101,"([""type"":@RED_POINT])","({""MainCity""})",25001,"([""group"":4,])",,25152,"([])","system_function_desc_4","活动"
+11,"system_function_name_11",28500,"activity_icon","@SCREEN_RIGHT",,"([])","({""MainCity""})",25007,"([""group"":4])",,25154,"([])","system_function_desc_11","限时商城"
+5,"system_function_name_5",28500,"free_unequip_icon","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25008,"([""group"":4])",25054,25151,"([""activity_id"":""free_unequip""])","system_function_desc_5","免费换装活动"
+7,"system_function_name_7",28500,"""51018""","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25003,"([""group"":4])",25052,25151,"([""activity_id"":""free_tower_life""])","system_function_desc_7","通天之塔免体力"
+6,"system_function_name_6",28500,"double_soul_icon","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25000,"([""group"":4])",25050,25151,"([""activity_id"":""double_soul""])","system_function_desc_6","双倍魂石"
+16,"system_function_name_16",28500,"free_life_icon","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25000,"([""group"":4])",25050,25151,"([""activity_id"":""free_life""])","system_function_desc_16","无限体力"
+3,"system_function_name_3",28500,"double_money_icon","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25000,"([""group"":4])",25050,25151,"([""activity_id"":""double_money""])","system_function_desc_3","双倍金币"
+2,"system_function_name_2",28500,"""50317""","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25000,"([""group"":4])",25050,25151,"([""activity_id"":""double_exp""])","system_function_desc_2","双倍经验"
+13,"system_function_name_13",28500,"""50363""","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25010,"([""group"":4, ""level"":14,])",,25156,"([])","system_function_desc_13","初心礼包"
+14,"system_function_name_14",28500,"""50366""","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25010,"([""group"":4, ""level"":24,])",,25156,"([])","system_function_desc_14","进阶礼包"
+15,"system_function_name_15",28500,"""50369""","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25010,"([""group"":4, ""level"":34,])",,25156,"([])","system_function_desc_15","高阶礼包"
+"# 主线任务，具体见task表",,,,,,,,,,,,,,
+8,"",28500,"","@SCREEN_LEFT",25102,"([""type"":@NEW_TIPS])","({""MainCity"", ""WorldMap""})",25004,"([""group"":1])",25053,,"([])","","主线任务"
+"# ",,,,,,,,,,,,,,
+9,"system_function_name_8",28500,"all_soul_op_icon","@SCREEN_RIGHT",,"([])","({""MainCity"", ""WorldMap""})",25002,"([""group"":4])",25051,25151,"([""activity_id"":""all_soul_op""])","system_function_desc_8","魂石圣域全开活动"
+10,"system_function_name_9",28500,"level_bonus_icon","@SCREEN_RIGHT",25103,"([""type"":@RED_POINT])","({""MainCity""})",25006,"([""group"":4])",,25153,"([])","system_function_desc_9","等级奖励活动"

@@ -1,0 +1,26 @@
+#说明
+#每次打包都会读取本文件各个配置并根据平台重新生成新的config到resource目录下。
+#{}以数组形式做解析有,多个值中间用"|"符号分隔
+
+#********** android地址
+config_url_android_0={http://res.wjdmx.qcplay.com/smjh/smjh_qc.php|http://3rd.wjdmx.qcplay.com/smjh/smjh_qc.php}
+config_url_android_1={http://res.wjdmx.qcplay.com/smjh/smjh.php|http://3rd.wjdmx.qcplay.com/smjh/smjh.php}
+config_url_android_2={http://10.2.50.49/smjh.php}
+config_url_android_3={http://res.wjdmx.qcplay.com/smjh/smjh_app_world.php|http://3rd.wjdmx.qcplay.com/smjh/smjh_app_world.php}
+config_url_android_4={http://hwres-smjh.game.qcplay.com/smjh/smjh_en.php}
+config_url_android_5={http://hwres-smjh.game.qcplay.com/smjh/smjh_en.php}
+config_url_android_6={http://hwres-smjh.game.qcplay.com/smjh/smjh_tw.php}
+config_url_android_7={http://res.wjdmx.qcplay.com/smjh/smjh_qc.php|http://3rd.wjdmx.qcplay.com/smjh/smjh_qc.php}
+
+#********** ios地址
+config_url_ios_0={https://res.wjdmx.qcplay.com/smjh/smjh_qc_iap.php}
+config_url_ios_1={https://res.wjdmx.qcplay.com/smjh/smjh_iap.php|https://3rd.wjdmx.qcplay.com/smjh/smjh_iap.php}
+config_url_ios_2={http://10.2.50.49/smjh_iap.php}
+
+#********** 编辑器
+client_version=1.171209.0
+bundle_id=com.qcplay.smjh
+#config_url={http://10.2.50.49/smjh.php}
+auth_client=@FALSE
+is_cn=@TRUE
+game_run_mode=LOCAL_HOST

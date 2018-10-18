@@ -1,0 +1,14 @@
+﻿"# custom_window.csv",,,,,,,
+"# 自定义窗口",,,,,,,
+,,,,,,,
+"# 奖励规则","设备型号iPhone X 1","设备型号iPhone X 2","设备型号iPhone XR","设备型号iPhone XS","设备型号iPhone XS Max 1","设备型号iPhone XS Max 2","备注"
+"auto","auto","auto","auto","auto","auto","auto","auto"
+"wnd_name","iPhone10,3","iPhone10,6","iPhone11,8","iPhone11,2","iPhone11,4","iPhone11,6","memo"
+"ChatWnd","ChatWnd_X","ChatWnd_X","ChatWnd_X","ChatWnd_X","ChatWnd_X","ChatWnd_X","聊天窗口"
+"DungeonsWnd","DungeonsWnd_X","DungeonsWnd_X","DungeonsWnd_X","DungeonsWnd_X","DungeonsWnd_X","DungeonsWnd_X","地下城界面"
+"LotteryBonusWnd","LotteryBonusWnd_X","LotteryBonusWnd_X","LotteryBonusWnd_X","LotteryBonusWnd_X","LotteryBonusWnd_X","LotteryBonusWnd_X","抽奖界面"
+"MainWnd","MainWnd_X","MainWnd_X","MainWnd_X","MainWnd_X","MainWnd_X","MainWnd_X","邮件界面"
+"SelectInstanceWnd","SelectInstanceWnd_X","SelectInstanceWnd_X","SelectInstanceWnd_X","SelectInstanceWnd_X","SelectInstanceWnd_X","SelectInstanceWnd_X","副本选择界面"
+"ShopWnd","ShopWnd_X","ShopWnd_X","ShopWnd_X","ShopWnd_X","ShopWnd_X","ShopWnd_X","市集界面"
+"SummonWnd","SummonWnd_X","SummonWnd_X","SummonWnd_X","SummonWnd_X","SummonWnd_X","SummonWnd_X","召唤界面"
+"TowerWnd","TowerWnd_X","TowerWnd_X","TowerWnd_X","TowerWnd_X","TowerWnd_X","TowerWnd_X","通天塔界面"

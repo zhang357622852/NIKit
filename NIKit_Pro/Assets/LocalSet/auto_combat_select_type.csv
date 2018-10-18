@@ -1,0 +1,18 @@
+﻿# auto_combat_select_type.csv,,,,
+# 自动战斗选择类型,,,,
+# 备注,,,,
+#怪物类型,备注,名称,抽取脚本,解锁参数
+"auto","auto","auto","auto","auto"
+"type","memo","name","fetch_script","fetch_args"
+"@BOSS_TYPE","首领","attack_monster_type_name_1",3002,"([])"
+"@UP_JUSHI_TYPE","咒石·上","attack_monster_type_name_2",3002,"([])"
+"@DOWN_JUSHI_TYPE","咒石·下","attack_monster_type_name_3",3002,"([])"
+"@UP_MOYAN_TYPE","眼球·上","attack_monster_type_name_4",3002,"([])"
+"@DOWN_MOYAN_TYPE","眼球·下","attack_monster_type_name_5",3002,"([])"
+"@UP_HUNSHI_TYPE","守护者·上","attack_monster_type_name_6",3002,"([])"
+"@LEFT_HUNSHI_TYPE","守护者·左","attack_monster_type_name_7",3002,"([])"
+"@DOWN_HUNSHI_TYPE","守护者·下","attack_monster_type_name_8",3002,"([])"
+"@RIGHT_HUNSH_TYPE","守护者·右","attack_monster_type_name_9",3002,"([])"
+"@UP_HEXIN_TYPE","模块·上","attack_monster_type_name_10",3002,"([])"
+"@MIDDLE_HEXIN_TYPE","模块·中","attack_monster_type_name_11",3002,"([])"
+"@DOWN_HEXIN_TYPE","模块·下","attack_monster_type_name_12",3002,"([])"
