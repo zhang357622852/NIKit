@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// EventMgr.cs
 /// Created by zhaozy 2014-11-21
 /// 事件管理
@@ -16,7 +16,7 @@ public static class EventMgr
     #region 变量
 
     /// <summary>
-    /// 事件回调 
+    /// 事件回调
     /// </summary>
     public delegate void EventHook(int eventId,MixedValue para);
 
@@ -89,7 +89,7 @@ public static class EventMgr
             }
         } catch (Exception e)
         {
-            LogMgr.Exception(e);
+            //LogMgr.Exception(e);
         }
     }
 
@@ -145,9 +145,9 @@ public static class EventMgr
         if (isSync)
             // 同步调用
             FireEventImpl(eventId, para);
-        else
-            // 异步调用
-            Coroutine.DispatchService(NonSyncFireEvent(eventId, para), fixedMode);
+        //else
+        //    // 异步调用
+        //    Coroutine.DispatchService(NonSyncFireEvent(eventId, para), fixedMode);
     }
 
     #endregion

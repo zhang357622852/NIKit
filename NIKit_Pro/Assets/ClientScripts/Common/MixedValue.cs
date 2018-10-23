@@ -1,8 +1,8 @@
-﻿/// <summary>
+/// <summary>
 /// MixedValue.cs
 /// Created by wangxw 2014-11-11
 /// 混合类型
-/// 通用的C#类型，不掺和于LPCValue
+/// 通用的C#类型
 /// </summary>
 
 using System;
@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
-using LPC;
 
 public class MixedValue
 {
@@ -30,7 +29,7 @@ public class MixedValue
     class MixedValueImpl<T> : IMixedValue
     {
         public T Value = default(T);
-        
+
         public Type GetValueType()
         {
             return typeof(T);
@@ -63,35 +62,9 @@ public class MixedValue
         if (mValue != null && mValue.GetValueType() == typeof(T))
             return (mValue as MixedValueImpl<T>).Value;
 
-        LogMgr.Error("MixedValue不是{0}", typeof(T).Name);
+        NIDebug.LogError("MixedValue不是{0}", typeof(T).Name);
+
         return default(T);
-    }
-
-    /// <summary>
-    /// Gets the value.
-    /// </summary>
-    /// <returns>The value.</returns>
-    public object LuaGetValue()
-    {
-        // 没有类型
-        Type valueType = GetValueType();
-        if (valueType == null)
-            return null;
-
-        // int类型
-        if (valueType == typeof(int))
-            return GetValue<int>();
-
-        // string类型
-        if (valueType == typeof(string))
-            return GetValue<string>();
-
-        // Vector3类型
-        if (valueType == typeof(Vector3))
-            return GetValue<Vector3>();
-
-        // 其他类型
-        return GetValue<object>();
     }
 
     /// <summary>
@@ -118,32 +91,6 @@ public class MixedValue
         MixedValue mv = new MixedValue();
         mv.SetValue<T>(value);
         return mv;
-    }
-
-    /// <summary>
-    /// News the mixed value int.
-    /// </summary>
-    /// <returns>The mixed value int.</returns>
-    /// <param name="value">Value.</param>
-    public static MixedValue LuaNewMixedValue(object value)
-    {
-        // 获取类型
-        Type valueType = value.GetType();
-
-        // int类型
-        if (valueType == typeof(int))
-            return MixedValue.NewMixedValue<int>((int) value);
-
-        // string类型
-        if (valueType == typeof(string))
-            return MixedValue.NewMixedValue<string>((string) value);
-
-        // Vector3类型
-        if (valueType == typeof(Vector3))
-            return MixedValue.NewMixedValue<Vector3>((Vector3) value);
-
-        // 其他类型
-        return MixedValue.NewMixedValue<object>(value);
     }
 
     #endregion

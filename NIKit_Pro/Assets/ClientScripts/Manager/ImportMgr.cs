@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// ImportMgr.cs
 /// Copy from zhangyg 2014-10-22
 /// 对应于LPC的IMPORT_D功能，游戏中理论上不会用到本模块，而是交由编辑器调度
@@ -135,7 +135,7 @@ public class ImportMgr
             }
         } catch (Exception e)
         {
-            LogMgr.Trace("读取csv错误\ntype = {0}, text = {1}", type, text);
+            //LogMgr.Trace("读取csv错误\ntype = {0}, text = {1}", type, text);
             throw e;
         }
     }
@@ -150,7 +150,7 @@ public class ImportMgr
         int i;
         if (!int.TryParse(text, out i))
         {
-            LogMgr.Error("无法将 " + text + " 转换为int");
+            //LogMgr.Error("无法将 " + text + " 转换为int");
             i = 0;
         }
         return LPCValue.Create(i);
@@ -188,7 +188,7 @@ public class ImportMgr
             string alias = text.Substring(1);
             if (! AliasMgr.ContainsAlias(alias))
             {
-                LogMgr.Error("字段没有配置别名 " + alias);
+                //LogMgr.Error("字段没有配置别名 " + alias);
                 return LPCValue.Create(text);
             }
             object v = AliasMgr.Get(alias);
@@ -358,7 +358,7 @@ public class CsvParser
                 string[] columns = FetchFields(comentFields);
                 if (columns.Length != field_count)
                 {
-                    LogMgr.Trace("csv表头注释行数量错误!");
+                    //LogMgr.Trace("csv表头注释行数量错误!");
                     return false;
                 }
 
@@ -472,7 +472,7 @@ public class CsvParser
         str = str.Replace(value_format, "\"");
 
         // 字符串转义
-        str = Game.ConvertToNGUIFormat(str);
+        str = string.Empty;//Game.ConvertToNGUIFormat(str);
 
         return str;
     }

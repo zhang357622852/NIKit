@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// FileMgr.cs
 /// Copy from zhangyg 2014-10-22
 /// 文件/目录的常用接口封装
@@ -37,7 +37,7 @@ public class FileMgr
             System.Threading.Thread.Sleep(100);
         }
 
-        LogMgr.Error(string.Format("文件写入失败 {0}", path));
+        NIDebug.LogError(string.Format("文件写入失败 {0}", path));
         return false;
     }
 
@@ -67,7 +67,7 @@ public class FileMgr
             System.Threading.Thread.Sleep(100);
         }
 
-        LogMgr.Error(string.Format("文件删除失败 {0}", path));
+        NIDebug.LogError(string.Format("文件删除失败 {0}", path));
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public class FileMgr
         }
         catch (Exception e)
         {
-            LogMgr.Exception(e);
+            NIDebug.LogException(e);
         }
     }
 
@@ -126,7 +126,7 @@ public class FileMgr
             System.Threading.Thread.Sleep(100);
         }
 
-        LogMgr.Error(string.Format("目录创建失败 {0}", dir));
+        NIDebug.LogError(string.Format("目录创建失败 {0}", dir));
     }
 
     /// <summary>
@@ -143,13 +143,13 @@ public class FileMgr
 
             if(targetInfo.FullName.StartsWith(sourceInfo.FullName, StringComparison.CurrentCultureIgnoreCase))
             {
-                LogMgr.Trace("父目录不能拷贝到子目录！");
+                NIDebug.Log("父目录不能拷贝到子目录！");
                 return;
             }
 
             if(!sourceInfo.Exists)
             {
-                LogMgr.Trace("不存在源目录 {0}！", sourceDir);
+                NIDebug.Log("不存在源目录 {0}！", sourceDir);
                 return;
             }
 
@@ -174,7 +174,7 @@ public class FileMgr
             }
         } catch(Exception e)
         {
-            LogMgr.Trace(e.ToString());
+            NIDebug.Log(e.ToString());
         }
     }
 
@@ -199,7 +199,7 @@ public class FileMgr
         }
         catch (Exception e)
         {
-            LogMgr.Exception(e);
+            NIDebug.LogException(e);
             return false;
         }
     }
@@ -294,7 +294,7 @@ public class FileMgr
     // 异步等待写入文件
 
     // 文件等待器
-    public class FileWaiter : IYieldObject
+    public class FileWaiter //: IYieldObject
     {
         public FileStream fs = null;
         public bool isFinish = false;

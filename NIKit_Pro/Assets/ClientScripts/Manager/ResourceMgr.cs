@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// ResourceMgr.cs
 /// Create by zhaozy 2017-03-01
 /// 资源管理器
@@ -121,7 +121,7 @@ public class ResourceMgr
         while (true)
         {
             // TODO，还需要按“最远未使用”进行过滤resource
-            yield return TimeMgr.WaitForRealSeconds(10f);
+            yield return null; // TimeMgr.WaitForRealSeconds(10f);
 
             // 不需要回收资源
             if (! mAutoRecycle)
@@ -191,7 +191,7 @@ public class ResourceMgr
         }
 
         // 判断是否是ab资源，如果不在版本树上则表示需要本地加载
-        string bundle = VersionMgr.GetAssetBundleName(resPath);
+        string bundle = string.Empty;//VersionMgr.GetAssetBundleName(resPath);
 
         // 尝试载入资源
         try
@@ -277,7 +277,7 @@ public class ResourceMgr
         catch (Exception e)
         {
             // 给出异常提示信息
-            LogMgr.Exception(e);
+           // LogMgr.Exception(e);
         }
 
         // 执行资源载入结果
@@ -296,271 +296,272 @@ public class ResourceMgr
     /// <returns>The daemon.</returns>
     private static IEnumerator UpdateAllResources()
     {
-        // 重置下载字节数标识
-        DownloadedBytes = 0;
+        yield return null;
+        //// 重置下载字节数标识
+        //DownloadedBytes = 0;
 
-        // 获取资源下载地址
-        IList abUrls = (IList)ConfigMgr.Get<JsonData> ("ab_urls", null);
+        //// 获取资源下载地址
+        //IList abUrls = (IList)ConfigMgr.Get<JsonData> ("ab_urls", null);
 
-        // 没有资源更新地址
-        if (abUrls == null || abUrls.Count == 0 || VersionMgr.UpdateResDict.Count == 0)
-        {
-            // 标识资源更新完成
-            isUpdateResOk = true;
+        //// 没有资源更新地址
+        //if (abUrls == null || abUrls.Count == 0 || VersionMgr.UpdateResDict.Count == 0)
+        //{
+        //    // 标识资源更新完成
+        //    isUpdateResOk = true;
 
-            yield break;
-        }
+        //    yield break;
+        //}
 
-        // 抛出开始下载资源事件
-        LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_UPDATE, ResourceLoadingStateConst.LOAD_STATE_UPDATE);
- 
-        // 获取需要更新资源大小
-        int totalDownloadBytes = VersionMgr.DownloadSize;
-        int downloadedBytes = 0;
-        int idx = 0;
+        //// 抛出开始下载资源事件
+        //LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_UPDATE, ResourceLoadingStateConst.LOAD_STATE_UPDATE);
 
-        // 逐个资源下载
-        foreach (string fileName in VersionMgr.UpdateResDict.Keys)
-        {
-            // 获取资源名
-            if (string.IsNullOrEmpty(fileName))
-                continue;
+        //// 获取需要更新资源大小
+        //int totalDownloadBytes = VersionMgr.DownloadSize;
+        //int downloadedBytes = 0;
+        //int idx = 0;
 
-            // 保证该资源的download成功
-            while (true)
-            {
-                // 如果idx已经超过了abUrls范围修正一下
-                if (idx >= abUrls.Count)
-                    idx = 0;
+        //// 逐个资源下载
+        //foreach (string fileName in VersionMgr.UpdateResDict.Keys)
+        //{
+        //    // 获取资源名
+        //    if (string.IsNullOrEmpty(fileName))
+        //        continue;
 
-                // 创建下载器
-                Download download = new Download(
-                    string.Format("{0}/{1}", abUrls[idx], fileName),
-                    10,
-                    ConfigMgr.DOWNLOAD_PATH + fileName);
+        //    // 保证该资源的download成功
+        //    while (true)
+        //    {
+        //        // 如果idx已经超过了abUrls范围修正一下
+        //        if (idx >= abUrls.Count)
+        //            idx = 0;
 
-                Debug.Log(string.Format("下载补丁包 {0}", download.url));
+        //        // 创建下载器
+        //        Download download = new Download(
+        //            string.Format("{0}/{1}", abUrls[idx], fileName),
+        //            10,
+        //            ConfigMgr.DOWNLOAD_PATH + fileName);
 
-                // 等待获取头部
-                download.StartGetResponse();
-                while (!download.isGetResponse && !download.isTimeOut && download.error == 0)
-                    yield return null;
+        //        Debug.Log(string.Format("下载补丁包 {0}", download.url));
 
-                // GetResponse失败，使用新的链接地址重新下载
-                if (!download.isGetResponse || download.error != 0 || download.isTimeOut)
-                {
-                    // 如果是磁盘空间满的情况，直接退出游戏
-                    if (download.error == -2)
-                    {
-                        // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
-                        bool isConfirmed = false;
-                        DialogMgr.ShowSimpleSingleBtnDailog(
-                            new CallBack((para, obj) =>{ isConfirmed = true; }),
-                            LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START));
+        //        // 等待获取头部
+        //        download.StartGetResponse();
+        //        while (!download.isGetResponse && !download.isTimeOut && download.error == 0)
+        //            yield return null;
 
-                        // 等到玩家确认
-                        while (! isConfirmed)
-                            yield return null;
+        //        // GetResponse失败，使用新的链接地址重新下载
+        //        if (!download.isGetResponse || download.error != 0 || download.isTimeOut)
+        //        {
+        //            // 如果是磁盘空间满的情况，直接退出游戏
+        //            if (download.error == -2)
+        //            {
+        //                // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
+        //                bool isConfirmed = false;
+        //                DialogMgr.ShowSimpleSingleBtnDailog(
+        //                    new CallBack((para, obj) =>{ isConfirmed = true; }),
+        //                    LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START));
 
-                        // 退出应用
-                        Application.Quit();
-                        yield break;
-                    }
+        //                // 等到玩家确认
+        //                while (! isConfirmed)
+        //                    yield return null;
 
-                    idx++;
-                    download.Clear();
+        //                // 退出应用
+        //                Application.Quit();
+        //                yield break;
+        //            }
 
-                    // 等待一会重试
-                    yield return new UnityEngine.WaitForSeconds(0.1f); // 等待一会重试
-                    continue;
-                }
+        //            idx++;
+        //            download.Clear();
 
-                // 开始下载资源
-                download.StartDownload();
+        //            // 等待一会重试
+        //            yield return new UnityEngine.WaitForSeconds(0.1f); // 等待一会重试
+        //            continue;
+        //        }
 
-                // 等待资源下载完成
-                while (!download.isDownloaded && !download.isTimeOut && download.error == 0)
-                {
-                    // 等待0.1s，尽量不要一帧等待
-                    yield return new UnityEngine.WaitForSeconds(0.1f);
+        //        // 开始下载资源
+        //        download.StartDownload();
 
-                    DownloadedBytes = download.GetTotleDownloadSize() + downloadedBytes;
-                    LoadingMgr.SetProgress (DownloadedBytes/(float)totalDownloadBytes);
-                }
+        //        // 等待资源下载完成
+        //        while (!download.isDownloaded && !download.isTimeOut && download.error == 0)
+        //        {
+        //            // 等待0.1s，尽量不要一帧等待
+        //            yield return new UnityEngine.WaitForSeconds(0.1f);
 
-                // 如果下载资源失败
-                if (download.isTimeOut || download.error != 0)
-                {
-                    // 如果是磁盘空间满的情况，直接退出游戏
-                    if (download.error == -2)
-                    {
-                        // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
-                        bool isConfirmed = false;
-                        DialogMgr.ShowSimpleSingleBtnDailog(
-                            new CallBack((para, obj) =>{ isConfirmed = true; }),
-                            LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START));
+        //            DownloadedBytes = download.GetTotleDownloadSize() + downloadedBytes;
+        //            LoadingMgr.SetProgress (DownloadedBytes/(float)totalDownloadBytes);
+        //        }
 
-                        // 等到玩家确认
-                        while (! isConfirmed)
-                            yield return null;
+        //        // 如果下载资源失败
+        //        if (download.isTimeOut || download.error != 0)
+        //        {
+        //            // 如果是磁盘空间满的情况，直接退出游戏
+        //            if (download.error == -2)
+        //            {
+        //                // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
+        //                bool isConfirmed = false;
+        //                DialogMgr.ShowSimpleSingleBtnDailog(
+        //                    new CallBack((para, obj) =>{ isConfirmed = true; }),
+        //                    LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START));
 
-                        Application.Quit();
-                        yield break;
-                    }
+        //                // 等到玩家确认
+        //                while (! isConfirmed)
+        //                    yield return null;
 
-                    idx++;
-                    download.Clear();
+        //                Application.Quit();
+        //                yield break;
+        //            }
 
-                    LogMgr.Trace ("{0}响应超时或错误", fileName);
-                    continue;
-                }
+        //            idx++;
+        //            download.Clear();
 
-                // 累计下载进度
-                downloadedBytes += download.GetTotleDownloadSize();
+        //            LogMgr.Trace ("{0}响应超时或错误", fileName);
+        //            continue;
+        //        }
 
-                LogMgr.Trace("downloadedBytes 大小{0},oldLoadedBytes 大小为{1}", download.downloadedBytes, download.oldLoadedBytes);
-                LogMgr.Trace("已下载总量{0}", downloadedBytes);
+        //        // 累计下载进度
+        //        downloadedBytes += download.GetTotleDownloadSize();
 
-                // 释放下载器
-                download.Clear();
+        //        LogMgr.Trace("downloadedBytes 大小{0},oldLoadedBytes 大小为{1}", download.downloadedBytes, download.oldLoadedBytes);
+        //        LogMgr.Trace("已下载总量{0}", downloadedBytes);
 
-                // 退出循环
-                break;
-            }
-        }
+        //        // 释放下载器
+        //        download.Clear();
 
-        // 设定更新总进度
-        LoadingMgr.SetProgress (1.0f);
+        //        // 退出循环
+        //        break;
+        //    }
+        //}
 
-        // 等待进度条结束
-        while(!LoadingMgr.IsLoadingEnd(LoadingType.LOAD_TYPE_UPDATE_RES,
-            ResourceLoadingConst.LOAD_TYPE_UPDATE))
-            yield return null;
+        //// 设定更新总进度
+        //LoadingMgr.SetProgress (1.0f);
 
-        LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_CHECK);
+        //// 等待进度条结束
+        //while(!LoadingMgr.IsLoadingEnd(LoadingType.LOAD_TYPE_UPDATE_RES,
+        //    ResourceLoadingConst.LOAD_TYPE_UPDATE))
+        //    yield return null;
 
-        // 切换流程
-        LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_UPDATE);
+        //LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_CHECK);
 
-        // 当前解压缩文件进度
-        int unzipSize = 0;
-        bool isUnzipFailed = false;
-        string targetPath = ConfigMgr.ASSETBUNDLES_PATH + "/";
+        //// 切换流程
+        //LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_UPDATE);
 
-        // 资源解压缩
-        foreach (string fileName in VersionMgr.UpdateResDict.Keys)
-        {
-            // 文件名为空
-            if (string.IsNullOrEmpty(fileName))
-                continue;
+        //// 当前解压缩文件进度
+        //int unzipSize = 0;
+        //bool isUnzipFailed = false;
+        //string targetPath = ConfigMgr.ASSETBUNDLES_PATH + "/";
 
-            // 构建解压缩
-            Unzip zip = new Unzip(
-                            ConfigMgr.GetLocalRootPathWWW(ConfigMgr.DOWNLOAD_NAME + "/" + fileName),
-                            targetPath,
-                            VersionMgr.UpdateResDict[fileName]);
+        //// 资源解压缩
+        //foreach (string fileName in VersionMgr.UpdateResDict.Keys)
+        //{
+        //    // 文件名为空
+        //    if (string.IsNullOrEmpty(fileName))
+        //        continue;
 
-            // 开始解压缩
-            zip.Start();
+        //    // 构建解压缩
+        //    Unzip zip = new Unzip(
+        //                    ConfigMgr.GetLocalRootPathWWW(ConfigMgr.DOWNLOAD_NAME + "/" + fileName),
+        //                    targetPath,
+        //                    VersionMgr.UpdateResDict[fileName]);
 
-            // 等待解压缩结束
-            while (!zip.IsUnziped)
-            {
-                // 更新进度
-                LoadingMgr.SetProgress((float)(unzipSize + zip.UnzipBytes) / VersionMgr.UnzipSize);
-                yield return null;
-            }
+        //    // 开始解压缩
+        //    zip.Start();
 
-            // 累计解压缩数量
-            unzipSize += zip.UnzipBytes;
-            LoadingMgr.SetProgress((float)unzipSize / VersionMgr.UnzipSize);
+        //    // 等待解压缩结束
+        //    while (!zip.IsUnziped)
+        //    {
+        //        // 更新进度
+        //        LoadingMgr.SetProgress((float)(unzipSize + zip.UnzipBytes) / VersionMgr.UnzipSize);
+        //        yield return null;
+        //    }
 
-            // 释放zip
-            zip.Clear();
+        //    // 累计解压缩数量
+        //    unzipSize += zip.UnzipBytes;
+        //    LoadingMgr.SetProgress((float)unzipSize / VersionMgr.UnzipSize);
 
-            // 回收内存
-            DoRecycleGC();
+        //    // 释放zip
+        //    zip.Clear();
 
-            // 解压缩文件成功
-            if (zip.Error == 0)
-            {
-                // 解压缩成功, 删除补丁文件
-                FileMgr.DeleteFile(ConfigMgr.DOWNLOAD_PATH + "/" + fileName);
+        //    // 回收内存
+        //    DoRecycleGC();
 
-                // 更新本地版本文件
-                VersionMgr.SyncVersion(VersionMgr.UpdateResDict[fileName]);
+        //    // 解压缩文件成功
+        //    if (zip.Error == 0)
+        //    {
+        //        // 解压缩成功, 删除补丁文件
+        //        FileMgr.DeleteFile(ConfigMgr.DOWNLOAD_PATH + "/" + fileName);
 
-                continue;
-            }
+        //        // 更新本地版本文件
+        //        VersionMgr.SyncVersion(VersionMgr.UpdateResDict[fileName]);
 
-            // 如果解压缩失败
-            /// 0  : 解压缩成功
-            /// -1 : 压缩文件载入失败
-            /// -2 : 内存分配失败
-            /// -3 : 文件写入失败
-            /// -4 : 其他异常信息
-            string msg = string.Empty;
-            if (zip.Error == -2)
-                msg = LocalizationMgr.Get("ResourceCheckWnd_22", LocalizationConst.START);
-            else if (zip.Error == -3)
-                msg = LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START);
+        //        continue;
+        //    }
 
-            // 给出提示信息
-            if (! string.IsNullOrEmpty(msg))
-            {
-                // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
-                bool isConfirmed = false;
-                DialogMgr.ShowSimpleSingleBtnDailog(new CallBack((para, obj) =>
-                        {
-                            isConfirmed = true;
-                        }), msg);
+        //    // 如果解压缩失败
+        //    /// 0  : 解压缩成功
+        //    /// -1 : 压缩文件载入失败
+        //    /// -2 : 内存分配失败
+        //    /// -3 : 文件写入失败
+        //    /// -4 : 其他异常信息
+        //    string msg = string.Empty;
+        //    if (zip.Error == -2)
+        //        msg = LocalizationMgr.Get("ResourceCheckWnd_22", LocalizationConst.START);
+        //    else if (zip.Error == -3)
+        //        msg = LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START);
 
-                // 等到玩家确认
-                while (!isConfirmed)
-                    yield return null;
+        //    // 给出提示信息
+        //    if (! string.IsNullOrEmpty(msg))
+        //    {
+        //        // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
+        //        bool isConfirmed = false;
+        //        DialogMgr.ShowSimpleSingleBtnDailog(new CallBack((para, obj) =>
+        //                {
+        //                    isConfirmed = true;
+        //                }), msg);
 
-                // 退出游戏
-                Application.Quit();
-                yield break;
-            }
+        //        // 等到玩家确认
+        //        while (!isConfirmed)
+        //            yield return null;
 
-            // 标识有资源解压缩失败
-            isUnzipFailed = true;
+        //        // 退出游戏
+        //        Application.Quit();
+        //        yield break;
+        //    }
 
-            // 解压缩成功, 删除补丁文件
-            FileMgr.DeleteFile(ConfigMgr.DOWNLOAD_NAME + "/" + fileName);
+        //    // 标识有资源解压缩失败
+        //    isUnzipFailed = true;
 
-            // 给出提示信息
-            Debug.Log(string.Format("补丁包{0}结果解压缩{1}", fileName, zip.Error));
-        }
+        //    // 解压缩成功, 删除补丁文件
+        //    FileMgr.DeleteFile(ConfigMgr.DOWNLOAD_NAME + "/" + fileName);
 
-        // 如果有资源解压缩失败，需要玩家确认重启游戏重新下载资源
-        if (isUnzipFailed)
-        {
-            // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
-            bool isConfirmed = false;
-            DialogMgr.ShowSimpleSingleBtnDailog(new CallBack((para, obj) =>
-                {
-                    isConfirmed = true;
-                }), LocalizationMgr.Get("ResourceCheckWnd_9", LocalizationConst.START));
+        //    // 给出提示信息
+        //    Debug.Log(string.Format("补丁包{0}结果解压缩{1}", fileName, zip.Error));
+        //}
 
-            // 等到玩家确认
-            while (! isConfirmed)
-                yield return null;
+        //// 如果有资源解压缩失败，需要玩家确认重启游戏重新下载资源
+        //if (isUnzipFailed)
+        //{
+        //    // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
+        //    bool isConfirmed = false;
+        //    DialogMgr.ShowSimpleSingleBtnDailog(new CallBack((para, obj) =>
+        //        {
+        //            isConfirmed = true;
+        //        }), LocalizationMgr.Get("ResourceCheckWnd_9", LocalizationConst.START));
 
-            // 退出游戏
-            Application.Quit();
-            yield break;
-        }
+        //    // 等到玩家确认
+        //    while (! isConfirmed)
+        //        yield return null;
+
+        //    // 退出游戏
+        //    Application.Quit();
+        //    yield break;
+        //}
 
 
-        // 等待进度条结束
-        while(!LoadingMgr.IsLoadingEnd(LoadingType.LOAD_TYPE_UPDATE_RES,
-            ResourceLoadingConst.LOAD_TYPE_DECOMPRESS))
-            yield return null;
+        //// 等待进度条结束
+        //while(!LoadingMgr.IsLoadingEnd(LoadingType.LOAD_TYPE_UPDATE_RES,
+        //    ResourceLoadingConst.LOAD_TYPE_DECOMPRESS))
+        //    yield return null;
 
-        // 标识资源更新完成
-        isUpdateResOk = true;
+        //// 标识资源更新完成
+        //isUpdateResOk = true;
     }
 
     /// <summary>
@@ -570,7 +571,7 @@ public class ResourceMgr
     private static void InitStartRes()
     {
         // 初始化开始场景语言
-        LocalizationMgr.InitStartRes();
+        //LocalizationMgr.InitStartRes();
 
         // 初始化start场景csv
         CsvFileMgr.InitStartCsv();
@@ -612,11 +613,11 @@ public class ResourceMgr
                 if (! int.TryParse(strSptNo, out sptNo))
                 {
                     // 如果是lua脚本公式
-                    FormulaMgr.AddLuaFormula(strSptNo, File.ReadAllText(tempPath));
+                    //FormulaMgr.AddLuaFormula(strSptNo, File.ReadAllText(tempPath));
                 } else
                 {
                     // 如果是lua脚本
-                    ScriptMgr.AddLuaScript(sptNo, File.ReadAllText(tempPath));
+                    //ScriptMgr.AddLuaScript(sptNo, File.ReadAllText(tempPath));
                 }
             }
             else
@@ -715,8 +716,8 @@ public class ResourceMgr
     public static List<string> LoadAllSkillActionFile()
     {
         // 验证客户端模式下，加载resource文件夹下的技能文件
-        if (AuthClientMgr.IsAuthClient)
-            LoadSkillActionFile();
+        //if (AuthClientMgr.IsAuthClient)
+            //LoadSkillActionFile();
 
         return etcSkillActionList;
     }
@@ -792,11 +793,11 @@ public class ResourceMgr
                 if (! int.TryParse(strSptNo, out sptNo))
                 {
                     // 如果是lua脚本公式
-                    FormulaMgr.AddLuaFormula(strSptNo, textAsset.text);
+                    //FormulaMgr.AddLuaFormula(strSptNo, textAsset.text);
                 } else
                 {
                     // 如果是lua脚本
-                    ScriptMgr.AddLuaScript(sptNo, textAsset.text);
+                    //ScriptMgr.AddLuaScript(sptNo, textAsset.text);
                 }
             }
             else
@@ -833,56 +834,56 @@ public class ResourceMgr
     /// </summary>
     public static IEnumerator Init()
     {
-        // 开始不停的回收资源
-        Coroutine.DispatchService(RecycleDaemon());
+        //// 开始不停的回收资源
+        //Coroutine.DispatchService(RecycleDaemon());
 
-        // 载入版本控制文件
-        yield return Coroutine.DispatchService(VersionMgr.LoadVersionFile());
+        //// 载入版本控制文件
+        //yield return Coroutine.DispatchService(VersionMgr.LoadVersionFile());
 
-        // 尝试解压资源, 如果是第一次启动游戏则需要将附在包体中的资源
-        yield return Coroutine.DispatchService(ResourceMgr.DoDecompressRes());
+        //// 尝试解压资源, 如果是第一次启动游戏则需要将附在包体中的资源
+        //yield return Coroutine.DispatchService(ResourceMgr.DoDecompressRes());
 
-        // 抛出开始下载资源事件
-        LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_UPDATE, ResourceLoadingStateConst.LOAD_STATE_CHECK);
+        //// 抛出开始下载资源事件
+        //LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_UPDATE, ResourceLoadingStateConst.LOAD_STATE_CHECK);
 
-        // 初始化版本控制
-        yield return Coroutine.DispatchService(VersionMgr.CompareOnlineVersion());
+        //// 初始化版本控制
+        //yield return Coroutine.DispatchService(VersionMgr.CompareOnlineVersion());
 
-        // 如果下载的大小大于20M，并且在非wifi情况下，给提示
-        if(VersionMgr.DownloadSize >= 20 * 1024 * 1024 && 
-            Application.internetReachability != NetworkReachability.ReachableViaLocalAreaNetwork)
-        {
-            bool isConfirmed = false;
+        //// 如果下载的大小大于20M，并且在非wifi情况下，给提示
+        //if(VersionMgr.DownloadSize >= 20 * 1024 * 1024 &&
+        //    Application.internetReachability != NetworkReachability.ReachableViaLocalAreaNetwork)
+        //{
+        //    bool isConfirmed = false;
 
-            // 可选择更新或者是不更新,不更新直接关闭客户端
-            DialogMgr.ShowSimpleDailog(new CallBack((para, obj) =>
-            {
-                if ((bool)obj[0])
-                    isConfirmed = true;
-                else
-                    // 关闭客户端
-                    Application.Quit();
-            }),
-                string.Format(LocalizationMgr.Get("ResourceLoadingWnd_7", LocalizationConst.START), VersionMgr.DownloadSize/(1024*1024)),
-                LocalizationMgr.Get("ResourceLoadingWnd_6", LocalizationConst.START),
-                LocalizationMgr.Get("ResourceLoadingWnd_8", LocalizationConst.START));
+        //    // 可选择更新或者是不更新,不更新直接关闭客户端
+        //    DialogMgr.ShowSimpleDailog(new CallBack((para, obj) =>
+        //    {
+        //        if ((bool)obj[0])
+        //            isConfirmed = true;
+        //        else
+        //            // 关闭客户端
+        //            Application.Quit();
+        //    }),
+        //        string.Format(LocalizationMgr.Get("ResourceLoadingWnd_7", LocalizationConst.START), VersionMgr.DownloadSize/(1024*1024)),
+        //        LocalizationMgr.Get("ResourceLoadingWnd_6", LocalizationConst.START),
+        //        LocalizationMgr.Get("ResourceLoadingWnd_8", LocalizationConst.START));
 
-            while(!isConfirmed)
-                yield return null;
-        }
+        //    while(!isConfirmed)
+        //        yield return null;
+        //}
 
-        // 下载所有需要更新的资源
-        yield return Coroutine.DispatchService(UpdateAllResources());
+        //// 下载所有需要更新的资源
+        //yield return Coroutine.DispatchService(UpdateAllResources());
 
-        // 等待资源更新完成
-        while (!isUpdateResOk)
-            yield return null;
+        //// 等待资源更新完成
+        //while (!isUpdateResOk)
+        //    yield return null;
 
-        // 执行更新结束处理
-        yield return Coroutine.DispatchService(VersionMgr.DoSycnResEnd(true));
+        //// 执行更新结束处理
+        //yield return Coroutine.DispatchService(VersionMgr.DoSycnResEnd(true));
 
-        // 载入AssetBundle依赖关系
-        yield return Coroutine.DispatchService(LoadAssetBundleManifest());
+        //// 载入AssetBundle依赖关系
+        //yield return Coroutine.DispatchService(LoadAssetBundleManifest());
 
         yield return null;
     }
@@ -895,110 +896,110 @@ public class ResourceMgr
     /// <returns>The daemon.</returns>
     public static IEnumerator DoDecompressRes()
     {
-        // 抛出开始解压包体中资源事件
-        LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_START_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_CHECK);
+        //// 抛出开始解压包体中资源事件
+        //LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_START_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_CHECK);
 
-        // 获取需要解压缩资源列表
-        // 如果没有随包资源，不处理
-        string[] patchRes = ConfigMgr.Get<string[]>("patch_res", new string[]{});
-        if (patchRes.Length == 0)
-            yield break;
+        //// 获取需要解压缩资源列表
+        //// 如果没有随包资源，不处理
+        //string[] patchRes = ConfigMgr.Get<string[]>("patch_res", new string[]{});
+        //if (patchRes.Length == 0)
+        //    yield break;
 
-        // 对比随包版本文件和本地资源版本文件对比判断需要解压具体那些资源
-        yield return Coroutine.DispatchService(VersionMgr.ComparePackageVersion(patchRes));
+        //// 对比随包版本文件和本地资源版本文件对比判断需要解压具体那些资源
+        //yield return Coroutine.DispatchService(VersionMgr.ComparePackageVersion(patchRes));
 
-        // 如果不需要解压缩不处理
-        if (VersionMgr.UpdateResDict.Count == 0)
-            yield break;
+        //// 如果不需要解压缩不处理
+        //if (VersionMgr.UpdateResDict.Count == 0)
+        //    yield break;
 
-        // 抛出开始解压包体中资源事件
-        LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_START_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_UPDATE);
+        //// 抛出开始解压包体中资源事件
+        //LoadingMgr.ChangeState(ResourceLoadingConst.LOAD_TYPE_START_DECOMPRESS, ResourceLoadingStateConst.LOAD_STATE_UPDATE);
 
-        int unzipSize = 0;
-        string targetPath = ConfigMgr.ASSETBUNDLES_PATH + "/";
+        //int unzipSize = 0;
+        //string targetPath = ConfigMgr.ASSETBUNDLES_PATH + "/";
 
-        // 获取版本需要更新列表
-        foreach(string file in VersionMgr.UpdateResDict.Keys)
-        {
-            // 构建解压缩
-            Unzip zip = new Unzip(ConfigMgr.GetStreamingPathWWW(file), targetPath, VersionMgr.UpdateResDict[file]);
+        //// 获取版本需要更新列表
+        //foreach(string file in VersionMgr.UpdateResDict.Keys)
+        //{
+        //    // 构建解压缩
+        //    Unzip zip = new Unzip(ConfigMgr.GetStreamingPathWWW(file), targetPath, VersionMgr.UpdateResDict[file]);
 
-            // 开始解压缩
-            zip.Start();
+        //    // 开始解压缩
+        //    zip.Start();
 
-            // 等待解压缩结束
-            while (! zip.IsUnziped)
-            {
-                // 更新进度
-                LoadingMgr.SetProgress((float) (unzipSize + zip.UnzipBytes) / VersionMgr.UnzipSize);
-                yield return null;
-            }
+        //    // 等待解压缩结束
+        //    while (! zip.IsUnziped)
+        //    {
+        //        // 更新进度
+        //        LoadingMgr.SetProgress((float) (unzipSize + zip.UnzipBytes) / VersionMgr.UnzipSize);
+        //        yield return null;
+        //    }
 
-            // 释放zip
-            zip.Clear();
+        //    // 释放zip
+        //    zip.Clear();
 
-            // 主动回收一下资源
-            DoRecycleGC();
+        //    // 主动回收一下资源
+        //    DoRecycleGC();
 
-            // 如果解压缩失败
-            /// 0  : 解压缩成功
-            /// -1 : 压缩文件载入失败
-            /// -2 : 内存分配失败
-            /// -3 : 文件写入失败
-            /// -4 : 其他异常信息
-            if (zip.Error != 0)
-            {
-                string msg = string.Empty;
-                if (zip.Error == -1)
-                    msg = string.Format(LocalizationMgr.Get("ResourceCheckWnd_21", LocalizationConst.START), file);
-                else if (zip.Error == -2)
-                    msg = LocalizationMgr.Get("ResourceCheckWnd_22", LocalizationConst.START);
-                else if (zip.Error == -3)
-                    msg = LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START);
-                else
-                {
-                    // 解压缩失败
-                    msg = string.Format(LocalizationMgr.Get("ResourceCheckWnd_23", LocalizationConst.START), file);
-                }
+        //    // 如果解压缩失败
+        //    /// 0  : 解压缩成功
+        //    /// -1 : 压缩文件载入失败
+        //    /// -2 : 内存分配失败
+        //    /// -3 : 文件写入失败
+        //    /// -4 : 其他异常信息
+        //    if (zip.Error != 0)
+        //    {
+        //        string msg = string.Empty;
+        //        if (zip.Error == -1)
+        //            msg = string.Format(LocalizationMgr.Get("ResourceCheckWnd_21", LocalizationConst.START), file);
+        //        else if (zip.Error == -2)
+        //            msg = LocalizationMgr.Get("ResourceCheckWnd_22", LocalizationConst.START);
+        //        else if (zip.Error == -3)
+        //            msg = LocalizationMgr.Get("ResourceCheckWnd_8", LocalizationConst.START);
+        //        else
+        //        {
+        //            // 解压缩失败
+        //            msg = string.Format(LocalizationMgr.Get("ResourceCheckWnd_23", LocalizationConst.START), file);
+        //        }
 
-                // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
-                bool isConfirmed = false;
-                DialogMgr.ShowSimpleSingleBtnDailog(new CallBack((para, obj) =>
-                        {
-                            isConfirmed = true;
-                        }), msg);
+        //        // 弹出窗口玩家让玩家确认一下，玩家确认后等待一下会在重试
+        //        bool isConfirmed = false;
+        //        DialogMgr.ShowSimpleSingleBtnDailog(new CallBack((para, obj) =>
+        //                {
+        //                    isConfirmed = true;
+        //                }), msg);
 
-                // 等到玩家确认
-                while (!isConfirmed)
-                    yield return null;
+        //        // 等到玩家确认
+        //        while (!isConfirmed)
+        //            yield return null;
 
-                // 退出游戏
-                Application.Quit();
-                yield break;
-            }
-            else
-            {
-                // 记录解压缩进度
-                unzipSize += zip.UnzipBytes;
+        //        // 退出游戏
+        //        Application.Quit();
+        //        yield break;
+        //    }
+        //    else
+        //    {
+        //        // 记录解压缩进度
+        //        unzipSize += zip.UnzipBytes;
 
-                // 更新本地版本文件
-                VersionMgr.SyncVersion(VersionMgr.UpdateResDict[file]);
+        //        // 更新本地版本文件
+        //        VersionMgr.SyncVersion(VersionMgr.UpdateResDict[file]);
 
-                // 更新进度
-                LoadingMgr.SetProgress((float)unzipSize / VersionMgr.UnzipSize);
-            }
-        }
+        //        // 更新进度
+        //        LoadingMgr.SetProgress((float)unzipSize / VersionMgr.UnzipSize);
+        //    }
+        //}
 
-        // 更新进度解压缩进度
-        LoadingMgr.SetProgress(1f);
+        //// 更新进度解压缩进度
+        //LoadingMgr.SetProgress(1f);
 
-        // 等待进度条结束
-        while(!LoadingMgr.IsLoadingEnd(LoadingType.LOAD_TYPE_UPDATE_RES,
-                  ResourceLoadingConst.LOAD_TYPE_START_DECOMPRESS))
-            yield return null;
+        //// 等待进度条结束
+        //while(!LoadingMgr.IsLoadingEnd(LoadingType.LOAD_TYPE_UPDATE_RES,
+        //          ResourceLoadingConst.LOAD_TYPE_START_DECOMPRESS))
+        //    yield return null;
 
-        // 写入版本文件
-        yield return Coroutine.DispatchService(VersionMgr.DoSycnResEnd(false));
+        //// 写入版本文件
+        //yield return Coroutine.DispatchService(VersionMgr.DoSycnResEnd(false));
 
         yield break;
     }
@@ -1190,7 +1191,7 @@ public class ResourceMgr
         catch (Exception e)
         {
             // 给出异常提示信息
-            LogMgr.Exception(e);
+            //LogMgr.Exception(e);
         }
 
         // 返回资源
@@ -1237,7 +1238,7 @@ public class ResourceMgr
         }
 
         // 判断是否是ab资源，如果不在版本树上则表示需要本地加载
-        string bundle = VersionMgr.GetAssetBundleName(resPath);
+        string bundle = string.Empty;//VersionMgr.GetAssetBundleName(resPath);
 
         // 如果是内部资源
         if (string.IsNullOrEmpty(bundle))
@@ -1342,7 +1343,7 @@ public class ResourceMgr
 /// <summary>
 /// 本类负责缓存Unity资源
 /// </summary>
-public class Resource : IYieldObject
+public class Resource //: IYieldObject
 {
     // 资源状态
     public enum STATE

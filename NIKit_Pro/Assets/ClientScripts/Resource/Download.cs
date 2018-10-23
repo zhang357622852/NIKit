@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Download.cs
 /// Created by zhaozy 2017-03-20
 /// 有断点续传功能的下载
@@ -112,7 +112,7 @@ public class Download
                 error = -1;
 
             // 打印详细信息
-            LogMgr.Exception(e);
+            //LogMgr.Exception(e);
         }
 
         // 标识已经Get过Response
@@ -160,7 +160,7 @@ public class Download
                 error = -1;
 
             // 打印详细的异常信息
-            LogMgr.Exception(e);
+            //LogMgr.Exception(e);
         }
     }
 
@@ -217,7 +217,7 @@ public class Download
                 error = -1;
 
             // 打印详细的异常信息
-            LogMgr.Exception(e);
+            //LogMgr.Exception(e);
         }
     }
 
@@ -251,7 +251,7 @@ public class Download
                     error = -1;
 
                 // 打印详细的异常信息
-                LogMgr.Exception(e);
+                //LogMgr.Exception(e);
             }
         }
         else

@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// FieldsMgr.cs
 /// Created by zhaozy 2014-12-12
 /// 字段表管理
@@ -86,7 +86,7 @@ public class FieldsMgr
         // 没有配置的字段
         if (data == null)
         {
-            LogMgr.Trace("fields.csv未配置字段{0}", field);
+            //LogMgr.Trace("fields.csv未配置字段{0}", field);
             return string.Empty;
         }
 
@@ -125,12 +125,12 @@ public class FieldsMgr
         // 没有配置的字段
         if (data == null)
         {
-            LogMgr.Trace("fields.csv未配置字段{0}", field);
+            //LogMgr.Trace("fields.csv未配置字段{0}", field);
             return string.Empty;
         }
 
         // 返回数据
-        return LocalizationMgr.Get(data.Query<string>("name"));
+        return string.Empty;//LocalizationMgr.Get(data.Query<string>("name"));
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ public class FieldsMgr
         // 没有配置的字段
         if (data == null)
         {
-            LogMgr.Trace("fields.csv未配置字段{0}", field);
+            //LogMgr.Trace("fields.csv未配置字段{0}", field);
             return string.Empty;
         }
 
@@ -165,7 +165,7 @@ public class FieldsMgr
         // 没有配置的字段
         if (data == null)
         {
-            LogMgr.Trace("fields.csv未配置字段{0}", field);
+            //LogMgr.Trace("fields.csv未配置字段{0}", field);
             return string.Empty;
         }
 
@@ -183,7 +183,7 @@ public class FieldsMgr
         // 没有配置的字段
         if (data == null)
         {
-            LogMgr.Trace("fields.csv未配置字段{0}", field);
+            //LogMgr.Trace("fields.csv未配置字段{0}", field);
             return string.Empty;
         }
 
@@ -201,7 +201,7 @@ public class FieldsMgr
         // 没有配置的字段
         if (data == null)
         {
-            LogMgr.Trace("fields.csv未配置字段{0}", field);
+            //LogMgr.Trace("fields.csv未配置字段{0}", field);
             return -1;
         }
 

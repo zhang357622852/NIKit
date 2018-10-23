@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// LPCValue.cs
 /// Copy from zhangyg 2014-10-22
 /// LPC数据类型
@@ -139,7 +139,7 @@ namespace LPC
                     return 0;
                 else
                 {
-                    LogMgr.Error("LPCValue不是int");
+                    //LogMgr.Error("LPCValue不是int");
                     return 0;
                 }
             }
@@ -163,7 +163,7 @@ namespace LPC
                     return 0f;
                 else
                 {
-                    LogMgr.Error("LPCValue不是float");
+                    //LogMgr.Error("LPCValue不是float");
                     return 0f;
                 }
             }
@@ -202,7 +202,7 @@ namespace LPC
                     return null;
                 else
                 {
-                    LogMgr.Error("LPCValue不是buffer");
+                    //LogMgr.Error("LPCValue不是buffer");
                     return null;
                 }
             }
@@ -224,7 +224,7 @@ namespace LPC
                     return null;
                 else
                 {
-                    LogMgr.Error("LPCValue不是array");
+                    //LogMgr.Error("LPCValue不是array");
                     return null;
                 }
             }
@@ -246,7 +246,7 @@ namespace LPC
                     return null;
                 else
                 {
-                    LogMgr.Error("LPCValue不是mapping");
+                    //LogMgr.Error("LPCValue不是mapping");
                     return null;
                 }
             }

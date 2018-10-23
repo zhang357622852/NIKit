@@ -1,9 +1,0 @@
-﻿"# update_script.csv",,
-"# 角色刷新装备效果脚本表",,
-"# 这里记录了所有类别的角色的刷新效果脚本",,
-"#类别编号","脚本编号","说明"
-"auto","auto","auto"
-"type","script","memo"
-"@OBJECT_TYPE_USER",2000,"角色"
-"@OBJECT_TYPE_MONSTER",2001,"怪物/宠物"
-"@OBJECT_TYPE_ITEM",2002,"道具"

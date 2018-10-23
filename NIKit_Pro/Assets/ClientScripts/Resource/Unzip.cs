@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Unzip.cs
 /// Created by zhaozy 2017-03-20
 /// 文件解压缩类
@@ -233,7 +233,7 @@ public class Unzip
     public void Start()
     {
         // 在协程中载入文件
-        Coroutine.DispatchService(LoadFile());
+        //Coroutine.DispatchService(LoadFile());
     }
 
     /// <summary>
