@@ -6,7 +6,7 @@ using UnityEngine;
 /// 窗体的抽象基类
 /// </summary>
 [RequireComponent(typeof(UIPanel))]
-public abstract class UIBaseForms : MonoBehaviour
+public abstract class UIBaseForms<T> : MonoBehaviour
 {
     public UIFormsType formsType = UIFormsType.Normal;
 
@@ -14,7 +14,10 @@ public abstract class UIBaseForms : MonoBehaviour
 
     public UIFormsLayer formsLayerType = UIFormsLayer.CommonUILayer;
 
-    public string formsName;
+    /// <summary>
+    /// 窗口名
+    /// </summary>
+    public static readonly string FormsName = typeof(T).Name;
 
     /// <summary>
     /// 第一次创建窗口时调用，相当于init

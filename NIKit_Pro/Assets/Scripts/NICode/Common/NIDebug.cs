@@ -86,6 +86,19 @@ public static class NIDebug
     }
 
     /// <summary>
+    /// A variant of Debug.Log that logs a warning message to the console.
+    /// </summary>
+    public static void LogWarning(string message, params object[] paras)
+    {
+        string content = message;
+
+        if (paras != null)
+            content = string.Format(message, paras);
+
+        Debug.LogWarning(content);
+    }
+
+    /// <summary>
     /// A variant of Debug.Log that logs an error message to the console.
     /// </summary>
     public static void LogException(Exception exception)

@@ -1,17 +1,17 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 窗体管理类
 /// </summary>
-public sealed class UIManage :MonoBehaviour
+public sealed class UIManage : MonoBehaviour
 {
     private static UIManage instance = null;
 
     private const string PREFABS_PATH = "Prefabs/View/";
     public GameObject mFormsUIRoot = null;
-    private Dictionary<string, UIBaseForms> mFormsDic = new Dictionary<string, UIBaseForms>();
+    private Dictionary<string, UIBaseForms<MonoBehaviour>> mFormsDic = new Dictionary<string, UIBaseForms<MonoBehaviour>>();
 
     #region MainUILayer 主界面层
 
@@ -28,10 +28,10 @@ public sealed class UIManage :MonoBehaviour
     //*********************两种窗口类型:1.基础功能界面窗口 2.可叠加弹窗类型********************//
     //1/基础功能界面窗口:1.分为可以缓存窗口和不可以缓存窗口 2.具有导航功能(自定义栈结构,特殊功能就是可以把栈中的元素Top到栈顶)
     //窗口自定义栈结构--这里用两个字典来管理 string:窗口名 int:窗口在栈中的索引 下表从0开始
-    private int mCurStackFormsIndex = 0; //1作为栈的第一个下标 
+    private int mCurStackFormsIndex = 0; //1作为栈的第一个下标
     private Dictionary<string, int> mFormsStackName = new Dictionary<string, int>();
     private Dictionary<int, string> mFormsStackIndex = new Dictionary<int, string>();
-    //2.可叠加窗口类型: 1.在开启一个新的基础功能窗口时，会清理掉可叠加窗口
+    //2.可叠加窗口类型: 1.在开启一个新 的基础功能窗口时，会清理掉可叠加窗口
     private Stack<string> mPopupFormsStack = new Stack<string>();
 
     #endregion
@@ -46,10 +46,8 @@ public sealed class UIManage :MonoBehaviour
     }
 
     #region 外部接口
-    public static UIManage GetInstance()
-    {
-        return instance;
-    }
+
+    public static UIManage Instance { get { return instance; } }
 
     public void ClearData()
     {
@@ -66,12 +64,12 @@ public sealed class UIManage :MonoBehaviour
     /// <summary>
     /// 创建窗口
     /// </summary>
-    public T ShowForms<T>(string formsName, string PrefabName, bool IsAutoDepth = true) where T: UIBaseForms
+    public T ShowForms<T>(string formsName, string PrefabName, bool IsAutoDepth = true) where T: UIBaseForms<MonoBehaviour>
     {
         if (string.IsNullOrEmpty(formsName) || string.IsNullOrEmpty(PrefabName))
-            return null; 
+            return null;
 
-        UIBaseForms forms = null;
+        UIBaseForms<MonoBehaviour> forms = null;
         if (!mFormsDic.TryGetValue(formsName, out forms))
         {
             forms = _CreateForms<T>(formsName, PrefabName);
@@ -179,7 +177,7 @@ public sealed class UIManage :MonoBehaviour
         if (string.IsNullOrEmpty(formsName))
             return;
 
-        UIBaseForms forms = null;
+        UIBaseForms<MonoBehaviour> forms = null;
         if (mFormsDic.TryGetValue(formsName, out forms))
         {
             switch (forms.formsLayerType)
@@ -225,7 +223,7 @@ public sealed class UIManage :MonoBehaviour
     #endregion
 
     #region 内部接口
-    private T _CreateForms<T>(string formsName, string prefabName) where T:UIBaseForms
+    private T _CreateForms<T>(string formsName, string prefabName) where T: UIBaseForms<MonoBehaviour>
     {
         string path = PREFABS_PATH + prefabName;
         GameObject prefabGo = Resources.Load(path) as GameObject;
@@ -249,7 +247,6 @@ public sealed class UIManage :MonoBehaviour
         }
 
         go.name = formsName;
-        formsScript.formsName = formsName;
         Transform t = go.transform;
         switch (formsScript.formsLayerType)
         {
@@ -290,7 +287,7 @@ public sealed class UIManage :MonoBehaviour
     /// <summary>
     /// 自动给Forms层级排序
     /// </summary>
-    private int AutoCalculateDepth(UIBaseForms forms, int curDepth)
+    private int AutoCalculateDepth(UIBaseForms<MonoBehaviour> forms, int curDepth)
     {
         UIPanel parentPanel = forms.GetComponent<UIPanel>();
         if (parentPanel == null)
@@ -308,7 +305,7 @@ public sealed class UIManage :MonoBehaviour
             int disDepth = childrenPanel[i].depth - parentPanelDepth;
             childrenPanel[i].depth = curDepth + disDepth;
             if (disDepth > maxDis)
-                maxDis = disDepth; 
+                maxDis = disDepth;
         }
 
         return curDepth + maxDis + 1;
@@ -344,7 +341,7 @@ public sealed class UIManage :MonoBehaviour
         if (string.IsNullOrEmpty(formsName))
             return;
 
-        UIBaseForms forms = null;
+        UIBaseForms<MonoBehaviour> forms = null;
         if (mFormsDic.TryGetValue(formsName, out forms))
         {
             forms.End();
@@ -352,6 +349,6 @@ public sealed class UIManage :MonoBehaviour
             mFormsDic.Remove(formsName);
         }
     }
-    #endregion 
-     
+    #endregion
+
 }
