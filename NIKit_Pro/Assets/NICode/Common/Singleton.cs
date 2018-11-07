@@ -1,7 +1,7 @@
 
 /// <summary>
 /// Singleton.cs
-/// Created by WinMi 2018/10/24
+/// Created by zhangwm 2018/10/24
 /// 单例模板
 /// </summary>
 public abstract class Singleton<T> where T : class, new()
