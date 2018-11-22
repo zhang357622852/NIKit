@@ -1,6 +1,6 @@
 /// <summary>
 /// DotnetExtensions.cs
-/// Created by zhangwm 2018/11/05
+/// Created by WinMi 2018/11/05
 /// 自定义类型扩展
 /// </summary>
 using System;

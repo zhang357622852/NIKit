@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -17,8 +17,8 @@ public class ConfigCreatorEditor : EditorWindow
     private static string FILE_ROOT_PATH = null;
 
     private static List<string> mFilesPathList = new List<string>();
-   
-    [MenuItem("Tools/ConfigCreator(配置表生成)")]
+
+    //[MenuItem("Tools/ConfigCreator(配置表生成)")]
     private static void CreateWindow()
     {
         Refresh();
@@ -74,7 +74,7 @@ public class ConfigCreatorEditor : EditorWindow
                 if (!string.IsNullOrEmpty(tempPath))
                 {
                     FILE_ROOT_PATH = tempPath;
-                    Refresh(); 
+                    Refresh();
                 }
                 return;
             }
@@ -143,7 +143,7 @@ public class ConfigCreatorEditor : EditorWindow
                 for (int i = 0; i < mFilesPathList.Count; i++)
                 {
                     string fileName = Path.GetFileNameWithoutExtension(mFilesPathList[i]);
-                    NIEditorUtility.CreateCsConfigFile(mFilesPathList[i], fileName, CONFIG_FOLDER_NAME);
+                    CreateCsConfigFile(mFilesPathList[i], fileName, CONFIG_FOLDER_NAME);
                 }
                 return;
             }
@@ -180,7 +180,7 @@ public class ConfigCreatorEditor : EditorWindow
         if (File.Exists(Application.dataPath + "/../" + CONFIG_FOLDER_NAME + "/" + className + ".cs"))
             buttonTxt = "Update";
         else
-        { 
+        {
             buttonTxt = "Create";
             isNew = true;
         }
@@ -190,11 +190,114 @@ public class ConfigCreatorEditor : EditorWindow
 
         if (GUILayout.Button(buttonTxt, GUILayout.Width(98f)))
         {
-            NIEditorUtility.CreateCsConfigFile(filePath, fileName, CONFIG_FOLDER_NAME);
+            CreateCsConfigFile(filePath, fileName, CONFIG_FOLDER_NAME);
         }
 
         if (isNew)
             GUI.color = Color.white;
+    }
+
+    public static void CreateCsConfigFile(string filePath, string fileName, string rootFolderName)
+    {
+        //string text = File.ReadAllText(filePath);
+        //JsonValue jsonRoot = JsonUtility.ToObjectFromJS(text);
+        //if (jsonRoot == null)
+        //    return;
+
+        //jsonRoot = jsonRoot.Get("root");
+        //if (jsonRoot == null || jsonRoot.IsNull() || !jsonRoot.IsArray() || jsonRoot.GetLength() <= 0)
+        //    return;
+
+        //JsonValue jsonTemplate = null;
+
+        //if (jsonRoot.GetLength() > 0)
+        //    jsonTemplate = jsonRoot.Get(0);
+
+        //for (int i = 0; i < jsonRoot.GetLength(); i++)
+        //{
+        //    JsonValue item = jsonRoot.Get(i);
+        //    foreach (string k in item.GetKeys())
+        //    {
+        //        if (!jsonTemplate.HasKey(k))
+        //            jsonTemplate.Add(k, item.Get(k));
+        //    }
+        //}
+
+        //if (jsonTemplate != null)
+        //{
+        //    //类成员
+        //    StringBuilder contentStr = new StringBuilder();
+        //    contentStr.Append("\n");
+        //    foreach (string key in jsonTemplate.GetKeys())
+        //    {
+        //        string valueName = key;
+        //        string valueType = "string";
+
+        //        JsonValue value = jsonTemplate.Get(key);
+        //        if (value.IsInt())
+        //        {
+        //            valueType = "int";
+        //        }
+        //        else if (value.IsFloat())
+        //        {
+        //            valueType = "float";
+        //        }
+        //        else if (value.IsDouble())
+        //        {
+        //            //valueType = "double"; 目前double类型的也用float
+        //            valueType = "float";
+        //        }
+        //        else if (value.IsString())
+        //        {
+        //            valueType = "string";
+        //        }
+        //        else if (value.IsArray())
+        //        {
+        //            //目前自定义类型NormalObjectClass.cs:AddBattleProp RewardInfo CostInfo TalentLimitConfig
+        //            string lowerStr = valueName.ToLower();
+
+        //            if (lowerStr.Contains("rewardinfo") || lowerStr.Contains("reward"))
+        //                valueType = "List<RewardInfo>";
+
+        //            else if (lowerStr.Contains("wndcost"))
+        //                valueType = "List<int>";
+
+        //            else if (lowerStr.Contains("costinfo") || lowerStr.Contains("cost"))
+        //                valueType = "List<CostInfo>";
+
+        //            else if (lowerStr.Contains("prop"))
+        //                valueType = "List<AddBattleProp>";
+
+        //            else if (lowerStr.Contains("talentinfo"))
+        //                valueType = "List<TalentLimitConfig>";
+
+
+        //            else
+        //                valueType = "List<" + valueName+ ">";
+        //        }
+        //        //Debug.Log("=========================" + value.GetValueType());
+
+        //        contentStr.Append("\tpublic ").Append(valueType).Append(" ").Append(valueName).Append(" { get; set; }\n");
+        //    }
+        //    //
+        //    string className = fileName.Replace("GameConfig", "") + "Config";
+
+        //    StringBuilder fileStr = new StringBuilder();
+        //    fileStr.AppendLine("using System;");
+        //    fileStr.AppendLine("using System.Collections.Generic;");
+        //    fileStr.AppendLine("using UnityEngine;");
+        //    fileStr.AppendLine();
+        //    fileStr.Append("public class ").Append(className);
+        //    fileStr.Append("\n");
+        //    fileStr.AppendLine("{");
+        //    fileStr.AppendLine(contentStr.ToString());
+        //    fileStr.AppendLine("}");
+
+        //    File.WriteAllText(UnityEngine.Application.dataPath + "/../" + rootFolderName + "/" + className + ".cs", fileStr.ToString(), new System.Text.UTF8Encoding(false));
+
+        //    Debug.Log("==生成文件==" + fileName + ".cs");
+        //}
+
     }
 
 }

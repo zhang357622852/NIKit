@@ -6,6 +6,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 重载Release方法
+/// </summary>
 public interface IRelease
 {
     void Release();

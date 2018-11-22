@@ -6,7 +6,6 @@ public sealed class UIEventNotify: Singleton<UIEventNotify>
 {
     private Dictionary<string, Delegate> _eventDic = new Dictionary<string, Delegate>();
 
-
     #region 注册
     public void RegisterEvent(string eventType, Action callback)
     {

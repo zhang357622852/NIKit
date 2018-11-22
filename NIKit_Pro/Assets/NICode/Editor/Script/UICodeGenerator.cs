@@ -1,6 +1,6 @@
 /// <summary>
 /// UICodeGenerator.cs
-/// Created by zhangwm 2018/11/05
+/// Created by WinMi 2018/11/05
 /// UI界面文件代码生成
 /// </summary>
 using System.Collections;
@@ -176,26 +176,9 @@ public class UICodeGenerator : Singleton<UICodeGenerator>
             processedMarks = new List<IMark>();
 
         IMark uiMark = obj.GetComponent<IMark>();
+
         string className = string.Empty;
 
-        //if (uiMark != null)
-        //{
-        //    className = GetProjectNamespace() + "." + uiMark.ComponentName;
-
-        //    // 这部分
-        //    if (uiMark.GetUIMarkType() != UIMarkType.DefaultUnityElement)
-        //    {
-        //        var ptuimark = obj.GetComponent<UIMark>();
-        //        if (ptuimark != null)
-        //        {
-        //            UnityEngine.Object.DestroyImmediate(ptuimark, true);
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    className = behaviourName;
-        //}
         className = behaviourName;
 
         // 得到类名

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameRoot : MonoBehaviour
 {
-
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -16,8 +15,8 @@ public class GameRoot : MonoBehaviour
         SceneMgr.Instance.SwitchScene(new StartSceneState(SceneMgr.Instance.CurSceneController), false);
 	}
 
-    private void Update()
-    {
-        SceneMgr.Instance.Update();
-    }
+    //private void Update()
+    //{
+    //    SceneMgr.Instance.Update();
+    //}
 }

@@ -1,3 +1,9 @@
+/// <summary>
+/// NIEditorUtility.cs
+/// Created by WinMi 2017/12/9
+/// Editor静态工具类
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,49 +12,19 @@ using System;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Text;
+using ICSharpCode.SharpZipLib.Zip;
+using System.Security.Cryptography;
 
-[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-public class OpenFileName
-{
-    //参照Windows OPENFILENAME
-    public int structSize = 0;
-    public IntPtr dlgOwner = IntPtr.Zero;
-    public IntPtr instance = IntPtr.Zero;
-    public string filter = null;
-    public string customFilter = null;
-    public int maxCustFilter = 0;
-    public int filterIndex = 0;
-    public string file = null;
-    public int maxFile = 0;
-    public string fileTitle = null;
-    public int maxFileTitle = 0;
-    public string initialDir = null;
-    public string title = null;
-    public int flags = 0;
-    public short fileOffset = 0;
-    public short fileExtension = 0;
-    public string defExt = null;
-    public IntPtr custData = IntPtr.Zero;
-    public IntPtr hook = IntPtr.Zero;
-    public string templateName = null;
-    public IntPtr reservedPtr = IntPtr.Zero;
-    public int reservedInt = 0;
-    public int flagsEx = 0;
-}
-
-/// <summary>
-/// Author: WinMi
-/// Description: Editor静态工具类
-/// </summary>
 public static class NIEditorUtility
 {
-    private static string authorIconPath = "Assets/WinMi/Editor/GUI/authorIcon.png";
+    private static string authorIconPath = "Assets/NICode/Editor/GUI/authorIcon.png";
+
     private static Texture2D authorTexture2d = (Texture2D)AssetDatabase.LoadMainAssetAtPath(authorIconPath);
 
     public static void DrawAuthorSummary()
     {
         GUILayout.BeginHorizontal("AS TextArea", GUILayout.MinHeight(65));
-        GUILayout.Box(new GUIContent(authorTexture2d, "俺只是一张图片o(*￣︶￣*)o"));
+        GUILayout.Box(new GUIContent(authorTexture2d, "头像o(*￣︶￣*)o"));
         GUILayout.Space(10);
         GUILayout.BeginVertical();
         GUIStyle style = new GUIStyle();
@@ -92,176 +68,184 @@ public static class NIEditorUtility
         GUILayout.EndVertical();
     }
 
-    [DllImport("Comdlg32.dll", SetLastError = true, ThrowOnUnmappableChar = true, CharSet = CharSet.Auto)]
-    public static extern bool GetOpenFileName([In, Out] OpenFileName ofn);
-
-    public static bool GetOpenFileName1([In, Out] OpenFileName ofn)
-    {
-        return GetOpenFileName(ofn);
-    }
-
-    public static OpenFileName GetOpenFileInfo()
-    {
-        OpenFileName info = new OpenFileName();
-
-        info.structSize = Marshal.SizeOf(info);
-
-        info.filter = "Json(.json)|*.json";
-
-        info.file = new string(new char[256]);
-
-        info.maxFile = info.file.Length;
-
-        info.fileTitle = new string(new char[64]);
-
-        info.maxFileTitle = info.fileTitle.Length;
-
-        info.initialDir = UnityEngine.Application.dataPath;//默认路径
-
-        info.title = "Selected File";
-
-        //显示文件的类型
-        info.defExt = "Json";//"JPG";
-
-        //注意一下项目不一定要全选 但是0x00000008项不要缺少
-        //0x00080000|0x00001000|0x00000800|0x00000200|0x00000008
-        //OFN_EXPLORER |OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
-        info.flags = 0x00001000 | 0x00000008;
-
-
-
-        return info;
-    }
-
     public static string BrowseFolder()
     {
-        //FolderBrowserDialog dialog = new FolderBrowserDialog();
-        //dialog.Description = "注意: 使用后记得关闭此界面,以免Unity窗口操作受阻";
-        ////Environment.CurrentDirectory
-        ////dialog.RootFolder = Environment.SpecialFolder.Desktop;
-        //if (dialog.ShowDialog() == DialogResult.OK)
-        //{
-        //    return dialog.SelectedPath;
-        //}
-
         return null;
     }
 
-    public static string OpenFile()
+    /// <summary>
+    /// Gets the Md5.
+    /// </summary>
+    /// <returns>The M d5.</returns>
+    /// <param name="sDataIn">S data in.</param>
+    public static string GetStrMD5(string sDataIn)
     {
-        //OpenFileDialog oplog = new OpenFileDialog();
-        //oplog.InitialDirectory = UnityEngine.Application.dataPath + "/../";
-        //oplog.Filter = "Json(.json)|*.json"; //筛选格式: |*.json
-        //oplog.Title = "Selected File";
-        //DialogResult result = oplog.ShowDialog();
-        //if (result == DialogResult.OK)
-        //{
-        //    return oplog.FileName;
-        //}
+        MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+        byte[] bytValue, bytHash;
+        bytValue = System.Text.Encoding.UTF8.GetBytes(sDataIn);
+        bytHash = md5.ComputeHash(bytValue);
+        md5.Clear();
 
-        return null;
+        string sTemp = "";
+
+        foreach (byte b in bytHash)
+        {
+            sTemp += Convert.ToString(b, 16);
+        }
+
+        return sTemp.ToLower();
     }
 
-    public static void CreateCsConfigFile(string filePath, string fileName, string rootFolderName)
+    /// <summary>
+    /// 得到文件MD5
+    /// </summary>
+    public static string GetFileMD5(string filePath)
     {
-        //string text = File.ReadAllText(filePath);
-        //JsonValue jsonRoot = JsonUtility.ToObjectFromJS(text);
-        //if (jsonRoot == null)
-        //    return;
+        try
+        {
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+            int len = (int)fs.Length;
+            byte[] data = new byte[len];
+            fs.Read(data, 0, len);
+            fs.Close();
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] result = md5.ComputeHash(data);
+            string fileMD5 = "";
 
-        //jsonRoot = jsonRoot.Get("root");
-        //if (jsonRoot == null || jsonRoot.IsNull() || !jsonRoot.IsArray() || jsonRoot.GetLength() <= 0)
-        //    return;
+            foreach (byte b in result)
+            {
+                fileMD5 += Convert.ToString(b, 16);
+            }
 
-        //JsonValue jsonTemplate = null;
+            return fileMD5.ToLower();
+        }
+        catch (FileNotFoundException e)
+        {
+            Console.WriteLine(e.Message);
+            return "";
+        }
+    }
 
-        //if (jsonRoot.GetLength() > 0)
-        //    jsonTemplate = jsonRoot.Get(0);
+    /// <summary>
+    /// 压缩文件和文件夹
+    /// </summary>
+    /// <param name="_fileOrDirectoryArray">文件夹路径和文件名,可以多个</param>
+    /// <param name="_outputPathName">压缩后的输出路径文件名</param>
+    /// <param name="_password">压缩密码</param>
+    /// <returns></returns>
+    public static bool Zip(string[] _fileOrDirectoryArray, string _outputPathName, string _password = null)
+    {
+        // 传入参数不合格
+        if ((null == _fileOrDirectoryArray) || string.IsNullOrEmpty(_outputPathName))
+            return false;
 
-        //for (int i = 0; i < jsonRoot.GetLength(); i++)
-        //{
-        //    JsonValue item = jsonRoot.Get(i);
-        //    foreach (string k in item.GetKeys())
-        //    {
-        //        if (!jsonTemplate.HasKey(k))
-        //            jsonTemplate.Add(k, item.Get(k));
-        //    }
-        //}
+        ZipOutputStream zipOutputStream = new ZipOutputStream(File.Create(_outputPathName));
+        zipOutputStream.SetLevel(6);    // 压缩质量和压缩速度的平衡点
 
-        //if (jsonTemplate != null)
-        //{
-        //    //类成员
-        //    StringBuilder contentStr = new StringBuilder();
-        //    contentStr.Append("\n");
-        //    foreach (string key in jsonTemplate.GetKeys())
-        //    {
-        //        string valueName = key;
-        //        string valueType = "string";
+        if (!string.IsNullOrEmpty(_password))
+            zipOutputStream.Password = _password;
 
-        //        JsonValue value = jsonTemplate.Get(key);
-        //        if (value.IsInt())
-        //        {
-        //            valueType = "int";
-        //        }
-        //        else if (value.IsFloat())
-        //        {
-        //            valueType = "float";
-        //        }
-        //        else if (value.IsDouble())
-        //        {
-        //            //valueType = "double"; 目前double类型的也用float
-        //            valueType = "float";
-        //        }
-        //        else if (value.IsString())
-        //        {
-        //            valueType = "string";
-        //        }
-        //        else if (value.IsArray())
-        //        {
-        //            //目前自定义类型NormalObjectClass.cs:AddBattleProp RewardInfo CostInfo TalentLimitConfig
-        //            string lowerStr = valueName.ToLower();
+        for (int index = 0; index < _fileOrDirectoryArray.Length; ++index)
+        {
+            bool result = false;
+            string fileOrDirectory = _fileOrDirectoryArray[index];
 
-        //            if (lowerStr.Contains("rewardinfo") || lowerStr.Contains("reward"))
-        //                valueType = "List<RewardInfo>";
+            if (Directory.Exists(fileOrDirectory))
+                result = ZipDirectory(fileOrDirectory, string.Empty, zipOutputStream);
+            else if (File.Exists(fileOrDirectory))
+                result = ZipFile(fileOrDirectory, string.Empty, zipOutputStream);
 
-        //            else if (lowerStr.Contains("wndcost"))
-        //                valueType = "List<int>";
+            if (!result)
+                return false;
+        }
 
-        //            else if (lowerStr.Contains("costinfo") || lowerStr.Contains("cost"))
-        //                valueType = "List<CostInfo>";
+        // 关闭流文件
+        zipOutputStream.Finish();
+        zipOutputStream.Close();
 
-        //            else if (lowerStr.Contains("prop"))
-        //                valueType = "List<AddBattleProp>";
+        return true;
+    }
 
-        //            else if (lowerStr.Contains("talentinfo"))
-        //                valueType = "List<TalentLimitConfig>";
+    /// <summary>
+    /// 压缩文件
+    /// </summary>
+    /// <param name="_filePathName">文件路径名</param>
+    /// <param name="_parentRelPath">要压缩的文件的父相对文件夹</param>
+    /// <param name="_zipOutputStream">压缩输出流</param>
+    /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
+    /// <returns></returns>
+    private static bool ZipFile(string _filePathName, string _parentRelPath, ZipOutputStream _zipOutputStream)
+    {
+        ZipEntry entry = null;
+        FileStream fileStream = null;
+        try
+        {
+            string entryName = _parentRelPath + '/' + Path.GetFileName(_filePathName);
+            entry = new ZipEntry(entryName);
+            entry.DateTime = System.DateTime.Now;
 
+            fileStream = File.OpenRead(_filePathName);
+            byte[] buffer = new byte[fileStream.Length];
+            fileStream.Read(buffer, 0, buffer.Length);
+            fileStream.Close();
 
-        //            else
-        //                valueType = "List<" + valueName+ ">";
-        //        }
-        //        //Debug.Log("=========================" + value.GetValueType());
+            entry.Size = buffer.Length;
 
-        //        contentStr.Append("\tpublic ").Append(valueType).Append(" ").Append(valueName).Append(" { get; set; }\n");
-        //    }
-        //    //
-        //    string className = fileName.Replace("GameConfig", "") + "Config";
+            _zipOutputStream.PutNextEntry(entry);
+            _zipOutputStream.Write(buffer, 0, buffer.Length);
+        }
+        catch (System.Exception)
+        {
+            return false;
+        }
+        finally
+        {
+            if (null != fileStream)
+            {
+                fileStream.Close();
+                fileStream.Dispose();
+            }
+        }
 
-        //    StringBuilder fileStr = new StringBuilder();
-        //    fileStr.AppendLine("using System;");
-        //    fileStr.AppendLine("using System.Collections.Generic;");
-        //    fileStr.AppendLine("using UnityEngine;");
-        //    fileStr.AppendLine();
-        //    fileStr.Append("public class ").Append(className);
-        //    fileStr.Append("\n");
-        //    fileStr.AppendLine("{");
-        //    fileStr.AppendLine(contentStr.ToString());
-        //    fileStr.AppendLine("}");
+        return true;
+    }
 
-        //    File.WriteAllText(UnityEngine.Application.dataPath + "/../" + rootFolderName + "/" + className + ".cs", fileStr.ToString(), new System.Text.UTF8Encoding(false));
+    /// <summary>
+    /// 压缩文件夹
+    /// </summary>
+    /// <param name="_path">要压缩的文件夹</param>
+    /// <param name="_parentRelPath">要压缩的文件夹的父相对文件夹</param>
+    /// <param name="_zipOutputStream">压缩输出流</param>
+    /// <returns></returns>
+    private static bool ZipDirectory(string _path, string _parentRelPath, ZipOutputStream _zipOutputStream)
+    {
+        ZipEntry entry = null;
+        try
+        {
+            string entryName = Path.Combine(_parentRelPath, Path.GetFileName(_path) + '/');
+            entry = new ZipEntry(entryName);
+            entry.DateTime = System.DateTime.Now;
+            entry.Size = 0;
 
-        //    Debug.Log("==生成文件==" + fileName + ".cs");
-        //}
+            _zipOutputStream.PutNextEntry(entry);
+            _zipOutputStream.Flush();
 
+            string[] files = Directory.GetFiles(_path);
+            for (int index = 0; index < files.Length; ++index)
+                ZipFile(files[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream);
+        }
+        catch (System.Exception)
+        {
+            return false;
+        }
+
+        string[] directories = Directory.GetDirectories(_path);
+        for (int index = 0; index < directories.Length; ++index)
+        {
+            if (!ZipDirectory(directories[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream))
+                return false;
+        }
+
+        return true;
     }
 }
