@@ -19,6 +19,11 @@ public class SceneStateController
 
     private bool mIsRunEnter = false;
 
+    /// <summary>
+    /// 转换场景
+    /// </summary>
+    /// <param name="state"></param>
+    /// <param name="isLoadScene"></param>
     public void SetState(ISceneState state, bool isLoadScene = true)
     {
         if (state == null)

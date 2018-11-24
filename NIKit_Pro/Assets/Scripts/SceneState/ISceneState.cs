@@ -7,9 +7,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ISceneState
+public abstract class ISceneState
 {
-    private string mSceneName;
+    private readonly string mSceneName;
 
     public string SceneName
     {
@@ -19,6 +19,9 @@ public class ISceneState
         }
     }
 
+    /// <summary>
+    /// 状态持有者
+    /// </summary>
     protected SceneStateController mController;
 
     public ISceneState(string sceneName, SceneStateController controller)
@@ -28,9 +31,18 @@ public class ISceneState
         mController = controller;
     }
 
+    /// <summary>
+    /// 进入状态
+    /// </summary>
     public virtual void Enter() { }
 
+    /// <summary>
+    /// 退出状态
+    /// </summary>
     public virtual void Exit() { }
 
+    /// <summary>
+    /// 更新状态
+    /// </summary>
     public virtual void UpdateState() { }
 }

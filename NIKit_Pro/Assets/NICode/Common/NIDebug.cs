@@ -35,8 +35,10 @@ public static class NIDebug
     /// </summary>
     public static void Log<T>(T message)
     {
-        if (isDebug)
-            Debug.Log(message);
+        if (!isDebug)
+            return;
+
+        Debug.Log(message);
     }
 
     /// <summary>
@@ -46,6 +48,9 @@ public static class NIDebug
     /// <param name="paras"></param>
     public static void Log(string message, params object[] paras)
     {
+        if (!isDebug)
+            return;
+
         string content = message;
 
         if (paras != null)
@@ -59,8 +64,10 @@ public static class NIDebug
     /// </summary>
     public static void LogError<T>(T message)
     {
-        if (isDebug)
-            Debug.LogError(message);
+        if (!isDebug)
+            return;
+
+        Debug.LogError(message);
     }
 
     /// <summary>
@@ -68,6 +75,9 @@ public static class NIDebug
     /// </summary>
     public static void LogError(string message, params object[] paras)
     {
+        if (!isDebug)
+            return;
+
         string content = message;
 
         if (paras != null)
@@ -81,8 +91,10 @@ public static class NIDebug
     /// </summary>
     public static void LogWarning<T>(T message)
     {
-        if (isDebug)
-            Debug.LogWarning(message);
+        if (!isDebug)
+            return;
+
+        Debug.LogWarning(message);
     }
 
     /// <summary>
@@ -90,6 +102,9 @@ public static class NIDebug
     /// </summary>
     public static void LogWarning(string message, params object[] paras)
     {
+        if (!isDebug)
+            return;
+
         string content = message;
 
         if (paras != null)

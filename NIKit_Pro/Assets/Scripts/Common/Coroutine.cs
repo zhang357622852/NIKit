@@ -57,11 +57,16 @@ public class Coroutine : MonoBehaviour
     /// <summary>
     /// Coroutine对象
     /// </summary>
-    public static Coroutine instance
+    public static Coroutine Instance
     {
         get
         {
             return mInstance;
+        }
+
+        set
+        {
+            mInstance = value;
         }
     }
 
@@ -609,7 +614,7 @@ public class Coroutine : MonoBehaviour
         // 没有owner对象
         if (owner == null)
         {
-            NIDebug.Log("owner 是空的，i = {0}, name = {1}", i, name);
+            NIDebug.LogWarning("owner 是空的，i = {0}, name = {1}", i, name);
             return null;
         }
 
@@ -618,17 +623,17 @@ public class Coroutine : MonoBehaviour
 
 #if UNITY_EDITOR
         if (cm.Count > 500)
-            NIDebug.Log("Coroutine数量太多!");
+            NIDebug.LogWarning("Coroutine数量太多!");
 #endif
 
         // 没有名字，自动取一个
         if (string.IsNullOrEmpty(name))
-            name = "WinMi";//Game.GetUniqueName("AnonymousCoroutine");
+            name = GameUtility.GetUniqueName("AnonymousCoroutine");
 
         // 如果已经包含了该协程名的协程
         if (cm.ContainsKey(name))
         {
-            NIDebug.Log(string.Format("重名Coroutine {0}, 失败!", name));
+            NIDebug.LogWarning(string.Format("重名Coroutine {0}, 失败!", name));
             return null;
         }
 

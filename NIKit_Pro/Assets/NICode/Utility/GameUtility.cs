@@ -49,4 +49,17 @@ public static class GameUtility
 
         return scale;
     }
+
+    // 产生一个唯一不重复的名字
+    static long sSeqNum = 100000;
+
+    /// <summary>
+    /// 生成唯一的name
+    /// </summary>
+    /// <param name="prefix"></param>
+    /// <returns></returns>
+    public static string GetUniqueName(string prefix)
+    {
+        return string.Format("{0}_{1}", prefix, (sSeqNum++));
+    }
 }

@@ -126,8 +126,9 @@ public class ConfigMgr : Singleton<ConfigMgr>, IInit, IRelease
 
     #region 外部接口
 
-    public void Init()
+    public IEnumerator Init()
     {
+        yield break;
     }
 
     public void Release()

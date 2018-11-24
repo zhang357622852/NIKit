@@ -2,7 +2,7 @@
 /// Scheduler.cs
 /// Created by wangxw 2014-11-05
 /// 全局逻辑驱动器
-/// 本对象挂接在GameRootObject上，通过MonoBehaviour的update驱动
+/// 本对象挂接在GameRoot上，通过MonoBehaviour的update驱动
 /// </summary>
 using UnityEngine;
 using System.Collections;
@@ -28,15 +28,18 @@ public class Scheduler : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
-#if UNITY_EDITOR
+    //void Update()
+    //{
+    //    if (Platform.IsEditor)
+    //    {
 
-#else
-        // 音效更新驱动
-        //Call(() => {
-        //    GameSoundMgr.Update();
-        //});
-#endif
-    }
+    //    }
+    //    else
+    //    {
+    //        // 音效更新驱动
+    //        //Call(() => {
+    //        //    GameSoundMgr.Update();
+    //        //});
+    //    }
+    //}
 }

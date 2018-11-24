@@ -40,6 +40,7 @@ public partial class StartWnd : UIBaseForms<StartWnd>
     private void OnClickSection(GameObject go)
     {
         NIDebug.Log("==OnClickSection=");
+        Application.OpenURL("http://download2.qcplay.com/smjh/Client/smjh_qc1_release_v1.180914.0_2_signed.apk");
     }
 
     private void OnClickGotoGame(GameObject go)

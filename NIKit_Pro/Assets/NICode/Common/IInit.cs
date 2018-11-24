@@ -8,5 +8,5 @@ using System.Collections.Generic;
 
 public interface IInit
 {
-    void Init();
+    IEnumerator Init();
 }

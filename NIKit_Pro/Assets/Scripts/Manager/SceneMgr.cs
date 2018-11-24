@@ -1,9 +1,13 @@
+/// <summary>
+/// SceneMgr.cs
+/// Created by WinMi 2018/10/23
+/// 场景管理类
+/// </summary>
 using System.Collections;
 using System.Collections.Generic;
 
-public class SceneMgr : Singleton<SceneMgr>, IInit, IRelease, IUpdate
+public class SceneMgr : Singleton<SceneMgr>, IRelease, IUpdate
 {
-
     private SceneStateController mCurSceneController;
 
     /// <summary>
